@@ -1,27 +1,28 @@
-yamlbackend:
+backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
+media_folder: images
 
 collections:
-  - name: "resources"
-    label: "Resources"
-    files:
-      - label: "Site Settings"
-        name: "settings"
-        file: "data/settings.json"
-        fields:
-          - { label: "Site Title", name: "title", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-
-  - name: "contacts"
-    label: "Phone Numbers & Addresses"
-    folder: "data/contacts"
+  - name: resources
+    label: Resources
+    folder: data/contacts
     create: true
     fields:
-      - { label: "Organization Name", name: "title", widget: "string" }
-      - { label: "Phone Number", name: "phone", widget: "string" }
-      - { label: "Address", name: "address", widget: "string" }
-      - { label: "Hours", name: "hours", widget: "string" }
-      - { label: "Notes", name: "notes", widget: "text", required: false }
+      - label: Organization Name
+        name: title
+        widget: string
+      - label: Phone Number
+        name: phone
+        widget: string
+      - label: Address
+        name: address
+        widget: string
+      - label: Hours
+        name: hours
+        widget: string
+      - label: Notes
+        name: notes
+        widget: text
+        required: false
