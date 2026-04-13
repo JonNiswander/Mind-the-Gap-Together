@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mind the Gap Together – Pinellas County Resource Hub</title>
@@ -322,6 +323,17 @@
     .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: #eaf2ff; color: var(--primary); margin: 2px; }
   </style>
 </head>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <body>
 
 <!-- TOP BANNER -->
