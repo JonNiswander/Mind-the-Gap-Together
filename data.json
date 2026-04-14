@@ -197,6 +197,17 @@
       "tags": [
         "Must be an Angel"
       ]
+    },
+    {
+      "id": 100,
+      "title": "Alcoholism recovery counselor",
+      "company": "Work the Steps",
+      "location": "Tampa FL",
+      "pay": "$24hr",
+      "type": "part",
+      "tags": [
+        "Must be sober."
+      ]
     }
   ],
   "fairs": [
