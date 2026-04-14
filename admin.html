@@ -459,7 +459,7 @@
 
       <div class="nav-section-label">Export</div>
       <div class="nav-item" onclick="showSection('export')" data-section="export">
-        <span class="n-icon">📤</span> Export JSON
+        <span class="n-icon">🚀</span> Publish
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -478,7 +478,7 @@
           <div class="status-dot"></div>
           <span id="live-url-label">unique-toffee-1b6e64.netlify.app</span>
         </div>
-        <button class="export-btn" onclick="downloadExport()">📤 Export JSON</button>
+        <button class="export-btn" style="background:var(--success)" onclick="publishToGitHub()">🚀 Publish Live</button>
       </div>
     </div>
 
@@ -598,18 +598,18 @@
       <!-- EXPORT -->
       <div class="admin-section" id="section-export">
         <div class="section-toolbar">
-          <h2>📤 Export Data as JSON</h2>
+          <h2>📤 Publish to Live Site</h2>
         </div>
         <div class="export-panel">
-          <h3>How this works</h3>
-          <p>1. Click <strong>⬇️ Download data.json</strong> below — the file saves to your computer automatically.<br>
-             2. Drag <strong>data.json</strong> into your GitHub repo (same folder as <code style="font-family:var(--mono);font-size:0.8rem;background:var(--bg);padding:2px 6px;border-radius:3px;">index.html</code>).<br>
-             3. Commit &amp; push → Netlify auto-deploys. Your public site updates instantly. ✅</p>
-          <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+          <h3>🚀 One-Click Publish</h3>
+          <p>Click <strong>Publish to GitHub</strong> to push your changes directly to GitHub. Netlify will auto-deploy within ~30 seconds and your live site will update. ✅</p>
+          <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;align-items:center;">
+            <button class="add-btn" style="background:var(--success);font-size:1rem;padding:12px 28px;" onclick="publishToGitHub()">🚀 Publish to GitHub</button>
             <button class="add-btn" onclick="downloadExport()">⬇️ Download data.json</button>
-            <button class="copy-btn" onclick="copyExport()">📋 Copy to Clipboard</button>
+            <button class="copy-btn" onclick="copyExport()">📋 Copy JSON</button>
           </div>
-          <div class="code-block" id="export-output">// Your exported JSON will preview here...</div>
+          <div id="publish-status" style="display:none;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.88rem;font-weight:600;"></div>
+          <div class="code-block" id="export-output">// JSON preview will appear here...</div>
         </div>
       </div>
 
@@ -636,9 +636,14 @@
 <div class="toast" id="toast">✅ Saved successfully!</div>
 
 <script>
-// ── AUTH ──
+// ── CONFIG ──
 const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'mtgt2026'; // Change this!
+const ADMIN_PASS = 'mtgt2026';
+const NETLIFY_TOKEN = 'nfp_1FUrtbxaR2jtDPGNcZjp9QxEuRneXUAT939a';
+const NETLIFY_SITE_ID = 'unique-toffee-1b6e64';
+const GITHUB_TOKEN = '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';
+const GITHUB_REPO = 'JonNiswander/Mind-the-Gap-Together';
+const GITHUB_FILE = 'data.json';
 
 function doLogin() {
   const u = document.getElementById('login-user').value;
@@ -646,11 +651,26 @@ function doLogin() {
   if (u === ADMIN_USER && p === ADMIN_PASS) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-app').style.display = 'block';
-    refreshStats();
-    renderAll();
+    loadAdminData();
   } else {
     document.getElementById('login-error').style.display = 'block';
   }
+}
+
+async function loadAdminData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    const data = await res.json();
+    if (data.food) DATA.food = data.food;
+    if (data.housing) DATA.housing = data.housing;
+    if (data.jobs) DATA.jobs = data.jobs;
+    if (data.fairs) DATA.fairs = data.fairs;
+    if (data.resources) DATA.resources = data.resources;
+  } catch(e) {
+    console.warn('Could not load data.json, using defaults', e);
+  }
+  refreshStats();
+  renderAll();
 }
 
 function doLogout() {
@@ -696,13 +716,7 @@ const DATA = {
   ]
 };
 
-const SUBMISSIONS = [
-  { id: 1, type: 'navigator', time: '2026-04-13 10:22', data: { name: 'Maria G.', phone: '(727) 555-0182', situation: 'At risk of eviction', notes: 'Family of 3, need help fast' } },
-  { id: 2, type: 'volunteer', time: '2026-04-13 14:05', data: { name: 'James T.', email: 'james@email.com', availability: 'Weekends', reason: 'Want to give back to the community' } },
-  { id: 3, type: 'job', time: '2026-04-12 09:41', data: { company: 'Bay Cleaning Co.', title: 'Cleaning Technician', pay: '$16/hr', type: 'Full-Time', location: 'Clearwater, FL' } },
-  { id: 4, type: 'rental', time: '2026-04-11 16:30', data: { owner: 'Ronald D.', phone: '(727) 555-0234', address: '1420 22nd Ave S, St. Pete', beds: '2BR', rent: '$1,050/mo', section8: 'Yes' } },
-  { id: 5, type: 'advocate', time: '2026-04-10 11:15', data: { name: 'Denise M.', contact: 'denise@email.com', situation: 'Was denied SSI, need help with appeal' } },
-];
+const SUBMISSIONS = []; // Loaded live from Netlify Forms API
 
 let nextId = { food: 100, housing: 100, jobs: 100, fairs: 100, resources: 100 };
 let editingType = null;
@@ -718,11 +732,12 @@ function showSection(name) {
   document.querySelector(`.nav-item[data-section="${name}"]`)?.classList.add('active');
   document.getElementById('topbar-title').textContent = titles[name] || name;
   if (name === 'export') generateExport();
+  if (name === 'submissions') loadSubmissions();
 }
 
 // ── RENDER ──
 function renderAll() {
-  renderFood(); renderHousing(); renderJobs(); renderFairs(); renderResources(); renderSubmissions(); refreshStats();
+  renderFood(); renderHousing(); renderJobs(); renderFairs(); renderResources(); refreshStats();
 }
 
 function refreshStats() {
@@ -849,27 +864,84 @@ function renderResources() {
     </div>`).join('');
 }
 
-function renderSubmissions() {
-  const typeMap = { navigator: ['type-navigator','🧭 Navigator Request'], volunteer: ['type-volunteer','🤝 Volunteer'], job: ['type-job','💼 Job Posting'], rental: ['type-rental','🏡 Rental Listing'], advocate: ['type-advocate','💼 SSI Advocate'] };
+// ── FORM NAME → type/label/publish mapping ──
+const FORM_MAP = {
+  'job-posting':           { type:'job',       cls:'type-job',       label:'💼 Job Posting',        publishTo:'jobs',    buildItem: f => ({ id: Date.now(), title: f['job-title']||'', company: f['company']||'', location: f['location']||'', pay: f['pay-rate']||'', type: 'full', tags:[] }) },
+  'navigator-request':     { type:'navigator', cls:'type-navigator', label:'🧭 Navigator Request',   publishTo:null },
+  'volunteer-application': { type:'volunteer', cls:'type-volunteer', label:'🤝 Volunteer',           publishTo:null },
+  'ssi-advocate':          { type:'advocate',  cls:'type-advocate',  label:'💼 SSI Advocate',        publishTo:null },
+  'rental-listing':        { type:'rental',    cls:'type-rental',    label:'🏡 Rental Listing',      publishTo:'housing', buildItem: f => ({ id: Date.now(), name: (f['owner-name']||'Private Owner') + ' – ' + (f['address']||''), type:'private', status:'open', address: f['address']||'', phone: f['phone']||'', url:'' }) },
+  'donation':              { type:'donation',  cls:'type-navigator', label:'❤️ Donation',            publishTo:null },
+};
+
+async function loadSubmissions() {
   const el = document.getElementById('submissions-list');
-  el.innerHTML = SUBMISSIONS.map(s => {
-    const [cls, label] = typeMap[s.type] || ['type-navigator', s.type];
-    const fields = Object.entries(s.data).map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
-    return `
-    <div class="submission-card">
-      <div class="submission-header">
-        <span class="submission-type ${cls}">${label}</span>
-        <span class="submission-time">${s.time}</span>
-      </div>
-      <div class="submission-body">${fields}</div>
-      <div class="sub-actions">
-        <button class="sub-btn primary">✉️ Reply</button>
-        <button class="sub-btn">✅ Mark Done</button>
-        <button class="sub-btn" onclick="this.closest('.submission-card').style.opacity='0.4'">🗑 Dismiss</button>
-      </div>
-    </div>`;
-  }).join('');
+  el.innerHTML = '<div class="empty-state"><div class="e-icon">⏳</div><p>Loading submissions from Netlify...</p></div>';
+  try {
+    const res = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/submissions?per_page=50`, {
+      headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
+    });
+    if (!res.ok) throw new Error('Netlify API error: ' + res.status);
+    const submissions = await res.json();
+    if (!submissions.length) {
+      el.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div><p>No submissions yet. They will appear here when visitors submit forms on the live site.</p></div>';
+      document.getElementById('sub-badge').style.display = 'none';
+      return;
+    }
+    document.getElementById('sub-badge').textContent = submissions.length;
+    el.innerHTML = submissions.map(s => {
+      const formName = s.form_name || '';
+      const map = FORM_MAP[formName] || { cls:'type-navigator', label: formName, publishTo: null };
+      const data = s.data || {};
+      const fields = Object.entries(data).filter(([k])=>k!=='ip'&&k!=='user_agent').map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
+      const time = new Date(s.created_at).toLocaleString();
+      const publishBtn = map.publishTo && map.buildItem
+        ? `<button class="sub-btn primary" onclick="approveSubmission('${s.id}', '${formName}')">✅ Approve & Publish</button>`
+        : '';
+      return `<div class="submission-card" id="sub-${s.id}">
+        <div class="submission-header">
+          <span class="submission-type ${map.cls}">${map.label}</span>
+          <span class="submission-time">${time}</span>
+        </div>
+        <div class="submission-body">${fields}</div>
+        <div class="sub-actions">
+          ${publishBtn}
+          <button class="sub-btn" onclick="dismissSubmission('${s.id}')">🗑 Dismiss</button>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    el.innerHTML = `<div class="empty-state"><div class="e-icon">⚠️</div><p>Could not load submissions: ${e.message}</p></div>`;
+  }
 }
+
+async function approveSubmission(subId, formName) {
+  const map = FORM_MAP[formName];
+  if (!map || !map.buildItem) return;
+  // Get submission data
+  try {
+    const res = await fetch(`https://api.netlify.com/api/v1/submissions/${subId}`, {
+      headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
+    });
+    const sub = await res.json();
+    const newItem = map.buildItem(sub.data || {});
+    const listKey = map.publishTo;
+    DATA[listKey].push(newItem);
+    renderAll();
+    await publishToGitHub();
+    dismissSubmission(subId);
+    showToast('✅ Approved & published to live site!');
+  } catch(e) {
+    showToast('❌ Error: ' + e.message);
+  }
+}
+
+function dismissSubmission(subId) {
+  const el = document.getElementById('sub-' + subId);
+  if (el) { el.style.opacity = '0.35'; el.style.pointerEvents = 'none'; }
+}
+
+function renderSubmissions() { loadSubmissions(); }
 
 // ── DRAWER FORMS ──
 const DRAWER_FORMS = {
@@ -1017,7 +1089,7 @@ function deleteItem(type, id) {
   showToast('🗑 Entry deleted');
 }
 
-// ── EXPORT ──
+// ── EXPORT & GITHUB PUBLISH ──
 function generateExport() {
   const output = JSON.stringify(DATA, null, 2);
   document.getElementById('export-output').textContent = output;
@@ -1033,12 +1105,74 @@ function downloadExport() {
   a.download = 'data.json';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('⬇️ data.json downloaded — drag it into GitHub!');
+  showToast('⬇️ data.json downloaded!');
 }
 
 function copyExport() {
   const text = generateExport();
   navigator.clipboard.writeText(text).then(() => showToast('📋 Copied to clipboard!'));
+}
+
+async function publishToGitHub() {
+  const statusEl = document.getElementById('publish-status');
+  const output = generateExport();
+  const content = btoa(unescape(encodeURIComponent(output)));
+
+  if (statusEl) {
+    statusEl.style.display = 'block';
+    statusEl.style.background = 'rgba(243,156,18,0.15)';
+    statusEl.style.color = '#f39c12';
+    statusEl.style.border = '1px solid rgba(243,156,18,0.3)';
+    statusEl.textContent = '⏳ Publishing to GitHub...';
+  }
+
+  try {
+    // Get current file SHA (required for update)
+    const getRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json'
+      }
+    });
+    const fileData = await getRes.json();
+    const sha = fileData.sha;
+
+    // Push updated file
+    const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: 'Admin portal update – ' + new Date().toLocaleString(),
+        content: content,
+        sha: sha
+      })
+    });
+
+    if (!putRes.ok) {
+      const err = await putRes.json();
+      throw new Error(err.message || 'GitHub API error');
+    }
+
+    if (statusEl) {
+      statusEl.style.background = 'rgba(39,174,96,0.15)';
+      statusEl.style.color = '#2ecc71';
+      statusEl.style.border = '1px solid rgba(39,174,96,0.3)';
+      statusEl.textContent = '✅ Published! Netlify is deploying — live site updates in ~30 seconds.';
+    }
+    showToast('🚀 Published to GitHub!');
+  } catch(e) {
+    if (statusEl) {
+      statusEl.style.background = 'rgba(231,76,60,0.15)';
+      statusEl.style.color = '#e74c3c';
+      statusEl.style.border = '1px solid rgba(231,76,60,0.3)';
+      statusEl.textContent = '❌ Error: ' + e.message;
+    }
+    showToast('❌ Publish failed: ' + e.message);
+  }
 }
 
 // ── TOAST ──
