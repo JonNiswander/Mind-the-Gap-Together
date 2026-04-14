@@ -1,34 +1,521 @@
 {
   "food": [
-    { "id": 1, "name": "St. Vincent de Paul – St. Pete", "address": "2819 4th St N, St. Petersburg, FL 33704", "phone": "(727) 822-4254", "hours": "Tue & Thu 9am–12pm", "days": ["Tue","Thu"], "accepts": ["Walk-in","Canned Goods"] },
-    { "id": 2, "name": "Salvation Army – St. Petersburg", "address": "3590 5th Ave N, St. Petersburg, FL 33713", "phone": "(727) 822-4954", "hours": "Mon–Fri 9am–4pm", "days": ["Mon","Tue","Wed","Thu","Fri"], "accepts": ["Walk-in","SNAP"] },
-    { "id": 3, "name": "Catholic Charities – Food Pantry", "address": "6533 Trouble Creek Rd, New Port Richey", "phone": "(727) 893-3700", "hours": "Wed 9am–12pm", "days": ["Wed"], "accepts": ["Walk-in","ID Required"] },
-    { "id": 4, "name": "Metropolitan Ministries", "address": "2002 N Florida Ave, Tampa, FL 33602", "phone": "(813) 209-1000", "hours": "Mon–Fri 8am–5pm", "days": ["Mon","Tue","Wed","Thu","Fri"], "accepts": ["Walk-in","Appointment"] },
-    { "id": 5, "name": "Pinellas Hope – Food Distribution", "address": "5009 59th St N, St. Petersburg, FL 33709", "phone": "(727) 893-3700", "hours": "Sat 8am–11am", "days": ["Sat"], "accepts": ["Walk-in"] }
+    {
+      "id": 1,
+      "name": "St. Pete Free Clinic - Food Pantry",
+      "address": "863 3rd Ave N, St. Petersburg, FL 33701",
+      "phone": "727-821-8900",
+      "hours": "Mon-Fri 9am-12pm",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "desc": "Free groceries for low-income individuals and families. No ID required.",
+      "accepts": [
+        "No ID required",
+        "Walk-in"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Salvation Army - Food Pantry",
+      "address": "3590 5th Ave N, St. Petersburg, FL 33713",
+      "phone": "727-822-4954",
+      "hours": "Mon-Fri 9am-12pm",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "desc": "Food boxes and emergency food assistance.",
+      "accepts": [
+        "ID required",
+        "Walk-in"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Metropolitan Ministries - Food Pantry",
+      "address": "2002 N Florida Ave, Tampa, FL 33602",
+      "phone": "813-209-1000",
+      "hours": "Mon-Sat 8am-2pm",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "desc": "Fresh produce, canned goods, and hot meals available.",
+      "accepts": [
+        "No ID required"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "St. Vincent de Paul - Food Pantry",
+      "address": "2819 4th St N, St. Petersburg, FL 33704",
+      "phone": "727-822-4254",
+      "hours": "Tue & Thu 9am-12pm",
+      "days": [
+        "Tue",
+        "Thu"
+      ],
+      "desc": "Weekly food distribution. Families and individuals welcome.",
+      "accepts": [
+        "ID preferred"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pinellas Hope - Community Kitchen",
+      "address": "5009 59th St N, St. Petersburg, FL 33709",
+      "phone": "727-893-3700",
+      "hours": "Daily 7am-7pm",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "desc": "Hot meals daily for anyone in need. No questions asked.",
+      "accepts": [
+        "No requirements",
+        "Walk-in"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Cross and Anchor United Methodist - Pantry",
+      "address": "3510 56th St N, St. Petersburg, FL 33710",
+      "phone": "727-521-0498",
+      "hours": "Sat 9am-11am",
+      "days": [
+        "Sat"
+      ],
+      "desc": "Saturday distribution. Community groceries and household items.",
+      "accepts": [
+        "Walk-in"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "United Church of Christ - Food Closet",
+      "address": "2550 Drew St, Clearwater, FL 33765",
+      "phone": "727-799-6547",
+      "hours": "Wed 10am-1pm",
+      "days": [
+        "Wed"
+      ],
+      "desc": "Weekly food closet open to Pinellas County residents.",
+      "accepts": [
+        "ID required"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Daystar Life Center",
+      "address": "1055 Dr. MLK Jr St N, St. Petersburg, FL 33705",
+      "phone": "727-867-8660",
+      "hours": "Mon, Wed, Fri 9am-1pm",
+      "days": [
+        "Mon",
+        "Wed",
+        "Fri"
+      ],
+      "desc": "Food pantry plus clothing and utility assistance.",
+      "accepts": [
+        "Photo ID"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Pinellas Opportunity Council",
+      "address": "5765 113th St N, Seminole, FL 33772",
+      "phone": "727-581-0710",
+      "hours": "Mon-Fri 8:30am-4:30pm",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "desc": "USDA food distribution and emergency food assistance.",
+      "accepts": [
+        "Income verification"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "First Assembly of God - Community Pantry",
+      "address": "4444 66th St N, Kenneth City, FL 33709",
+      "phone": "727-546-8800",
+      "hours": "Sun 11am-1pm",
+      "days": [
+        "Sun"
+      ],
+      "desc": "Sunday pantry following morning service. Open to all.",
+      "accepts": [
+        "Walk-in"
+      ]
+    }
   ],
   "housing": [
-    { "id": 1, "name": "Pinellas Hope", "type": "emergency,transitional", "status": "open", "address": "5009 59th St N, St. Petersburg, FL 33709", "phone": "(727) 893-3700", "url": "https://www.catholiccharitiesDOC.net/pinellas-hope" },
-    { "id": 2, "name": "Metropolitan Ministries", "type": "transitional,family", "status": "open", "address": "2002 N Florida Ave, Tampa, FL 33602", "phone": "(813) 209-1000", "url": "https://www.metromin.org" },
-    { "id": 3, "name": "Pinellas County Housing Authority", "type": "subsidized,section8", "status": "waitlist", "address": "11479 Ulmerton Rd, Largo, FL 33778", "phone": "(727) 443-7684", "url": "https://www.pinellashousing.org" },
-    { "id": 4, "name": "Housing Authority of St. Petersburg", "type": "subsidized,section8,family", "status": "open", "address": "2001 Gandy Blvd N, St. Petersburg, FL 33702", "phone": "(727) 323-3171", "url": "https://www.stpetehousing.org" },
-    { "id": 5, "name": "Clearwater Housing Authority", "type": "subsidized,section8,senior", "status": "waitlist", "address": "908 Cleveland St, Clearwater, FL 33755", "phone": "(727) 441-2227", "url": "https://www.clearwaterhousing.org" }
+    {
+      "id": 1,
+      "name": "Pinellas Hope",
+      "type": "emergency,transitional",
+      "status": "open",
+      "address": "5009 59th St N, St. Petersburg, FL 33709",
+      "phone": "(727) 893-3700",
+      "url": "https://www.catholiccharitiesDOC.net/pinellas-hope"
+    },
+    {
+      "id": 2,
+      "name": "Metropolitan Ministries",
+      "type": "transitional,family",
+      "status": "open",
+      "address": "2002 N Florida Ave, Tampa, FL 33602",
+      "phone": "(813) 209-1000",
+      "url": "https://www.metromin.org"
+    },
+    {
+      "id": 3,
+      "name": "Pinellas County Housing Authority",
+      "type": "subsidized,family,senior",
+      "status": "open",
+      "address": "11479 Ulmerton Rd, Largo, FL 33778",
+      "phone": "(727) 443-7684",
+      "url": "https://www.pinellashousing.org"
+    },
+    {
+      "id": 4,
+      "name": "Housing Authority of St. Petersburg",
+      "type": "subsidized,family",
+      "status": "open",
+      "address": "2001 Gandy Blvd N, St. Petersburg, FL 33702",
+      "phone": "(727) 323-3171",
+      "url": "https://www.stpetehousing.org"
+    },
+    {
+      "id": 5,
+      "name": "Clearwater Housing Authority",
+      "type": "subsidized,senior",
+      "status": "waitlist",
+      "address": "908 Cleveland St, Clearwater, FL 33755",
+      "phone": "(727) 441-2227",
+      "url": "https://www.clearwaterhousing.org"
+    },
+    {
+      "id": 6,
+      "name": "Suncoast Partnership to End Homelessness",
+      "type": "emergency,transitional",
+      "status": "open",
+      "address": "",
+      "phone": "(727) 442-9041",
+      "url": "https://www.speh.org"
+    }
   ],
   "jobs": [
-    { "id": 1, "title": "Warehouse Associate", "company": "Logistics Co. of Tampa Bay", "location": "St. Petersburg, FL", "pay": "$17–$19/hr", "type": "full", "tags": ["No experience required","Benefits"] },
-    { "id": 2, "title": "Cashier / Customer Service", "company": "Local Grocery – Pinellas Park", "location": "Pinellas Park, FL", "pay": "$15/hr", "type": "part", "tags": ["Flexible hours","Entry level"] },
-    { "id": 3, "title": "Home Health Aide / Caregiver", "company": "BayCare Home Health", "location": "Clearwater, FL", "pay": "$16–$21/hr", "type": "full", "tags": ["Training provided","Healthcare"] },
-    { "id": 4, "title": "General Laborer", "company": "Pinellas Construction Partners", "location": "St. Petersburg, FL", "pay": "$15–$18/hr", "type": "temp", "tags": ["Immediate start","Outdoor work"] },
-    { "id": 5, "title": "Line Cook / Kitchen Staff", "company": "Various Restaurants – St. Pete Beach", "location": "St. Pete Beach, FL", "pay": "$16–$22/hr + tips", "type": "full", "tags": ["Hospitality","Multiple openings"] }
+    {
+      "id": 1,
+      "title": "Warehouse Associate",
+      "company": "Logistics Co. of Tampa Bay",
+      "location": "St. Petersburg, FL",
+      "pay": "$17-$19/hr",
+      "type": "full",
+      "tags": [
+        "No experience required",
+        "Benefits"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Cashier / Customer Service",
+      "company": "Local Grocery - Pinellas Park",
+      "location": "Pinellas Park, FL",
+      "pay": "$15/hr",
+      "type": "part",
+      "tags": [
+        "Flexible hours",
+        "Entry level"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Home Health Aide / Caregiver",
+      "company": "BayCare Home Health",
+      "location": "Clearwater, FL",
+      "pay": "$16-$21/hr",
+      "type": "full",
+      "tags": [
+        "Training provided",
+        "Healthcare"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "General Laborer",
+      "company": "Pinellas Construction Partners",
+      "location": "St. Petersburg, FL",
+      "pay": "$15-$18/hr",
+      "type": "temp",
+      "tags": [
+        "Immediate start",
+        "Outdoor work"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Line Cook / Kitchen Staff",
+      "company": "Various Restaurants - St. Pete Beach",
+      "location": "St. Pete Beach, FL",
+      "pay": "$16-$22/hr + tips",
+      "type": "full",
+      "tags": [
+        "Hospitality",
+        "Multiple openings"
+      ]
+    }
   ],
   "fairs": [
-    { "id": 1, "name": "Pinellas County Spring Job Fair 2026", "date": "April 22, 2026", "location": "Largo Cultural Center, Largo, FL", "time": "10:00 AM – 3:00 PM", "cost": "Free", "status": "upcoming" },
-    { "id": 2, "name": "CareerSource Pinellas – Hiring Event", "date": "Ongoing", "location": "3425 Dr. MLK Jr St N, St. Petersburg, FL", "time": "Varies", "cost": "Free", "status": "upcoming" }
+    {
+      "id": 1,
+      "name": "Pinellas County Spring Job Fair 2026",
+      "date": "April 22, 2026",
+      "location": "Largo Cultural Center, Largo, FL",
+      "time": "10:00 AM - 3:00 PM",
+      "cost": "Free",
+      "status": "upcoming"
+    },
+    {
+      "id": 2,
+      "name": "CareerSource Pinellas - Ongoing Hiring Events",
+      "date": "Ongoing",
+      "location": "3425 Dr. MLK Jr St N, St. Petersburg, FL",
+      "time": "Varies",
+      "cost": "Free",
+      "status": "upcoming"
+    }
   ],
   "resources": [
-    { "id": 1, "name": "St. Pete Free Clinic", "category": "Healthcare", "desc": "Free medical, dental, mental health, and prescription services for uninsured residents.", "phone": "(727) 821-8900", "address": "863 3rd Ave N, St. Petersburg, FL 33701" },
-    { "id": 2, "name": "Directions for Living", "category": "Mental Health", "desc": "Mental health and substance abuse services including outpatient therapy and crisis stabilization.", "phone": "(727) 524-4464", "address": "3000 54th St N, St. Petersburg, FL 33710" },
-    { "id": 3, "name": "CareerSource Pinellas", "category": "Jobs", "desc": "Free resume help, job search assistance, and skills training for job seekers.", "phone": "(727) 507-4300", "address": "3425 Dr. MLK Jr St N, St. Petersburg, FL" },
-    { "id": 4, "name": "NAMI Pinellas", "category": "Mental Health", "desc": "Education, support groups, and advocacy for individuals and families affected by mental illness.", "phone": "(727) 791-3428", "address": "" },
-    { "id": 5, "name": "Salvation Army – Clothing", "category": "Clothing", "desc": "Clothing vouchers and thrift store with deeply discounted items.", "phone": "(727) 822-4954", "address": "3590 5th Ave N, St. Petersburg, FL 33713" }
+    {
+      "id": 1,
+      "name": "St. Pete Free Clinic",
+      "category": "Healthcare",
+      "desc": "Free medical, dental, mental health, and prescription services for uninsured residents.",
+      "phone": "(727) 821-8900",
+      "address": "863 3rd Ave N, St. Petersburg, FL 33701"
+    },
+    {
+      "id": 2,
+      "name": "Pinellas County Health Department",
+      "category": "Healthcare",
+      "desc": "Public health services including primary care, immunizations, STD testing, and referrals.",
+      "phone": "(727) 469-5800",
+      "address": "310 N Myrtle Ave, Clearwater, FL 33755"
+    },
+    {
+      "id": 3,
+      "name": "HCH Program - Health Care for the Homeless",
+      "category": "Healthcare",
+      "desc": "Comprehensive health services for individuals experiencing homelessness. Medical, dental, behavioral health. Free, no ID required.",
+      "phone": "(727) 821-8900",
+      "address": ""
+    },
+    {
+      "id": 4,
+      "name": "Boley Centers",
+      "category": "Healthcare",
+      "desc": "Primary healthcare and behavioral health services for low-income and homeless individuals in Pinellas County.",
+      "phone": "(727) 821-4819",
+      "address": "445 31st St N, St. Petersburg, FL 33713"
+    },
+    {
+      "id": 5,
+      "name": "DACCO / BayCare Behavioral Health",
+      "category": "Healthcare",
+      "desc": "Substance abuse and behavioral health treatment. Outpatient, residential, and detox programs.",
+      "phone": "(813) 384-1100",
+      "address": ""
+    },
+    {
+      "id": 6,
+      "name": "Catholic Charities of the Diocese of St. Pete",
+      "category": "Healthcare",
+      "desc": "Medical case management, health navigation, and social services for residents regardless of faith.",
+      "phone": "(727) 893-3700",
+      "address": ""
+    },
+    {
+      "id": 7,
+      "name": "Directions for Living",
+      "category": "Mental Health",
+      "desc": "Mental health and substance abuse services including outpatient therapy, crisis stabilization, and residential care. Crisis line: (727) 791-3434.",
+      "phone": "(727) 524-4464",
+      "address": "3000 54th St N, St. Petersburg, FL 33710"
+    },
+    {
+      "id": 8,
+      "name": "Suncoast Center",
+      "category": "Mental Health",
+      "desc": "Behavioral health services including therapy, psychiatric care, and addiction recovery programs.",
+      "phone": "(727) 327-7656",
+      "address": "4024 Central Ave, St. Petersburg, FL 33711"
+    },
+    {
+      "id": 9,
+      "name": "NAMI Pinellas",
+      "category": "Mental Health",
+      "desc": "Education, support groups, and advocacy for individuals and families affected by mental illness. Free support groups.",
+      "phone": "(727) 791-3428",
+      "address": ""
+    },
+    {
+      "id": 10,
+      "name": "Lighthouse for the Blind - Pinellas",
+      "category": "Vision",
+      "desc": "Rehabilitation, employment, and living skills for individuals who are blind or visually impaired.",
+      "phone": "(727) 321-0600",
+      "address": ""
+    },
+    {
+      "id": 11,
+      "name": "PARC (Pinellas ARC)",
+      "category": "Disability",
+      "desc": "Employment, housing, and daily living services for adults with intellectual and developmental disabilities.",
+      "phone": "(727) 541-4688",
+      "address": "8340 Ulmerton Rd, Largo, FL 33771"
+    },
+    {
+      "id": 12,
+      "name": "Pinellas County Human Services - Disability",
+      "category": "Disability",
+      "desc": "Case management, transportation, and support services for individuals with physical and developmental disabilities.",
+      "phone": "(727) 464-4800",
+      "address": ""
+    },
+    {
+      "id": 13,
+      "name": "Center for Independent Living of North Florida",
+      "category": "Disability",
+      "desc": "Resources and advocacy for people with disabilities to live independently.",
+      "phone": "(727) 577-0065",
+      "address": ""
+    },
+    {
+      "id": 14,
+      "name": "CareerSource Pinellas",
+      "category": "Jobs",
+      "desc": "Free resume help, job search assistance, skills training, and interview preparation for job seekers.",
+      "phone": "(727) 507-4300",
+      "address": "3425 Dr. MLK Jr St N, St. Petersburg, FL"
+    },
+    {
+      "id": 15,
+      "name": "Goodwill Suncoast - Career Services",
+      "category": "Jobs",
+      "desc": "Employment training, job placement, and career counseling including GED support.",
+      "phone": "(727) 523-1512",
+      "address": ""
+    },
+    {
+      "id": 16,
+      "name": "Salvation Army - Clothing",
+      "category": "Clothing",
+      "desc": "Clothing vouchers and thrift store with deeply discounted items. Emergency assistance also available.",
+      "phone": "(727) 822-4954",
+      "address": "3590 5th Ave N, St. Petersburg, FL 33713"
+    },
+    {
+      "id": 17,
+      "name": "Goodwill Industries - Suncoast",
+      "category": "Clothing",
+      "desc": "Affordable clothing and household items. Vouchers available for qualifying individuals through partner agencies.",
+      "phone": "(727) 523-1512",
+      "address": "Multiple locations in Pinellas County"
+    },
+    {
+      "id": 18,
+      "name": "St. Vincent de Paul - Clothing Closet",
+      "category": "Clothing",
+      "desc": "Free clothing provided by donation. Serves families, individuals, and children in need. Tue & Thu 9am-12pm.",
+      "phone": "(727) 822-4254",
+      "address": "2819 4th St N, St. Petersburg, FL 33704"
+    },
+    {
+      "id": 19,
+      "name": "Juvenile Welfare Board of Pinellas County",
+      "category": "Children & Family",
+      "desc": "Funds and supports programs for children, youth, and families in Pinellas County.",
+      "phone": "(727) 547-5600",
+      "address": ""
+    },
+    {
+      "id": 20,
+      "name": "Eckerd Connects",
+      "category": "Children & Family",
+      "desc": "Child welfare, foster care, and family support services across Pinellas County.",
+      "phone": "(727) 456-0600",
+      "address": ""
+    },
+    {
+      "id": 21,
+      "name": "Early Learning Coalition of Pinellas County",
+      "category": "Children & Family",
+      "desc": "Childcare assistance, Head Start referrals, and early childhood programs.",
+      "phone": "(727) 400-4050",
+      "address": ""
+    },
+    {
+      "id": 22,
+      "name": "Gulf Coast JFCS - Family Services",
+      "category": "Children & Family",
+      "desc": "Counseling, domestic violence services, senior care, and immigrant and refugee assistance.",
+      "phone": "(727) 479-1800",
+      "address": ""
+    },
+    {
+      "id": 23,
+      "name": "Homeless Empowerment Program (HEP)",
+      "category": "Children & Family",
+      "desc": "Services for homeless families with children, including shelter, case management, and rapid rehousing.",
+      "phone": "(727) 442-9041",
+      "address": ""
+    },
+    {
+      "id": 24,
+      "name": "211 Tampa Bay Cares",
+      "category": "Community",
+      "desc": "Free information and referral service connecting people to community resources 24/7. Dial 211.",
+      "phone": "211",
+      "address": ""
+    },
+    {
+      "id": 25,
+      "name": "Florida Disability Rights",
+      "category": "Disability",
+      "desc": "Free legal assistance for people with disabilities facing discrimination or benefits issues.",
+      "phone": "1-800-342-0823",
+      "address": ""
+    },
+    {
+      "id": 26,
+      "name": "Social Security Administration - St. Pete Office",
+      "category": "SSI/Disability",
+      "desc": "Apply for SSI, SSDI, and other Social Security benefits. Schedule an appointment online or by phone.",
+      "phone": "1-800-772-1213",
+      "address": "9450 Koger Blvd N, St. Petersburg, FL 33702"
+    }
   ]
 }
