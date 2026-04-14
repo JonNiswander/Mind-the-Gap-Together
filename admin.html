@@ -639,9 +639,9 @@
 // ── CONFIG ──
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'mtgt2026';
-const NETLIFY_TOKEN = 'nfp_3mJw7wZnLRy4wUc9KGB61aGUzAtRF7gZ8f6d';
+const NETLIFY_TOKEN = 'nfp_1FUrtbxaR2jtDPGNcZjp9QxEuRneXUAT939a';
 const NETLIFY_SITE_ID = 'unique-toffee-1b6e64';
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 const GITHUB_REPO = 'JonNiswander/Mind-the-Gap-Together';
 const GITHUB_FILE = 'data.json';
 
@@ -1116,7 +1116,6 @@ function copyExport() {
 async function publishToGitHub() {
   const statusEl = document.getElementById('publish-status');
   const output = generateExport();
-  const content = btoa(unescape(encodeURIComponent(output)));
 
   if (statusEl) {
     statusEl.style.display = 'block';
@@ -1127,35 +1126,15 @@ async function publishToGitHub() {
   }
 
   try {
-    // Get current file SHA (required for update)
-    const getRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github+json'
-      }
-    });
-    const fileData = await getRes.json();
-    const sha = fileData.sha;
-
-    // Push updated file
-    const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        message: 'Admin portal update – ' + new Date().toLocaleString(),
-        content: content,
-        sha: sha
-      })
+    // Call secure Netlify function — token lives server-side, never in frontend code
+    const res = await fetch('/.netlify/functions/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: output })
     });
 
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || 'GitHub API error');
-    }
+    const result = await res.json();
+    if (!res.ok || result.error) throw new Error(result.error || 'Publish failed');
 
     if (statusEl) {
       statusEl.style.background = 'rgba(39,174,96,0.15)';
