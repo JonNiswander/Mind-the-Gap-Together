@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MtGT-C Admin – Resource Manager</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+    :root {
+      --primary: #1a5276;
+      --primary-light: #2980b9;
+      --secondary: #1abc9c;
+      --accent: #e67e22;
+      --danger: #e74c3c;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --bg: #0f1923;
+      --surface: #1a2535;
+      --surface2: #222f42;
+      --surface3: #2a3a52;
+      --border: #2e3f58;
+      --text: #e8edf3;
+      --text-muted: #7b93b0;
+      --text-dim: #4a6380;
+      --shadow: 0 2px 16px rgba(0,0,0,0.4);
+      --radius: 10px;
+      --font: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; flex-direction: column; gap: 0;
+    }
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 44px;
+      width: 100%; max-width: 400px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+    }
+    .login-logo {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+    }
+    .login-logo .icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .login-logo .text .brand { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .login-logo .text .sub { font-size: 0.75rem; color: var(--text-muted); font-family: var(--mono); letter-spacing: 0.05em; }
+    .login-card h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .login-card p { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 28px; }
+    .login-field { margin-bottom: 16px; }
+    .login-field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .login-field input {
+      width: 100%; padding: 12px 14px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--mono);
+      font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+    }
+    .login-field input:focus { border-color: var(--secondary); }
+    .login-btn {
+      width: 100%; padding: 14px; margin-top: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; border: none; border-radius: 8px;
+      font-family: var(--font); font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: opacity 0.2s, transform 0.1s;
+    }
+    .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .login-error { color: var(--danger); font-size: 0.82rem; margin-top: 10px; display: none; }
+
+    /* ── MAIN LAYOUT ── */
+    #admin-app { display: none; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; left: 0; top: 0; bottom: 0; width: 240px;
+      background: var(--surface); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 100;
+    }
+    .sidebar-header {
+      padding: 20px 18px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .sidebar-logo .s-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .sidebar-logo .s-brand { font-size: 0.95rem; font-weight: 700; }
+    .sidebar-tag { font-size: 0.68rem; font-family: var(--mono); color: var(--text-muted); letter-spacing: 0.06em; margin-left: 46px; }
+    .sidebar-nav { flex: 1; padding: 12px 10px; overflow-y: auto; }
+    .nav-section-label {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-dim);
+      padding: 10px 8px 6px;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px; cursor: pointer;
+      font-size: 0.875rem; font-weight: 500; color: var(--text-muted);
+      transition: all 0.15s; margin-bottom: 2px;
+    }
+    .nav-item:hover { background: var(--surface2); color: var(--text); }
+    .nav-item.active { background: rgba(26,82,118,0.35); color: var(--secondary); }
+    .nav-item .n-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .nav-badge {
+      margin-left: auto; font-size: 0.7rem; font-weight: 700;
+      background: var(--accent); color: white;
+      padding: 1px 7px; border-radius: 50px;
+    }
+    .sidebar-footer {
+      padding: 12px 10px; border-top: 1px solid var(--border);
+    }
+    .logout-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px; cursor: pointer;
+      font-size: 0.875rem; font-weight: 500; color: var(--text-muted);
+      transition: all 0.15s; width: 100%; border: none; background: none;
+    }
+    .logout-btn:hover { background: rgba(231,76,60,0.15); color: var(--danger); }
+
+    /* Main content */
+    .main-content { margin-left: 240px; min-height: 100vh; }
+    .topbar {
+      height: 60px; background: var(--surface); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-title { font-size: 1rem; font-weight: 700; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .topbar-status {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; color: var(--text-muted); font-family: var(--mono);
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .export-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 8px 16px; background: var(--primary); color: white;
+      border: none; border-radius: 8px; font-family: var(--font);
+      font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    .export-btn:hover { background: var(--primary-light); }
+
+    .page-content { padding: 28px; }
+
+    /* Sections */
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+    .stat-value { font-size: 2rem; font-weight: 700; font-family: var(--mono); color: var(--text); }
+    .stat-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+
+    /* Data tables / card editors */
+    .section-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap; gap: 12px;
+    }
+    .section-toolbar h2 { font-size: 1.15rem; font-weight: 700; }
+    .add-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 18px; background: var(--secondary); color: white;
+      border: none; border-radius: 8px; font-family: var(--font);
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    .add-btn:hover { background: #17a589; }
+
+    /* Data list */
+    .data-list { display: flex; flex-direction: column; gap: 10px; }
+    .data-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color 0.15s;
+    }
+    .data-card:hover { border-color: var(--primary-light); }
+    .data-card-body { flex: 1; min-width: 0; }
+    .data-card-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+    .data-card-meta { font-size: 0.78rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 12px; }
+    .data-card-meta span { display: flex; align-items: center; gap: 4px; }
+    .data-card-actions { display: flex; gap: 8px; flex-shrink: 0; }
+    .icon-btn {
+      width: 34px; height: 34px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text-muted); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+      transition: 0.15s;
+    }
+    .icon-btn:hover { background: var(--surface3); color: var(--text); }
+    .icon-btn.danger:hover { background: rgba(231,76,60,0.15); color: var(--danger); border-color: var(--danger); }
+
+    /* Status badges */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 50px; font-size: 0.72rem; font-weight: 600;
+    }
+    .status-open { background: rgba(39,174,96,0.18); color: #2ecc71; border: 1px solid rgba(39,174,96,0.3); }
+    .status-closed { background: rgba(231,76,60,0.15); color: #e74c3c; border: 1px solid rgba(231,76,60,0.25); }
+    .status-waitlist { background: rgba(243,156,18,0.15); color: #f39c12; border: 1px solid rgba(243,156,18,0.3); }
+    .status-upcoming { background: rgba(41,128,185,0.18); color: #5dade2; border: 1px solid rgba(41,128,185,0.3); }
+
+    /* Days badges */
+    .day-badge {
+      display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.68rem;
+      font-weight: 600; background: var(--surface3); color: var(--text-muted); margin: 1px;
+    }
+    .day-badge.active { background: rgba(26,188,156,0.2); color: var(--secondary); }
+
+    /* Modal / Drawer */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+      z-index: 500; display: none; align-items: flex-start; justify-content: flex-end;
+    }
+    .modal-overlay.open { display: flex; }
+    .drawer {
+      width: 480px; max-width: 96vw; height: 100vh;
+      background: var(--surface); border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; overflow: hidden;
+      animation: slideIn 0.25s ease;
+    }
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    .drawer-header {
+      padding: 20px 22px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .drawer-header h3 { font-size: 1.05rem; font-weight: 700; }
+    .close-btn {
+      width: 32px; height: 32px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text-muted); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .close-btn:hover { background: var(--surface3); color: var(--text); }
+    .drawer-body { flex: 1; overflow-y: auto; padding: 22px; }
+    .drawer-footer {
+      padding: 16px 22px; border-top: 1px solid var(--border);
+      display: flex; gap: 10px; justify-content: flex-end;
+    }
+
+    /* Form fields */
+    .field-group { margin-bottom: 18px; }
+    .field-group label {
+      display: block; font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .field-group input, .field-group select, .field-group textarea {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+      border-color: var(--secondary);
+    }
+    .field-group select option { background: var(--surface); }
+    .field-group textarea { resize: vertical; min-height: 80px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .days-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .day-toggle {
+      padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text-muted); cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; transition: 0.15s;
+    }
+    .day-toggle.selected { background: rgba(26,188,156,0.2); color: var(--secondary); border-color: var(--secondary); }
+    .accepts-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .accept-toggle {
+      padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text-muted); cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; transition: 0.15s;
+    }
+    .accept-toggle.selected { background: rgba(41,128,185,0.2); color: #5dade2; border-color: #5dade2; }
+
+    .btn-save {
+      padding: 10px 24px; background: var(--secondary); color: white;
+      border: none; border-radius: 8px; font-family: var(--font);
+      font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: 0.2s;
+    }
+    .btn-save:hover { background: #17a589; }
+    .btn-cancel {
+      padding: 10px 20px; background: var(--surface2); color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 8px; font-family: var(--font);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    .btn-cancel:hover { background: var(--surface3); color: var(--text); }
+
+    /* Submissions tab */
+    .submissions-grid { display: flex; flex-direction: column; gap: 12px; }
+    .submission-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+    }
+    .submission-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .submission-type {
+      font-size: 0.72rem; font-weight: 700; padding: 3px 9px; border-radius: 50px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .type-navigator { background: rgba(26,82,118,0.3); color: #5dade2; }
+    .type-volunteer { background: rgba(26,188,156,0.2); color: var(--secondary); }
+    .type-job { background: rgba(230,126,34,0.2); color: var(--accent); }
+    .type-rental { background: rgba(155,89,182,0.2); color: #bb8fce; }
+    .type-advocate { background: rgba(231,76,60,0.15); color: #e74c3c; }
+    .submission-time { font-size: 0.72rem; color: var(--text-dim); font-family: var(--mono); }
+    .submission-body { font-size: 0.85rem; color: var(--text-muted); }
+    .submission-field { margin-bottom: 4px; }
+    .submission-field strong { color: var(--text); }
+    .sub-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .sub-btn {
+      padding: 6px 14px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--text-muted); cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; transition: 0.15s; font-family: var(--font);
+    }
+    .sub-btn:hover { background: var(--surface3); color: var(--text); }
+    .sub-btn.primary { background: rgba(26,82,118,0.3); color: #5dade2; border-color: rgba(41,128,185,0.3); }
+
+    /* Export panel */
+    .export-panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .export-panel h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .export-panel p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.6; }
+    .code-block {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px; font-family: var(--mono); font-size: 0.78rem; color: var(--secondary);
+      max-height: 300px; overflow-y: auto; white-space: pre-wrap; word-break: break-all;
+      margin-bottom: 14px;
+    }
+    .copy-btn {
+      padding: 9px 18px; background: var(--surface2); color: var(--text);
+      border: 1px solid var(--border); border-radius: 8px; font-family: var(--font);
+      font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+    }
+    .copy-btn:hover { background: var(--surface3); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--success); color: white;
+      padding: 12px 20px; border-radius: 10px;
+      font-size: 0.875rem; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      display: none; z-index: 9999;
+      animation: toastIn 0.3s ease;
+    }
+    @keyframes toastIn { from { transform: translateY(20px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center; padding: 48px 20px;
+      color: var(--text-dim); font-size: 0.9rem;
+    }
+    .empty-state .e-icon { font-size: 3rem; margin-bottom: 12px; }
+
+    /* Netlify link card */
+    .netlify-card {
+      background: linear-gradient(135deg, rgba(0,173,181,0.12), rgba(26,82,118,0.15));
+      border: 1px solid rgba(0,173,181,0.3); border-radius: var(--radius);
+      padding: 18px 20px; display: flex; align-items: center; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .netlify-card .n-logo { font-size: 1.6rem; }
+    .netlify-card .n-text { flex: 1; }
+    .netlify-card .n-text strong { font-size: 0.9rem; color: var(--text); }
+    .netlify-card .n-text p { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+    .netlify-card a {
+      padding: 8px 16px; background: rgba(0,173,181,0.2); color: #00adb5;
+      border: 1px solid rgba(0,173,181,0.35); border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; text-decoration: none;
+      white-space: nowrap;
+    }
+    .netlify-card a:hover { background: rgba(0,173,181,0.3); }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="icon">🌉</div>
+      <div class="text">
+        <div class="brand">Mind the Gap Together</div>
+        <div class="sub">ADMIN PORTAL</div>
+      </div>
+    </div>
+    <h2>Welcome back</h2>
+    <p>Sign in to manage resources, listings, and submissions.</p>
+    <div class="login-field">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="admin" />
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+    </div>
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-error" id="login-error">Incorrect username or password.</div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="admin-app">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="s-icon">🌉</div>
+        <div class="s-brand">MtGT-C</div>
+      </div>
+      <div class="sidebar-tag">ADMIN PORTAL</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <div class="nav-item active" onclick="showSection('dashboard')" data-section="dashboard">
+        <span class="n-icon">📊</span> Dashboard
+      </div>
+
+      <div class="nav-section-label">Manage</div>
+      <div class="nav-item" onclick="showSection('food')" data-section="food">
+        <span class="n-icon">🍽</span> Food Pantries
+      </div>
+      <div class="nav-item" onclick="showSection('housing')" data-section="housing">
+        <span class="n-icon">🏠</span> Housing Cards
+      </div>
+      <div class="nav-item" onclick="showSection('jobs')" data-section="jobs">
+        <span class="n-icon">💼</span> Job Listings
+      </div>
+      <div class="nav-item" onclick="showSection('fairs')" data-section="fairs">
+        <span class="n-icon">📅</span> Job Fairs
+      </div>
+      <div class="nav-item" onclick="showSection('resources')" data-section="resources">
+        <span class="n-icon">📦</span> Resources
+      </div>
+
+      <div class="nav-section-label">Inbox</div>
+      <div class="nav-item" onclick="showSection('submissions')" data-section="submissions">
+        <span class="n-icon">📥</span> Submissions
+        <span class="nav-badge" id="sub-badge">5</span>
+      </div>
+
+      <div class="nav-section-label">Export</div>
+      <div class="nav-item" onclick="showSection('export')" data-section="export">
+        <span class="n-icon">📤</span> Export JSON
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()">
+        <span>🚪</span> Sign Out
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="topbar-right">
+        <div class="topbar-status">
+          <div class="status-dot"></div>
+          <span id="live-url-label">unique-toffee-1b6e64.netlify.app</span>
+        </div>
+        <button class="export-btn" onclick="downloadExport()">📤 Export JSON</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- DASHBOARD -->
+      <div class="admin-section active" id="section-dashboard">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Food Pantries</div>
+            <div class="stat-value" id="stat-food">0</div>
+            <div class="stat-sub">Active listings</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Housing Cards</div>
+            <div class="stat-value" id="stat-housing">0</div>
+            <div class="stat-sub">Managed entries</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Job Listings</div>
+            <div class="stat-value" id="stat-jobs">0</div>
+            <div class="stat-sub">Open positions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Job Fairs</div>
+            <div class="stat-value" id="stat-fairs">0</div>
+            <div class="stat-sub">Upcoming events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Submissions</div>
+            <div class="stat-value" id="stat-subs">5</div>
+            <div class="stat-sub">Pending review</div>
+          </div>
+        </div>
+
+        <div class="netlify-card">
+          <div class="n-logo">🌐</div>
+          <div class="n-text">
+            <strong>Live Site — Netlify</strong>
+            <p>Your public site is live. After exporting JSON, commit to GitHub to trigger a redeploy.</p>
+          </div>
+          <a href="https://unique-toffee-1b6e64.netlify.app" target="_blank">View Live Site ↗</a>
+        </div>
+
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;">
+          <div style="font-size:0.8rem;font-weight:700;color:var(--text-muted);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px;">Quick Actions</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <button class="add-btn" onclick="openDrawer('food')">➕ Add Food Pantry</button>
+            <button class="add-btn" style="background:var(--primary);" onclick="openDrawer('job')">➕ Add Job</button>
+            <button class="add-btn" style="background:var(--accent);" onclick="openDrawer('fair')">➕ Add Job Fair</button>
+            <button class="add-btn" style="background:#7d3c98;" onclick="openDrawer('resource')">➕ Add Resource</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD PANTRIES -->
+      <div class="admin-section" id="section-food">
+        <div class="section-toolbar">
+          <h2>🍽 Food Pantries</h2>
+          <button class="add-btn" onclick="openDrawer('food')">➕ Add Pantry</button>
+        </div>
+        <div class="data-list" id="food-list"></div>
+      </div>
+
+      <!-- HOUSING -->
+      <div class="admin-section" id="section-housing">
+        <div class="section-toolbar">
+          <h2>🏠 Housing Cards</h2>
+          <button class="add-btn" onclick="openDrawer('housing')">➕ Add Housing</button>
+        </div>
+        <div class="data-list" id="housing-list"></div>
+      </div>
+
+      <!-- JOBS -->
+      <div class="admin-section" id="section-jobs">
+        <div class="section-toolbar">
+          <h2>💼 Job Listings</h2>
+          <button class="add-btn" onclick="openDrawer('job')">➕ Add Job</button>
+        </div>
+        <div class="data-list" id="jobs-list"></div>
+      </div>
+
+      <!-- JOB FAIRS -->
+      <div class="admin-section" id="section-fairs">
+        <div class="section-toolbar">
+          <h2>📅 Job Fairs</h2>
+          <button class="add-btn" onclick="openDrawer('fair')">➕ Add Fair</button>
+        </div>
+        <div class="data-list" id="fairs-list"></div>
+      </div>
+
+      <!-- RESOURCES -->
+      <div class="admin-section" id="section-resources">
+        <div class="section-toolbar">
+          <h2>📦 Resources</h2>
+          <button class="add-btn" onclick="openDrawer('resource')">➕ Add Resource</button>
+        </div>
+        <div class="data-list" id="resources-list"></div>
+      </div>
+
+      <!-- SUBMISSIONS -->
+      <div class="admin-section" id="section-submissions">
+        <div class="section-toolbar">
+          <h2>📥 Form Submissions</h2>
+        </div>
+        <div class="netlify-card">
+          <div class="n-logo">📬</div>
+          <div class="n-text">
+            <strong>Netlify Forms Dashboard</strong>
+            <p>Real form submissions are captured in your Netlify dashboard. Enable Netlify Forms by adding <code style="font-family:var(--mono);font-size:0.78rem;background:var(--bg);padding:1px 5px;border-radius:3px;">data-netlify="true"</code> to your forms in index.html.</p>
+          </div>
+          <a href="https://app.netlify.com" target="_blank">Open Dashboard ↗</a>
+        </div>
+        <div class="submissions-grid" id="submissions-list"></div>
+      </div>
+
+      <!-- EXPORT -->
+      <div class="admin-section" id="section-export">
+        <div class="section-toolbar">
+          <h2>📤 Export Data as JSON</h2>
+        </div>
+        <div class="export-panel">
+          <h3>How this works</h3>
+          <p>1. Click <strong>⬇️ Download data.json</strong> below — the file saves to your computer automatically.<br>
+             2. Drag <strong>data.json</strong> into your GitHub repo (same folder as <code style="font-family:var(--mono);font-size:0.8rem;background:var(--bg);padding:2px 6px;border-radius:3px;">index.html</code>).<br>
+             3. Commit &amp; push → Netlify auto-deploys. Your public site updates instantly. ✅</p>
+          <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+            <button class="add-btn" onclick="downloadExport()">⬇️ Download data.json</button>
+            <button class="copy-btn" onclick="copyExport()">📋 Copy to Clipboard</button>
+          </div>
+          <div class="code-block" id="export-output">// Your exported JSON will preview here...</div>
+        </div>
+      </div>
+
+    </div><!-- /page-content -->
+  </div><!-- /main-content -->
+</div><!-- /admin-app -->
+
+<!-- DRAWER -->
+<div class="modal-overlay" id="drawer-overlay" onclick="if(event.target===this)closeDrawer()">
+  <div class="drawer">
+    <div class="drawer-header">
+      <h3 id="drawer-title">Add Entry</h3>
+      <button class="close-btn" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+    <div class="drawer-footer">
+      <button class="btn-cancel" onclick="closeDrawer()">Cancel</button>
+      <button class="btn-save" onclick="saveDrawer()">Save Entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Saved successfully!</div>
+
+<script>
+// ── AUTH ──
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'mtgt2026'; // Change this!
+
+function doLogin() {
+  const u = document.getElementById('login-user').value;
+  const p = document.getElementById('login-pass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-app').style.display = 'block';
+    refreshStats();
+    renderAll();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+function doLogout() {
+  document.getElementById('admin-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+}
+
+// ── DATA STORE ──
+const DATA = {
+  food: [
+    { id: 1, name: "St. Vincent de Paul – St. Pete", address: "2819 4th St N, St. Petersburg, FL 33704", phone: "(727) 822-4254", hours: "Tue & Thu 9am–12pm", days: ["Tue","Thu"], accepts: ["Walk-in","Canned Goods"] },
+    { id: 2, name: "Salvation Army – St. Petersburg", address: "3590 5th Ave N, St. Petersburg, FL 33713", phone: "(727) 822-4954", hours: "Mon–Fri 9am–4pm", days: ["Mon","Tue","Wed","Thu","Fri"], accepts: ["Walk-in","SNAP"] },
+    { id: 3, name: "Catholic Charities – Food Pantry", address: "6533 Trouble Creek Rd, New Port Richey", phone: "(727) 893-3700", hours: "Wed 9am–12pm", days: ["Wed"], accepts: ["Walk-in","ID Required"] },
+    { id: 4, name: "Metropolitan Ministries", address: "2002 N Florida Ave, Tampa, FL 33602", phone: "(813) 209-1000", hours: "Mon–Fri 8am–5pm", days: ["Mon","Tue","Wed","Thu","Fri"], accepts: ["Walk-in","Appointment"] },
+    { id: 5, name: "Pinellas Hope – Food Distribution", address: "5009 59th St N, St. Petersburg, FL 33709", phone: "(727) 893-3700", hours: "Sat 8am–11am", days: ["Sat"], accepts: ["Walk-in"] },
+  ],
+  housing: [
+    { id: 1, name: "Pinellas Hope", type: "emergency,transitional", status: "open", address: "5009 59th St N, St. Petersburg, FL 33709", phone: "(727) 893-3700", url: "https://www.catholiccharitiesDOC.net/pinellas-hope" },
+    { id: 2, name: "Metropolitan Ministries", type: "transitional,family", status: "open", address: "2002 N Florida Ave, Tampa, FL 33602", phone: "(813) 209-1000", url: "https://www.metromin.org" },
+    { id: 3, name: "Pinellas County Housing Authority", type: "subsidized,section8", status: "waitlist", address: "11479 Ulmerton Rd, Largo, FL 33778", phone: "(727) 443-7684", url: "https://www.pinellashousing.org" },
+    { id: 4, name: "Housing Authority of St. Petersburg", type: "subsidized,section8,family", status: "open", address: "2001 Gandy Blvd N, St. Petersburg, FL 33702", phone: "(727) 323-3171", url: "https://www.stpetehousing.org" },
+    { id: 5, name: "Clearwater Housing Authority", type: "subsidized,section8,senior", status: "waitlist", address: "908 Cleveland St, Clearwater, FL 33755", phone: "(727) 441-2227", url: "https://www.clearwaterhousing.org" },
+  ],
+  jobs: [
+    { id: 1, title: "Warehouse Associate", company: "Logistics Co. of Tampa Bay", location: "St. Petersburg, FL", pay: "$17–$19/hr", type: "full", tags: ["No experience required","Benefits"] },
+    { id: 2, title: "Cashier / Customer Service", company: "Local Grocery – Pinellas Park", location: "Pinellas Park, FL", pay: "$15/hr", type: "part", tags: ["Flexible hours","Entry level"] },
+    { id: 3, title: "Home Health Aide / Caregiver", company: "BayCare Home Health", location: "Clearwater, FL", pay: "$16–$21/hr", type: "full", tags: ["Training provided","Healthcare"] },
+    { id: 4, title: "General Laborer", company: "Pinellas Construction Partners", location: "St. Petersburg, FL", pay: "$15–$18/hr", type: "temp", tags: ["Immediate start","Outdoor work"] },
+    { id: 5, title: "Line Cook / Kitchen Staff", company: "Various Restaurants – St. Pete Beach", location: "St. Pete Beach, FL", pay: "$16–$22/hr + tips", type: "full", tags: ["Hospitality","Multiple openings"] },
+  ],
+  fairs: [
+    { id: 1, name: "Pinellas County Spring Job Fair 2026", date: "April 22, 2026", location: "Largo Cultural Center, Largo, FL", time: "10:00 AM – 3:00 PM", cost: "Free", status: "upcoming" },
+    { id: 2, name: "CareerSource Pinellas – Hiring Event", date: "Ongoing", location: "3425 Dr. MLK Jr St N, St. Petersburg, FL", time: "Varies", cost: "Free", status: "upcoming" },
+  ],
+  resources: [
+    { id: 1, name: "St. Pete Free Clinic", category: "Healthcare", desc: "Free medical, dental, mental health, and prescription services for uninsured residents.", phone: "(727) 821-8900", address: "863 3rd Ave N, St. Petersburg, FL 33701" },
+    { id: 2, name: "Directions for Living", category: "Mental Health", desc: "Mental health and substance abuse services including outpatient therapy and crisis stabilization.", phone: "(727) 524-4464", address: "3000 54th St N, St. Petersburg, FL 33710" },
+    { id: 3, name: "CareerSource Pinellas", category: "Jobs", desc: "Free resume help, job search assistance, and skills training for job seekers.", phone: "(727) 507-4300", address: "3425 Dr. MLK Jr St N, St. Petersburg, FL" },
+    { id: 4, name: "NAMI Pinellas", category: "Mental Health", desc: "Education, support groups, and advocacy for individuals and families affected by mental illness.", phone: "(727) 791-3428", address: "" },
+    { id: 5, name: "Salvation Army – Clothing", category: "Clothing", desc: "Clothing vouchers and thrift store with deeply discounted items.", phone: "(727) 822-4954", address: "3590 5th Ave N, St. Petersburg, FL 33713" },
+  ]
+};
+
+const SUBMISSIONS = [
+  { id: 1, type: 'navigator', time: '2026-04-13 10:22', data: { name: 'Maria G.', phone: '(727) 555-0182', situation: 'At risk of eviction', notes: 'Family of 3, need help fast' } },
+  { id: 2, type: 'volunteer', time: '2026-04-13 14:05', data: { name: 'James T.', email: 'james@email.com', availability: 'Weekends', reason: 'Want to give back to the community' } },
+  { id: 3, type: 'job', time: '2026-04-12 09:41', data: { company: 'Bay Cleaning Co.', title: 'Cleaning Technician', pay: '$16/hr', type: 'Full-Time', location: 'Clearwater, FL' } },
+  { id: 4, type: 'rental', time: '2026-04-11 16:30', data: { owner: 'Ronald D.', phone: '(727) 555-0234', address: '1420 22nd Ave S, St. Pete', beds: '2BR', rent: '$1,050/mo', section8: 'Yes' } },
+  { id: 5, type: 'advocate', time: '2026-04-10 11:15', data: { name: 'Denise M.', contact: 'denise@email.com', situation: 'Was denied SSI, need help with appeal' } },
+];
+
+let nextId = { food: 100, housing: 100, jobs: 100, fairs: 100, resources: 100 };
+let editingType = null;
+let editingId = null;
+
+// ── NAVIGATION ──
+const titles = { dashboard: 'Dashboard', food: 'Food Pantries', housing: 'Housing Cards', jobs: 'Job Listings', fairs: 'Job Fairs', resources: 'Resources', submissions: 'Form Submissions', export: 'Export JSON' };
+
+function showSection(name) {
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  document.getElementById('section-' + name)?.classList.add('active');
+  document.querySelector(`.nav-item[data-section="${name}"]`)?.classList.add('active');
+  document.getElementById('topbar-title').textContent = titles[name] || name;
+  if (name === 'export') generateExport();
+}
+
+// ── RENDER ──
+function renderAll() {
+  renderFood(); renderHousing(); renderJobs(); renderFairs(); renderResources(); renderSubmissions(); refreshStats();
+}
+
+function refreshStats() {
+  document.getElementById('stat-food').textContent = DATA.food.length;
+  document.getElementById('stat-housing').textContent = DATA.housing.length;
+  document.getElementById('stat-jobs').textContent = DATA.jobs.length;
+  document.getElementById('stat-fairs').textContent = DATA.fairs.length;
+}
+
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+function renderFood() {
+  const el = document.getElementById('food-list');
+  if (!DATA.food.length) { el.innerHTML = `<div class="empty-state"><div class="e-icon">🍽</div><p>No food pantries yet. Add your first one!</p></div>`; return; }
+  el.innerHTML = DATA.food.map(p => `
+    <div class="data-card">
+      <div style="font-size:1.6rem;flex-shrink:0">🍽</div>
+      <div class="data-card-body">
+        <div class="data-card-name">${p.name}</div>
+        <div class="data-card-meta">
+          <span>📍 ${p.address}</span>
+          <span>📞 ${p.phone}</span>
+        </div>
+        <div style="margin-top:8px">
+          ${DAYS.map(d => `<span class="day-badge ${p.days.includes(d)?'active':''}">${d}</span>`).join('')}
+        </div>
+        ${p.accepts.map(a => `<span class="status-badge status-open" style="margin-top:6px;margin-right:4px;">${a}</span>`).join('')}
+      </div>
+      <div class="data-card-actions">
+        <button class="icon-btn" title="Edit" onclick="openEditDrawer('food',${p.id})">✏️</button>
+        <button class="icon-btn danger" title="Delete" onclick="deleteItem('food',${p.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function renderHousing() {
+  const el = document.getElementById('housing-list');
+  if (!DATA.housing.length) { el.innerHTML = `<div class="empty-state"><div class="e-icon">🏠</div><p>No housing cards yet.</p></div>`; return; }
+  const statusMap = { open: ['status-open','Accepting'], waitlist: ['status-waitlist','Waitlist Open'], closed: ['status-closed','Closed'] };
+  el.innerHTML = DATA.housing.map(h => {
+    const [cls, label] = statusMap[h.status] || ['status-waitlist','Unknown'];
+    return `
+    <div class="data-card">
+      <div style="font-size:1.6rem;flex-shrink:0">🏠</div>
+      <div class="data-card-body">
+        <div class="data-card-name">${h.name} <span class="status-badge ${cls}" style="margin-left:8px">${label}</span></div>
+        <div class="data-card-meta">
+          <span>📍 ${h.address}</span>
+          <span>📞 ${h.phone}</span>
+        </div>
+        <div style="margin-top:6px;font-size:0.78rem;color:var(--text-dim);">Types: ${h.type}</div>
+      </div>
+      <div class="data-card-actions">
+        <button class="icon-btn" title="Edit" onclick="openEditDrawer('housing',${h.id})">✏️</button>
+        <button class="icon-btn danger" title="Delete" onclick="deleteItem('housing',${h.id})">🗑</button>
+      </div>
+    </div>`;}).join('');
+}
+
+function renderJobs() {
+  const el = document.getElementById('jobs-list');
+  const typeLabel = { full: 'Full-Time', part: 'Part-Time', temp: 'Temp / Contract' };
+  if (!DATA.jobs.length) { el.innerHTML = `<div class="empty-state"><div class="e-icon">💼</div><p>No job listings yet.</p></div>`; return; }
+  el.innerHTML = DATA.jobs.map(j => `
+    <div class="data-card">
+      <div style="font-size:1.6rem;flex-shrink:0">💼</div>
+      <div class="data-card-body">
+        <div class="data-card-name">${j.title}</div>
+        <div class="data-card-meta">
+          <span>🏢 ${j.company}</span>
+          <span>📍 ${j.location}</span>
+          <span>💰 ${j.pay}</span>
+          <span><span class="status-badge status-upcoming">${typeLabel[j.type]||j.type}</span></span>
+        </div>
+        <div style="margin-top:6px">${(j.tags||[]).map(t=>`<span class="status-badge status-open" style="margin-right:4px">${t}</span>`).join('')}</div>
+      </div>
+      <div class="data-card-actions">
+        <button class="icon-btn" onclick="openEditDrawer('job',${j.id})">✏️</button>
+        <button class="icon-btn danger" onclick="deleteItem('job',${j.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function renderFairs() {
+  const el = document.getElementById('fairs-list');
+  if (!DATA.fairs.length) { el.innerHTML = `<div class="empty-state"><div class="e-icon">📅</div><p>No job fairs yet.</p></div>`; return; }
+  el.innerHTML = DATA.fairs.map(f => `
+    <div class="data-card">
+      <div style="font-size:1.6rem;flex-shrink:0">📅</div>
+      <div class="data-card-body">
+        <div class="data-card-name">${f.name}</div>
+        <div class="data-card-meta">
+          <span>📅 ${f.date}</span>
+          <span>📍 ${f.location}</span>
+          <span>🕐 ${f.time}</span>
+          <span>💳 ${f.cost}</span>
+        </div>
+      </div>
+      <div class="data-card-actions">
+        <button class="icon-btn" onclick="openEditDrawer('fair',${f.id})">✏️</button>
+        <button class="icon-btn danger" onclick="deleteItem('fair',${f.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function renderResources() {
+  const el = document.getElementById('resources-list');
+  if (!DATA.resources.length) { el.innerHTML = `<div class="empty-state"><div class="e-icon">📦</div><p>No resources yet.</p></div>`; return; }
+  el.innerHTML = DATA.resources.map(r => `
+    <div class="data-card">
+      <div style="font-size:1.6rem;flex-shrink:0">📦</div>
+      <div class="data-card-body">
+        <div class="data-card-name">${r.name} <span class="status-badge status-upcoming" style="margin-left:6px">${r.category}</span></div>
+        <div class="data-card-meta">
+          <span>📞 ${r.phone}</span>
+          ${r.address ? `<span>📍 ${r.address}</span>` : ''}
+        </div>
+        <div style="margin-top:6px;font-size:0.8rem;color:var(--text-muted)">${r.desc}</div>
+      </div>
+      <div class="data-card-actions">
+        <button class="icon-btn" onclick="openEditDrawer('resource',${r.id})">✏️</button>
+        <button class="icon-btn danger" onclick="deleteItem('resource',${r.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function renderSubmissions() {
+  const typeMap = { navigator: ['type-navigator','🧭 Navigator Request'], volunteer: ['type-volunteer','🤝 Volunteer'], job: ['type-job','💼 Job Posting'], rental: ['type-rental','🏡 Rental Listing'], advocate: ['type-advocate','💼 SSI Advocate'] };
+  const el = document.getElementById('submissions-list');
+  el.innerHTML = SUBMISSIONS.map(s => {
+    const [cls, label] = typeMap[s.type] || ['type-navigator', s.type];
+    const fields = Object.entries(s.data).map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
+    return `
+    <div class="submission-card">
+      <div class="submission-header">
+        <span class="submission-type ${cls}">${label}</span>
+        <span class="submission-time">${s.time}</span>
+      </div>
+      <div class="submission-body">${fields}</div>
+      <div class="sub-actions">
+        <button class="sub-btn primary">✉️ Reply</button>
+        <button class="sub-btn">✅ Mark Done</button>
+        <button class="sub-btn" onclick="this.closest('.submission-card').style.opacity='0.4'">🗑 Dismiss</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── DRAWER FORMS ──
+const DRAWER_FORMS = {
+  food: (d={}) => `
+    <div class="field-group"><label>Pantry Name *</label><input id="f-name" value="${d.name||''}" placeholder="e.g. St. Vincent de Paul"></div>
+    <div class="field-group"><label>Address</label><input id="f-address" value="${d.address||''}" placeholder="123 Main St, St. Petersburg, FL"></div>
+    <div class="field-row">
+      <div class="field-group"><label>Phone</label><input id="f-phone" value="${d.phone||''}" placeholder="(727) 555-0000"></div>
+      <div class="field-group"><label>Hours</label><input id="f-hours" value="${d.hours||''}" placeholder="Mon–Fri 9am–12pm"></div>
+    </div>
+    <div class="field-group"><label>Open Days</label>
+      <div class="days-picker">${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(day=>`<div class="day-toggle ${(d.days||[]).includes(day)?'selected':''}" onclick="this.classList.toggle('selected')" data-day="${day}">${day}</div>`).join('')}</div>
+    </div>
+    <div class="field-group"><label>Accepts</label>
+      <div class="accepts-picker">${['Walk-in','Appointment','SNAP','ID Required','Canned Goods','No ID Required'].map(a=>`<div class="accept-toggle ${(d.accepts||[]).includes(a)?'selected':''}" onclick="this.classList.toggle('selected')" data-accept="${a}">${a}</div>`).join('')}</div>
+    </div>`,
+
+  housing: (d={}) => `
+    <div class="field-group"><label>Organization Name *</label><input id="f-name" value="${d.name||''}" placeholder="e.g. Pinellas Hope"></div>
+    <div class="field-group"><label>Address</label><input id="f-address" value="${d.address||''}" placeholder="123 Main St, St. Petersburg, FL"></div>
+    <div class="field-row">
+      <div class="field-group"><label>Phone</label><input id="f-phone" value="${d.phone||''}" placeholder="(727) 555-0000"></div>
+      <div class="field-group"><label>Status</label>
+        <select id="f-status">
+          <option value="open" ${d.status==='open'?'selected':''}>Accepting</option>
+          <option value="waitlist" ${d.status==='waitlist'?'selected':''}>Waitlist Open</option>
+          <option value="closed" ${d.status==='closed'?'selected':''}>Currently Closed</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-group"><label>Housing Types (comma separated)</label><input id="f-type" value="${d.type||''}" placeholder="e.g. emergency,transitional,family"></div>
+    <div class="field-group"><label>Website URL</label><input id="f-url" value="${d.url||''}" placeholder="https://..."></div>`,
+
+  job: (d={}) => `
+    <div class="field-group"><label>Job Title *</label><input id="f-title" value="${d.title||''}" placeholder="e.g. Warehouse Associate"></div>
+    <div class="field-group"><label>Company / Employer</label><input id="f-company" value="${d.company||''}" placeholder="e.g. Logistics Co. of Tampa Bay"></div>
+    <div class="field-row">
+      <div class="field-group"><label>Location</label><input id="f-location" value="${d.location||''}" placeholder="St. Petersburg, FL"></div>
+      <div class="field-group"><label>Pay Rate</label><input id="f-pay" value="${d.pay||''}" placeholder="$17–$19/hr"></div>
+    </div>
+    <div class="field-group"><label>Job Type</label>
+      <select id="f-type">
+        <option value="full" ${d.type==='full'?'selected':''}>Full-Time</option>
+        <option value="part" ${d.type==='part'?'selected':''}>Part-Time</option>
+        <option value="temp" ${d.type==='temp'?'selected':''}>Temp / Contract</option>
+      </select>
+    </div>
+    <div class="field-group"><label>Tags (comma separated)</label><input id="f-tags" value="${(d.tags||[]).join(', ')}" placeholder="No experience required, Benefits"></div>`,
+
+  fair: (d={}) => `
+    <div class="field-group"><label>Event Name *</label><input id="f-name" value="${d.name||''}" placeholder="e.g. Pinellas Spring Job Fair"></div>
+    <div class="field-row">
+      <div class="field-group"><label>Date</label><input id="f-date" value="${d.date||''}" placeholder="April 22, 2026"></div>
+      <div class="field-group"><label>Time</label><input id="f-time" value="${d.time||''}" placeholder="10:00 AM – 3:00 PM"></div>
+    </div>
+    <div class="field-group"><label>Location / Venue</label><input id="f-location" value="${d.location||''}" placeholder="Largo Cultural Center, Largo, FL"></div>
+    <div class="field-group"><label>Cost</label><input id="f-cost" value="${d.cost||'Free'}" placeholder="Free"></div>`,
+
+  resource: (d={}) => `
+    <div class="field-group"><label>Resource Name *</label><input id="f-name" value="${d.name||''}" placeholder="e.g. St. Pete Free Clinic"></div>
+    <div class="field-group"><label>Category</label>
+      <select id="f-category">
+        ${['Healthcare','Mental Health','Housing','Jobs','Clothing','Food','Children & Family','Disability','Vision','Wellness','Other'].map(c=>`<option ${d.category===c?'selected':''}>${c}</option>`).join('')}
+      </select>
+    </div>
+    <div class="field-group"><label>Description</label><textarea id="f-desc" placeholder="Brief description of services...">${d.desc||''}</textarea></div>
+    <div class="field-row">
+      <div class="field-group"><label>Phone</label><input id="f-phone" value="${d.phone||''}" placeholder="(727) 555-0000"></div>
+      <div class="field-group"><label>Address</label><input id="f-address" value="${d.address||''}" placeholder="123 Main St..."></div>
+    </div>`
+};
+
+function openDrawer(type, existing=null) {
+  editingType = type;
+  editingId = existing ? existing.id : null;
+  const titles = { food:'Food Pantry', housing:'Housing Card', job:'Job Listing', fair:'Job Fair', resource:'Resource' };
+  document.getElementById('drawer-title').textContent = (editingId ? 'Edit' : 'Add') + ' ' + titles[type];
+  document.getElementById('drawer-body').innerHTML = DRAWER_FORMS[type](existing||{});
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+
+function openEditDrawer(type, id) {
+  const listKey = type === 'job' ? 'jobs' : type === 'fair' ? 'fairs' : type === 'resource' ? 'resources' : type;
+  const item = DATA[listKey]?.find(i => i.id === id) || DATA[type+'s']?.find(i => i.id === id) || DATA[type]?.find(i => i.id === id);
+  if (!item) return;
+  editingType = type;
+  editingId = id;
+  const titles = { food:'Food Pantry', housing:'Housing Card', job:'Job Listing', fair:'Job Fair', resource:'Resource' };
+  document.getElementById('drawer-title').textContent = 'Edit ' + titles[type];
+  document.getElementById('drawer-body').innerHTML = DRAWER_FORMS[type](item);
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  editingType = null; editingId = null;
+}
+
+function g(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+function saveDrawer() {
+  const type = editingType;
+  let newItem = null;
+
+  if (type === 'food') {
+    const days = [...document.querySelectorAll('.day-toggle.selected')].map(el=>el.dataset.day);
+    const accepts = [...document.querySelectorAll('.accept-toggle.selected')].map(el=>el.dataset.accept);
+    newItem = { id: editingId||nextId.food++, name:g('f-name'), address:g('f-address'), phone:g('f-phone'), hours:g('f-hours'), days, accepts };
+    if (editingId) { const i = DATA.food.findIndex(x=>x.id===editingId); if(i>-1) DATA.food[i]=newItem; }
+    else DATA.food.push(newItem);
+    renderFood();
+  } else if (type === 'housing') {
+    newItem = { id:editingId||nextId.housing++, name:g('f-name'), address:g('f-address'), phone:g('f-phone'), status:g('f-status'), type:g('f-type'), url:g('f-url') };
+    if (editingId) { const i = DATA.housing.findIndex(x=>x.id===editingId); if(i>-1) DATA.housing[i]=newItem; }
+    else DATA.housing.push(newItem);
+    renderHousing();
+  } else if (type === 'job') {
+    const tags = g('f-tags').split(',').map(t=>t.trim()).filter(Boolean);
+    newItem = { id:editingId||nextId.jobs++, title:g('f-title'), company:g('f-company'), location:g('f-location'), pay:g('f-pay'), type:g('f-type'), tags };
+    if (editingId) { const i = DATA.jobs.findIndex(x=>x.id===editingId); if(i>-1) DATA.jobs[i]=newItem; }
+    else DATA.jobs.push(newItem);
+    renderJobs();
+  } else if (type === 'fair') {
+    newItem = { id:editingId||nextId.fairs++, name:g('f-name'), date:g('f-date'), time:g('f-time'), location:g('f-location'), cost:g('f-cost'), status:'upcoming' };
+    if (editingId) { const i = DATA.fairs.findIndex(x=>x.id===editingId); if(i>-1) DATA.fairs[i]=newItem; }
+    else DATA.fairs.push(newItem);
+    renderFairs();
+  } else if (type === 'resource') {
+    newItem = { id:editingId||nextId.resources++, name:g('f-name'), category:g('f-category'), desc:g('f-desc'), phone:g('f-phone'), address:g('f-address') };
+    if (editingId) { const i = DATA.resources.findIndex(x=>x.id===editingId); if(i>-1) DATA.resources[i]=newItem; }
+    else DATA.resources.push(newItem);
+    renderResources();
+  }
+
+  refreshStats();
+  closeDrawer();
+  showToast('✅ Saved successfully!');
+}
+
+function deleteItem(type, id) {
+  if (!confirm('Delete this entry?')) return;
+  const listKey = type === 'job' ? 'jobs' : type === 'fair' ? 'fairs' : type === 'resource' ? 'resources' : type;
+  DATA[listKey] = DATA[listKey].filter(i => i.id !== id);
+  renderAll();
+  showToast('🗑 Entry deleted');
+}
+
+// ── EXPORT ──
+function generateExport() {
+  const output = JSON.stringify(DATA, null, 2);
+  document.getElementById('export-output').textContent = output;
+  return output;
+}
+
+function downloadExport() {
+  const output = generateExport();
+  const blob = new Blob([output], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('⬇️ data.json downloaded — drag it into GitHub!');
+}
+
+function copyExport() {
+  const text = generateExport();
+  navigator.clipboard.writeText(text).then(() => showToast('📋 Copied to clipboard!'));
+}
+
+// ── TOAST ──
+function showToast(msg = '✅ Done!') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => { t.style.display = 'none'; }, 3000);
+}
+</script>
+</body>
+</html>
