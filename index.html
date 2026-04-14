@@ -411,83 +411,10 @@
         <div class="sub-tab" onclick="filterHousing('family')">Family</div>
       </div>
       <div class="cards-grid" id="housing-cards">
-        <div class="card" data-type="emergency transitional">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Pinellas Hope</h3>
-          <p>Emergency shelter and transitional housing for homeless adults.</p>
-          <div class="card-detail"><span>📍 Address:</span> 5009 59th St N, St. Petersburg, FL 33709</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 893-3700</div>
-          <div class="card-detail"><span>🕐 Hours:</span> 24/7 Intake</div>
-          <div class="card-actions">
-            <a href="https://www.catholiccharitiesDOC.net/pinellas-hope" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-893-3700')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="transitional family">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Metropolitan Ministries</h3>
-          <p>Transitional housing and family support services in the Tampa Bay area.</p>
-          <div class="card-detail"><span>📍 Address:</span> 2002 N Florida Ave, Tampa, FL 33602</div>
-          <div class="card-detail"><span>📞 Phone:</span> (813) 209-1000</div>
-          <div class="card-detail"><span>🌐 Serves:</span> Pinellas &amp; Hillsborough</div>
-          <div class="card-actions">
-            <a href="https://www.metromin.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('813-209-1000')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized family senior">
-          <span class="card-badge badge-open">Listings Available</span>
-          <h3>Pinellas County Housing Authority</h3>
-          <p>Affordable housing programs including Public Housing and Section 8 vouchers for Pinellas County residents.</p>
-          <div class="card-detail"><span>📍 Address:</span> 11479 Ulmerton Rd, Largo, FL 33778</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 443-7684</div>
-          <div class="card-actions">
-            <a href="https://www.pinellashousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized family">
-          <span class="card-badge badge-open">Applications Open</span>
-          <h3>Housing Authority of St. Petersburg</h3>
-          <p>Public housing and rental assistance for low-income residents of St. Petersburg.</p>
-          <div class="card-detail"><span>📍 Address:</span> 2001 Gandy Blvd N, St. Petersburg, FL 33702</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 323-3171</div>
-          <div class="card-actions">
-            <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized senior">
-          <span class="card-badge badge-waitlist">Waitlist Open</span>
-          <h3>Clearwater Housing Authority</h3>
-          <p>Affordable housing options and Section 8 vouchers for Clearwater residents, including senior units.</p>
-          <div class="card-detail"><span>📍 Address:</span> 908 Cleveland St, Clearwater, FL 33755</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 441-2227</div>
-          <div class="card-actions">
-            <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="emergency transitional">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Suncoast Partnership to End Homelessness</h3>
-          <p>Connects individuals and families experiencing homelessness to housing and support services throughout Pinellas County.</p>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 442-9041</div>
-          <div class="card-detail"><span>🌐 Web:</span> speh.org</div>
-          <div class="card-actions">
-            <a href="https://www.speh.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-442-9041')">📞 Call</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 8 Waitlists -->
+    <div class="card" style="text-align:center;padding:40px;color:var(--muted)">Loading housing listings...</div>
+  </div>
+  </div>
+  <!-- Section 8 Waitlists -->
     <div class="housing-sub" id="housing-section8">
       <div class="alert alert-warn">⚠️ <span>Section 8 (Housing Choice Voucher) waitlists open and close frequently. Status below is updated regularly — always confirm directly with the housing authority.</span></div>
       <div class="cards-grid">
@@ -1074,112 +1001,13 @@
       </div>
 
       <div id="job-listings-container">
-        <div class="job-card" data-type="full" data-title="warehouse associate logistics">
-          <div class="job-info">
-            <h3>Warehouse Associate</h3>
-            <div class="job-meta">
-              <span>🏢 Logistics Co. of Tampa Bay</span>
-              <span>📍 St. Petersburg, FL</span>
-              <span>💰 $17–$19/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">No experience required</span><span class="tag">Benefits</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="part" data-title="cashier retail customer service">
-          <div class="job-info">
-            <h3>Cashier / Customer Service</h3>
-            <div class="job-meta">
-              <span>🏢 Local Grocery – Pinellas Park</span>
-              <span>📍 Pinellas Park, FL</span>
-              <span>💰 $15/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Flexible hours</span><span class="tag">Entry level</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type part-time">Part-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="full" data-title="caregiver home health aide">
-          <div class="job-info">
-            <h3>Home Health Aide / Caregiver</h3>
-            <div class="job-meta">
-              <span>🏢 BayCare Home Health</span>
-              <span>📍 Clearwater, FL</span>
-              <span>💰 $16–$21/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Training provided</span><span class="tag">Healthcare</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="temp" data-title="general labor construction">
-          <div class="job-info">
-            <h3>General Laborer</h3>
-            <div class="job-meta">
-              <span>🏢 Pinellas Construction Partners</span>
-              <span>📍 St. Petersburg, FL</span>
-              <span>💰 $15–$18/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Immediate start</span><span class="tag">Outdoor work</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type">Temp / Contract</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="full" data-title="food service cook kitchen">
-          <div class="job-info">
-            <h3>Line Cook / Kitchen Staff</h3>
-            <div class="job-meta">
-              <span>🏢 Various Restaurants – St. Pete Beach</span>
-              <span>📍 St. Pete Beach, FL</span>
-              <span>💰 $16–$22/hr + tips</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Hospitality</span><span class="tag">Multiple openings</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="jobs-sub" id="jobs-fairs">
+    <div style="text-align:center;padding:40px;color:var(--muted)">Loading job listings...</div>
+  </div>
+  </div>
+  <div class="jobs-sub" id="jobs-fairs">
       <div class="cards-grid">
-        <div class="card">
-          <span class="card-badge badge-open-soon">Upcoming</span>
-          <h3>Pinellas County Spring Job Fair 2026</h3>
-          <p>Meet 40+ local employers hiring now. Bring copies of your resume. Business casual attire encouraged.</p>
-          <div class="card-detail"><span>📅 Date:</span> April 22, 2026</div>
-          <div class="card-detail"><span>📍 Location:</span> Largo Cultural Center, Largo, FL</div>
-          <div class="card-detail"><span>🕐 Time:</span> 10:00 AM – 3:00 PM</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free to attend</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="openModal('modal-register-fair')">Register (Free)</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>CareerSource Pinellas – Ongoing Hiring Events</h3>
-          <p>Regular employer recruitment events, workshops, and job seeker days at CareerSource Pinellas.</p>
-          <div class="card-detail"><span>📍</span> 3425 Dr. MLK Jr St N, St. Petersburg, FL</div>
-          <div class="card-detail"><span>📞</span> (727) 507-4300</div>
-          <div class="card-actions">
-            <a href="https://www.careersourcepinellas.com/events" target="_blank" class="btn btn-primary">View Calendar</a>
-          </div>
-        </div>
-        <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
+    <!-- dynamic fairs injected here -->
+    <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
           <div>
             <div style="font-size:2rem;margin-bottom:8px">➕</div>
             <p style="color:var(--muted);font-size:0.88rem">Hosting a job fair?<br>Get it listed here for free.</p>
@@ -1578,47 +1406,7 @@
 </div>
 
 <script>
-// ── FOOD PANTRY DATA with days open ──
-const foodPantries = [
-  { name: "St. Pete Free Clinic – Food Pantry", days: [1,2,3,4,5], hours: "Mon–Fri 9am–12pm", address: "863 3rd Ave N, St. Petersburg, FL 33701", phone: "727-821-8900", desc: "Free groceries for low-income individuals and families. No ID required.", accepts: ["No ID required", "Walk-in"] },
-  { name: "Salvation Army – Food Pantry", days: [1,2,3,4,5], hours: "Mon–Fri 9am–12pm", address: "3590 5th Ave N, St. Petersburg, FL 33713", phone: "727-822-4954", desc: "Food boxes and emergency food assistance.", accepts: ["ID required", "Walk-in"] },
-  { name: "Metropolitan Ministries – Food Pantry", days: [1,2,3,4,5,6], hours: "Mon–Sat 8am–2pm", address: "2002 N Florida Ave, Tampa, FL 33602", phone: "813-209-1000", desc: "Fresh produce, canned goods, and hot meals available.", accepts: ["No ID required"] },
-  { name: "St. Vincent de Paul – Food Pantry", days: [2,4], hours: "Tue &amp; Thu 9am–12pm", address: "2819 4th St N, St. Petersburg, FL 33704", phone: "727-822-4254", desc: "Weekly food distribution. Families and individuals welcome.", accepts: ["ID preferred"] },
-  { name: "Pinellas Hope – Community Kitchen", days: [0,1,2,3,4,5,6], hours: "Daily 7am–7pm", address: "5009 59th St N, St. Petersburg, FL 33709", phone: "727-893-3700", desc: "Hot meals daily for anyone in need. No questions asked.", accepts: ["No requirements", "Walk-in"] },
-  { name: "Cross and Anchor United Methodist – Pantry", days: [6], hours: "Sat 9am–11am", address: "3510 56th St N, St. Petersburg, FL 33710", phone: "727-521-0498", desc: "Saturday distribution. Community groceries and household items.", accepts: ["Walk-in"] },
-  { name: "United Church of Christ – Food Closet", days: [3], hours: "Wed 10am–1pm", address: "2550 Drew St, Clearwater, FL 33765", phone: "727-799-6547", desc: "Weekly food closet open to Pinellas County residents.", accepts: ["ID required"] },
-  { name: "Daystar Life Center", days: [1,3,5], hours: "Mon, Wed, Fri 9am–1pm", address: "1055 Dr. MLK Jr St N, St. Petersburg, FL 33705", phone: "727-867-8660", desc: "Food pantry plus clothing and utility assistance.", accepts: ["Photo ID"] },
-  { name: "Pinellas Opportunity Council", days: [1,2,3,4,5], hours: "Mon–Fri 8:30am–4:30pm", address: "5765 113th St N, Seminole, FL 33772", phone: "727-581-0710", desc: "USDA food distribution and emergency food assistance.", accepts: ["Income verification"] },
-  { name: "First Assembly of God – Community Pantry", days: [0], hours: "Sun 11am–1pm", address: "4444 66th St N, Kenneth City, FL 33709", phone: "727-546-8800", desc: "Sunday pantry following morning service. Open to all.", accepts: ["Walk-in"] }
-];
-
-const dayNames = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-
-function buildFoodCards() {
-  const today = new Date().getDay();
-  document.getElementById('today-name').textContent = dayNames[today];
-  const container = document.getElementById('food-cards');
-  const open = foodPantries.filter(p => p.days.includes(today));
-  const closed = foodPantries.filter(p => !p.days.includes(today));
-  const allPantries = [...open, ...closed];
-  container.innerHTML = allPantries.map(p => {
-    const isOpen = p.days.includes(today);
-    return `
-      <div class="card ${isOpen ? 'open-today' : 'closed-today'}">
-        <span class="card-badge ${isOpen ? 'badge-open' : 'badge-closed'}">${isOpen ? '✅ Open Today' : '❌ Closed Today'}</span>
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
-        <div class="card-detail"><span>📍</span> ${p.address}</div>
-        <div class="card-detail"><span>🕐</span> ${p.hours}</div>
-        <div class="card-detail"><span>📞</span> ${p.phone}</div>
-        <div style="margin-top:6px">${p.accepts.map(a => `<span class="tag">${a}</span>`).join('')}</div>
-        <div class="card-actions">
-          <button class="btn btn-outline" onclick="callNumber('${p.phone}')">📞 Call</button>
-        </div>
-      </div>`;
-  }).join('');
-}
-buildFoodCards();
+// Food pantries loaded from data.json
 
 // ── SEARCH ──
 const searchData = [
@@ -1757,6 +1545,128 @@ function selectDonation(el, amt) {
 
 // ── PHONE ──
 function callNumber(n) { window.location.href = 'tel:' + n.replace(/[^0-9]/g,''); }
+
+// ── LOAD DATA FROM data.json ──
+const dayNames = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    const data = await res.json();
+    buildHousingCards(data.housing || []);
+    buildJobListings(data.jobs || []);
+    buildJobFairs(data.fairs || []);
+    buildFoodCards(data.food || []);
+  } catch(e) {
+    console.warn('Could not load data.json, using fallback', e);
+  }
+}
+
+function buildHousingCards(housing) {
+  const container = document.getElementById('housing-cards');
+  if (!housing.length) return;
+  const statusMap = {
+    open: ['badge-open', 'Accepting'],
+    waitlist: ['badge-waitlist', 'Waitlist Open'],
+    closed: ['badge-waitlist', 'Currently Closed']
+  };
+  container.innerHTML = housing.map(h => {
+    const [badgeCls, badgeLabel] = statusMap[h.status] || ['badge-open', 'Accepting'];
+    return `<div class="card" data-type="${h.type.replace(/,/g,' ')}">
+      <span class="card-badge ${badgeCls}">${badgeLabel}</span>
+      <h3>${h.name}</h3>
+      <div class="card-detail"><span>📍 Address:</span> ${h.address}</div>
+      <div class="card-detail"><span>📞 Phone:</span> ${h.phone}</div>
+      <div class="card-actions">
+        ${h.url ? `<a href="${h.url}" target="_blank" class="btn btn-primary">Website</a>` : ''}
+        <button class="btn btn-outline" onclick="callNumber('${h.phone}')">📞 Call</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildJobListings(jobs) {
+  const container = document.getElementById('job-listings-container');
+  if (!jobs.length) return;
+  const typeMap = {
+    full: ['full-time', 'Full-Time'],
+    part: ['part-time', 'Part-Time'],
+    temp: ['', 'Temp / Contract']
+  };
+  container.innerHTML = jobs.map(j => {
+    const [typeCls, typeLabel] = typeMap[j.type] || ['', j.type];
+    const titleSlug = (j.title + ' ' + j.company).toLowerCase().replace(/[^a-z0-9 ]/g,'');
+    return `<div class="job-card" data-type="${j.type}" data-title="${titleSlug}">
+      <div class="job-info">
+        <h3>${j.title}</h3>
+        <div class="job-meta">
+          <span>🏢 ${j.company}</span>
+          <span>📍 ${j.location}</span>
+          <span>💰 ${j.pay}</span>
+        </div>
+        <div style="margin-top:8px">${(j.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type ${typeCls}">${typeLabel}</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildJobFairs(fairs) {
+  const container = document.querySelector('#jobs-fairs .cards-grid');
+  if (!container || !fairs.length) return;
+  const fairCards = fairs.map(f => `
+    <div class="card">
+      <span class="card-badge badge-open-soon">Upcoming</span>
+      <h3>${f.name}</h3>
+      <div class="card-detail"><span>📅 Date:</span> ${f.date}</div>
+      <div class="card-detail"><span>📍 Location:</span> ${f.location}</div>
+      <div class="card-detail"><span>🕐 Time:</span> ${f.time}</div>
+      <div class="card-detail"><span>💳 Cost:</span> ${f.cost}</div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="openModal('modal-register-fair')">Register (Free)</button>
+      </div>
+    </div>`).join('');
+  // Insert before the dashed "submit a fair" card
+  const dashedCard = container.querySelector('.card[style*="dashed"]');
+  if (dashedCard) {
+    dashedCard.insertAdjacentHTML('beforebegin', fairCards);
+  } else {
+    container.innerHTML = fairCards + container.innerHTML;
+  }
+}
+
+function buildFoodCards(pantries) {
+  const today = new Date().getDay();
+  document.getElementById('today-name').textContent = dayNames[today];
+  const container = document.getElementById('food-cards');
+  if (!pantries.length) return;
+  // dayAbbr matches the format stored in data.json: "Mon","Tue","Wed","Thu","Fri","Sat","Sun"
+  const dayAbbr = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][today];
+  const open = pantries.filter(p => (p.days||[]).includes(dayAbbr));
+  const closed = pantries.filter(p => !(p.days||[]).includes(dayAbbr));
+  const all = [...open, ...closed];
+  container.innerHTML = all.map(p => {
+    const isOpen = open.includes(p);
+    return `<div class="card ${isOpen ? 'open-today' : 'closed-today'}">
+      <span class="card-badge ${isOpen ? 'badge-open' : 'badge-closed'}">${isOpen ? '✅ Open Today' : '❌ Closed Today'}</span>
+      <h3>${p.name}</h3>
+      <p>${p.desc||''}</p>
+      <div class="card-detail"><span>📍</span> ${p.address}</div>
+      <div class="card-detail"><span>🕐</span> ${p.hours}</div>
+      <div class="card-detail"><span>📞</span> ${p.phone}</div>
+      <div style="margin-top:6px">${(p.accepts||[]).map(a=>`<span class="tag">${a}</span>`).join('')}</div>
+      <div class="card-actions">
+        <button class="btn btn-outline" onclick="callNumber('${p.phone}')">📞 Call</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+loadData();
+
 </script>
 <script>
   if (window.netlifyIdentity) {
