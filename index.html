@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mind the Gap Together – Pinellas County Resource Hub</title>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mind the Gap Together – Pinellas County Resource Hub</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
     :root {
       --primary: #1a5276;
       --primary-light: #2980b9;
@@ -27,316 +28,309 @@
     a { color: var(--primary-light); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── TOP BANNER ── */
-    .top-banner {
-      background: var(--primary);
-      color: white;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-    .logo-area { display: flex; align-items: center; gap: 12px; }
-    .logo-icon {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--secondary);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; font-weight: 900; color: white;
-    }
-    .logo-text { line-height: 1.2; }
-    .logo-text .brand { font-size: 1.15rem; font-weight: 700; }
-    .logo-text .tagline { font-size: 0.72rem; opacity: 0.85; }
-    .county-selector {
-      display: flex; align-items: center; gap: 8px; font-size: 0.85rem;
-    }
-    .county-selector select {
-      padding: 5px 10px; border-radius: 6px; border: none;
-      background: rgba(255,255,255,0.15); color: white;
-      font-size: 0.85rem; cursor: pointer;
-    }
-    .county-selector select option { color: var(--text); background: white; }
+```
+/* ── TOP BANNER ── */
+.top-banner {
+  background: var(--primary);
+  color: white;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--secondary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 900; color: white;
+}
+.logo-text { line-height: 1.2; }
+.logo-text .brand { font-size: 1.15rem; font-weight: 700; }
+.logo-text .tagline { font-size: 0.72rem; opacity: 0.85; }
+.county-selector {
+  display: flex; align-items: center; gap: 8px; font-size: 0.85rem;
+}
+.county-selector select {
+  padding: 5px 10px; border-radius: 6px; border: none;
+  background: rgba(255,255,255,0.15); color: white;
+  font-size: 0.85rem; cursor: pointer;
+}
+.county-selector select option { color: var(--text); background: white; }
 
-    /* ── HERO / SEARCH ── */
-    .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-      padding: 48px 24px 56px;
-      text-align: center;
-      color: white;
-    }
-    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 10px; }
-    .hero p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 30px; }
-    .search-box {
-      display: flex; max-width: 680px; margin: 0 auto;
-      border-radius: 50px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
-    .search-box input {
-      flex: 1; padding: 16px 22px; font-size: 1rem; border: none; outline: none;
-    }
-    .search-box button {
-      padding: 16px 28px; background: var(--secondary); color: white;
-      border: none; font-size: 1rem; font-weight: 600; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .search-box button:hover { background: #17a589; }
-    .quick-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
-    .quick-link {
-      background: rgba(255,255,255,0.18); color: white;
-      padding: 7px 16px; border-radius: 50px; font-size: 0.85rem;
-      cursor: pointer; border: 1px solid rgba(255,255,255,0.3);
-      transition: background 0.2s;
-    }
-    .quick-link:hover { background: rgba(255,255,255,0.32); }
+/* ── HERO / SEARCH ── */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  padding: 48px 24px 56px;
+  text-align: center;
+  color: white;
+}
+.hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; margin-bottom: 10px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 30px; }
+.search-box {
+  display: flex; max-width: 680px; margin: 0 auto;
+  border-radius: 50px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.search-box input {
+  flex: 1; padding: 16px 22px; font-size: 1rem; border: none; outline: none;
+}
+.search-box button {
+  padding: 16px 28px; background: var(--secondary); color: white;
+  border: none; font-size: 1rem; font-weight: 600; cursor: pointer;
+  transition: background 0.2s;
+}
+.search-box button:hover { background: #17a589; }
+.quick-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+.quick-link {
+  background: rgba(255,255,255,0.18); color: white;
+  padding: 7px 16px; border-radius: 50px; font-size: 0.85rem;
+  cursor: pointer; border: 1px solid rgba(255,255,255,0.3);
+  transition: background 0.2s;
+}
+.quick-link:hover { background: rgba(255,255,255,0.32); }
 
-    /* ── NAV TABS ── */
-    .nav-tabs {
-      background: white; border-bottom: 2px solid var(--border);
-      display: flex; overflow-x: auto; padding: 0 16px;
-      position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
-    .nav-tab {
-      padding: 16px 20px; cursor: pointer; white-space: nowrap;
-      font-size: 0.9rem; font-weight: 600; color: var(--muted);
-      border-bottom: 3px solid transparent; margin-bottom: -2px;
-      transition: all 0.2s; display: flex; align-items: center; gap: 7px;
-    }
-    .nav-tab:hover { color: var(--primary); }
-    .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .nav-tab .tab-icon { font-size: 1.1rem; }
+/* ── NAV TABS ── */
+.nav-tabs {
+  background: white; border-bottom: 2px solid var(--border);
+  display: flex; overflow-x: auto; padding: 0 16px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.nav-tab {
+  padding: 16px 20px; cursor: pointer; white-space: nowrap;
+  font-size: 0.9rem; font-weight: 600; color: var(--muted);
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all 0.2s; display: flex; align-items: center; gap: 7px;
+}
+.nav-tab:hover { color: var(--primary); }
+.nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+.nav-tab .tab-icon { font-size: 1.1rem; }
 
-    /* ── MAIN CONTENT ── */
-    .main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
+/* ── MAIN CONTENT ── */
+.main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
 
-    /* Search results */
-    #search-results { display: none; }
-    #search-results.visible { display: block; }
-    .search-results-header {
-      font-size: 1.1rem; font-weight: 600; color: var(--primary);
-      margin-bottom: 16px; padding-bottom: 8px;
-      border-bottom: 2px solid var(--border);
-    }
-    .no-results { color: var(--muted); font-: italic; padding: 20px 0; }
+/* Search results */
+#search-results { display: none; }
+#search-results.visible { display: block; }
+.search-results-header {
+  font-size: 1.1rem; font-weight: 600; color: var(--primary);
+  margin-bottom: 16px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.no-results { color: var(--muted); font-style: italic; padding: 20px 0; }
 
-    /* Sections */
-    .section { display: none; }
-    .section.active { display: block; }
+/* Sections */
+.section { display: none; }
+.section.active { display: block; }
 
-    .section-header {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 24px; padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-    }
-    .section-header .s-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-    }
-    .section-header h2 { font-size: 1.55rem; font-weight: 700; color: var(--primary); }
-    .section-header p { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+.section-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.section-header .s-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.section-header h2 { font-size: 1.55rem; font-weight: 700; color: var(--primary); }
+.section-header p { font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
 
-    /* Sub-tabs */
-    .sub-tabs {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
-    }
-    .sub-tab {
-      padding: 8px 18px; border-radius: 50px;
-      border: 2px solid var(--border); cursor: pointer;
-      font-size: 0.85rem; font-weight: 600; color: var(--muted);
-      background: white; transition: all 0.2s;
-    }
-    .sub-tab:hover, .sub-tab.active {
-      background: var(--primary); color: white; border-color: var(--primary);
-    }
+/* Sub-tabs */
+.sub-tabs {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+}
+.sub-tab {
+  padding: 8px 18px; border-radius: 50px;
+  border: 2px solid var(--border); cursor: pointer;
+  font-size: 0.85rem; font-weight: 600; color: var(--muted);
+  background: white; transition: all 0.2s;
+}
+.sub-tab:hover, .sub-tab.active {
+  background: var(--primary); color: white; border-color: var(--primary);
+}
 
-    /* Cards */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: var(--card-bg); border-radius: var(--radius);
-      box-shadow: var(--shadow); padding: 20px;
-      transition: box-shadow 0.2s, transform 0.2s;
-      border-left: 4px solid var(--primary-light);
-      position: relative;
-    }
-    .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-    .card.open-today { border-left-color: var(--success); }
-    .card.closed-today { border-left-color: var(--muted); opacity: 0.75; }
-    .card-badge {
-      position: absolute; top: 14px; right: 14px;
-      padding: 3px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 700;
-    }
-    .badge-open { background: #d5f5e3; color: var(--success); }
-    .badge-closed { background: #f2f3f4; color: var(--muted); }
-    .badge-waitlist { background: #fef9e7; color: #d35400; }
-    .badge-open-soon { background: #d6eaf8; color: var(--primary); }
-    .card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; padding-right: 80px; }
-    .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
-    .card .card-detail { font-size: 0.83rem; color: var(--text); margin-bottom: 4px; display: flex; gap: 6px; }
-    .card .card-detail span { color: var(--muted); min-width: 60px; }
-    .card-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-    .btn {
-      padding: 7px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 600;
-      cursor: pointer; border: none; transition: all 0.2s; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 5px;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-light); text-decoration: none; }
-    .btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
-    .btn-outline:hover { background: var(--primary); color: white; }
-    .btn-success { background: var(--success); color: white; }
-    .btn-accent { background: var(--accent); color: white; }
+/* Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+.card {
+  background: var(--card-bg); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border-left: 4px solid var(--primary-light);
+  position: relative;
+}
+.card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+.card.open-today { border-left-color: var(--success); }
+.card.closed-today { border-left-color: var(--muted); opacity: 0.75; }
+.card-badge {
+  position: absolute; top: 14px; right: 14px;
+  padding: 3px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 700;
+}
+.badge-open { background: #d5f5e3; color: var(--success); }
+.badge-closed { background: #f2f3f4; color: var(--muted); }
+.badge-waitlist { background: #fef9e7; color: #d35400; }
+.badge-open-soon { background: #d6eaf8; color: var(--primary); }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; padding-right: 80px; }
+.card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+.card .card-detail { font-size: 0.83rem; color: var(--text); margin-bottom: 4px; display: flex; gap: 6px; }
+.card .card-detail span { color: var(--muted); min-width: 60px; }
+.card-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.btn {
+  padding: 7px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; border: none; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-light); text-decoration: none; }
+.btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
+.btn-outline:hover { background: var(--primary); color: white; }
+.btn-success { background: var(--success); color: white; }
+.btn-accent { background: var(--accent); color: white; }
 
-    /* Notice / alert boxes */
-    .alert {
-      padding: 14px 18px; border-radius: 8px; margin-bottom: 20px;
-      display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem;
-    }
-    .alert-info { background: #d6eaf8; border-left: 4px solid var(--primary-light); color: var(--primary); }
-    .alert-success { background: #d5f5e3; border-left: 4px solid var(--success); color: #1a5132; }
-    .alert-warn { background: #fef9e7; border-left: 4px solid var(--accent); color: #7d4e00; }
+/* Notice / alert boxes */
+.alert {
+  padding: 14px 18px; border-radius: 8px; margin-bottom: 20px;
+  display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem;
+}
+.alert-info { background: #d6eaf8; border-left: 4px solid var(--primary-light); color: var(--primary); }
+.alert-success { background: #d5f5e3; border-left: 4px solid var(--success); color: #1a5132; }
+.alert-warn { background: #fef9e7; border-left: 4px solid var(--accent); color: #7d4e00; }
 
-    /* Section: open-today panel */
-    .open-today-header {
-      background: var(--success); color: white;
-      padding: 10px 18px; border-radius: 8px; font-weight: 700;
-      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-    }
+/* Section: open-today panel */
+.open-today-header {
+  background: var(--success); color: white;
+  padding: 10px 18px; border-radius: 8px; font-weight: 700;
+  margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
 
-    /* Request help panel */
-    .help-panel {
-      background: white; border-radius: var(--radius);
-      box-shadow: var(--shadow); padding: 28px; margin-bottom: 28px;
-    }
-    .help-panel h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
-    .help-panel p { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
-    .form-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
-    .form-group { flex: 1; min-width: 180px; }
-    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
-      border-radius: 7px; font-size: 0.88rem; transition: border 0.2s;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none; border-color: var(--primary-light);
-    }
+/* Request help panel */
+.help-panel {
+  background: white; border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px; margin-bottom: 28px;
+}
+.help-panel h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+.help-panel p { font-size: 0.88rem; color: var(--muted); margin-bottom: 16px; }
+.form-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.form-group { flex: 1; min-width: 180px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
+  border-radius: 7px; font-size: 0.88rem; transition: border 0.2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--primary-light);
+}
 
-    /* Jobs */
-    .job-card {
-      background: white; border-radius: var(--radius); box-shadow: var(--shadow);
-      padding: 18px 20px; display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 16px; margin-bottom: 14px;
-      transition: box-shadow 0.2s;
-    }
-    .job-card:hover { box-shadow: var(--shadow-hover); }
-    .job-info h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
-    .job-info .job-meta { font-size: 0.82rem; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
-    .job-type { padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
-    .full-time { background: #d5f5e3; color: var(--success); }
-    .part-time { background: #d6eaf8; color: var(--primary); }
-    .volunteer-type { background: #fef9e7; color: var(--accent); }
+/* Jobs */
+.job-card {
+  background: white; border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 18px 20px; display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 16px; margin-bottom: 14px;
+  transition: box-shadow 0.2s;
+}
+.job-card:hover { box-shadow: var(--shadow-hover); }
+.job-info h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+.job-info .job-meta { font-size: 0.82rem; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
+.job-type { padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+.full-time { background: #d5f5e3; color: var(--success); }
+.part-time { background: #d6eaf8; color: var(--primary); }
+.volunteer-type { background: #fef9e7; color: var(--accent); }
 
-    /* Chat widget */
-    .chat-cta {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: white; border-radius: var(--radius); padding: 24px 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
-    }
-    .chat-cta h3 { font-size: 1.1rem; font-weight: 700; }
-    .chat-cta p { font-size: 0.88rem; opacity: 0.9; margin-top: 4px; }
-    .chat-btn {
-      background: white; color: var(--primary);
-      padding: 12px 22px; border-radius: 50px; font-weight: 700;
-      border: none; cursor: pointer; font-size: 0.9rem;
-      transition: transform 0.2s;
-    }
-    .chat-btn:hover { transform: scale(1.04); }
+/* Chat widget */
+.chat-cta {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white; border-radius: var(--radius); padding: 24px 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
+}
+.chat-cta h3 { font-size: 1.1rem; font-weight: 700; }
+.chat-cta p { font-size: 0.88rem; opacity: 0.9; margin-top: 4px; }
+.chat-btn {
+  background: white; color: var(--primary);
+  padding: 12px 22px; border-radius: 50px; font-weight: 700;
+  border: none; cursor: pointer; font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+.chat-btn:hover { transform: scale(1.04); }
 
-    /* Donate */
-    .donate-hero {
-      background: linear-gradient(135deg, #c0392b 0%, var(--accent) 100%);
-      color: white; border-radius: var(--radius); padding: 36px;
-      text-align: center; margin-bottom: 28px;
-    }
-    .donate-hero h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
-    .donate-hero p { font-size: 0.95rem; opacity: 0.9; max-width: 520px; margin: 0 auto 22px; }
-    .donate-amounts { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-    .donate-amt {
-      background: rgba(255,255,255,0.2); color: white;
-      padding: 10px 22px; border-radius: 50px; font-weight: 700; font-size: 1rem;
-      cursor: pointer; border: 2px solid rgba(255,255,255,0.4);
-      transition: background 0.2s;
-    }
-    .donate-amt:hover, .donate-amt.selected { background: white; color: var(--accent); }
+/* Donate */
+.donate-hero {
+  background: linear-gradient(135deg, #c0392b 0%, var(--accent) 100%);
+  color: white; border-radius: var(--radius); padding: 36px;
+  text-align: center; margin-bottom: 28px;
+}
+.donate-hero h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+.donate-hero p { font-size: 0.95rem; opacity: 0.9; max-width: 520px; margin: 0 auto 22px; }
+.donate-amounts { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.donate-amt {
+  background: rgba(255,255,255,0.2); color: white;
+  padding: 10px 22px; border-radius: 50px; font-weight: 700; font-size: 1rem;
+  cursor: pointer; border: 2px solid rgba(255,255,255,0.4);
+  transition: background 0.2s;
+}
+.donate-amt:hover, .donate-amt.selected { background: white; color: var(--accent); }
 
-    /* Footer */
-    footer {
-      background: var(--primary); color: rgba(255,255,255,0.8);
-      padding: 36px 24px 20px; margin-top: 40px;
-    }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto 24px; }
-    .footer-col h4 { color: white; font-size: 0.95rem; margin-bottom: 12px; }
-    .footer-col a { display: block; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 6px; }
-    .footer-col a:hover { color: white; text-decoration: none; }
-    .footer-bottom { text-align: center; font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; max-width: 1100px; margin: 0 auto; }
+/* Footer */
+footer {
+  background: var(--primary); color: rgba(255,255,255,0.8);
+  padding: 36px 24px 20px; margin-top: 40px;
+}
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; max-width: 1100px; margin: 0 auto 24px; }
+.footer-col h4 { color: white; font-size: 0.95rem; margin-bottom: 12px; }
+.footer-col a { display: block; color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-bottom: 6px; }
+.footer-col a:hover { color: white; text-decoration: none; }
+.footer-bottom { text-align: center; font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 16px; max-width: 1100px; margin: 0 auto; }
 
-    /* Link status dot */
-    .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
-    .status-dot.ok { background: var(--success); }
-    .status-dot.pending { background: var(--muted); }
+/* Link status dot */
+.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.status-dot.ok { background: var(--success); }
+.status-dot.pending { background: var(--muted); }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .top-banner { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 8px; }
-      .hero { padding: 32px 14px 40px; }
-      .nav-tabs { padding: 0 8px; }
-      .nav-tab { padding: 12px 12px; font-size: 0.8rem; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .job-card { flex-direction: column; }
-    }
+/* Responsive */
+@media (max-width: 600px) {
+  .top-banner { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 8px; }
+  .hero { padding: 32px 14px 40px; }
+  .nav-tabs { padding: 0 8px; }
+  .nav-tab { padding: 12px 12px; font-size: 0.8rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .job-card { flex-direction: column; }
+}
 
-    /* Modal */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.5); z-index: 1000;
-      align-items: center; justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: white; border-radius: var(--radius);
-      padding: 32px; max-width: 520px; width: 95%;
-      max-height: 90vh; overflow-y: auto;
-    }
-    .modal h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
-    .modal-close {
-      float: right; background: none; border: none; font-size: 1.4rem;
-      cursor: pointer; color: var(--muted); line-height: 1;
-    }
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 1000;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white; border-radius: var(--radius);
+  padding: 32px; max-width: 520px; width: 95%;
+  max-height: 90vh; overflow-y: auto;
+}
+.modal h3 { font-size: 1.2rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
+.modal-close {
+  float: right; background: none; border: none; font-size: 1.4rem;
+  cursor: pointer; color: var(--muted); line-height: 1;
+}
 
-    .section-intro { font-size: 0.92rem; color: var(--muted); margin-bottom: 22px; line-height: 1.6; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
-    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: #eaf2ff; color: var(--primary); margin: 2px; }
+.section-intro { font-size: 0.92rem; color: var(--muted); margin-bottom: 22px; line-height: 1.6; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; background: #eaf2ff; color: var(--primary); margin: 2px; }
+```
+
   </style>
 </head>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 <body>
 
 <!-- TOP BANNER -->
+
 <header class="top-banner">
   <div class="logo-area">
     <div class="logo-icon">M</div>
@@ -357,6 +351,7 @@
 </header>
 
 <!-- HERO / SEARCH -->
+
 <section class="hero">
   <h1>Find Help in Pinellas County</h1>
   <p>Search housing, food, healthcare, jobs, and more — all in one place.</p>
@@ -377,6 +372,7 @@
 </section>
 
 <!-- NAV TABS -->
+
 <nav class="nav-tabs" id="nav-tabs">
   <div class="nav-tab active" onclick="showSection('housing')" data-section="housing"><span class="tab-icon">🏠</span>Housing</div>
   <div class="nav-tab" onclick="showSection('healthcare')" data-section="healthcare"><span class="tab-icon">🏥</span>Healthcare</div>
@@ -387,1027 +383,1054 @@
 </nav>
 
 <!-- MAIN -->
+
 <div class="main">
 
   <!-- SEARCH RESULTS -->
+
   <div id="search-results">
     <div class="search-results-header" id="search-header">Results</div>
     <div id="results-container" class="cards-grid"></div>
   </div>
 
   <!-- ══════════════ HOUSING ══════════════ -->
+
   <section class="section active" id="section-housing">
     <div class="section-header">
       <div class="s-icon" style="background:#d6eaf8">🏠</div>
       <div><h2>Housing</h2><p>Find affordable housing, waitlists, applications, and navigators.</p></div>
     </div>
 
-    <div class="sub-tabs">
-      <div class="sub-tab active" onclick="showSubSection('housing', 'search')">🔍 Search Housing</div>
-      <div class="sub-tab" onclick="showSubSection('housing', 'section8')">📋 Section 8 Waitlists</div>
-      <div class="sub-tab" onclick="showSubSection('housing', 'authorities')">🏛 Housing Authorities</div>
-      <div class="sub-tab" onclick="showSubSection('housing', 'private')">🏡 Private Listings</div>
-      <div class="sub-tab" onclick="showSubSection('housing', 'navigator')">🧭 Request a Navigator</div>
-    </div>
+```
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="showSubSection('housing', 'search')">🔍 Search Housing</div>
+  <div class="sub-tab" onclick="showSubSection('housing', 'section8')">📋 Section 8 Waitlists</div>
+  <div class="sub-tab" onclick="showSubSection('housing', 'authorities')">🏛 Housing Authorities</div>
+  <div class="sub-tab" onclick="showSubSection('housing', 'private')">🏡 Private Listings</div>
+  <div class="sub-tab" onclick="showSubSection('housing', 'navigator')">🧭 Request a Navigator</div>
+</div>
 
-    <!-- Housing Search -->
-    <div class="housing-sub active" id="housing-search">
-      <div class="alert alert-info">💡 <span>Browse below or use the filters to find affordable and subsidized housing in Pinellas County (South).</span></div>
-      <div class="sub-tabs" style="margin-bottom:16px">
-        <div class="sub-tab active" onclick="filterHousing('all')">All</div>
-        <div class="sub-tab" onclick="filterHousing('subsidized')">Subsidized</div>
-        <div class="sub-tab" onclick="filterHousing('emergency')">Emergency</div>
-        <div class="sub-tab" onclick="filterHousing('transitional')">Transitional</div>
-        <div class="sub-tab" onclick="filterHousing('senior')">Senior</div>
-        <div class="sub-tab" onclick="filterHousing('family')">Family</div>
-      </div>
-      <div class="cards-grid" id="housing-cards">
-        <div class="card" data-type="emergency transitional">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Pinellas Hope</h3>
-          <p>Emergency shelter and transitional housing for homeless adults.</p>
-          <div class="card-detail"><span>📍 Address:</span> 5009 59th St N, St. Petersburg, FL 33709</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 893-3700</div>
-          <div class="card-detail"><span>🕐 Hours:</span> 24/7 Intake</div>
-          <div class="card-actions">
-            <a href="https://www.catholiccharitiesDOC.net/pinellas-hope" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-893-3700')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="transitional family">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Metropolitan Ministries</h3>
-          <p>Transitional housing and family support services in the Tampa Bay area.</p>
-          <div class="card-detail"><span>📍 Address:</span> 2002 N Florida Ave, Tampa, FL 33602</div>
-          <div class="card-detail"><span>📞 Phone:</span> (813) 209-1000</div>
-          <div class="card-detail"><span>🌐 Serves:</span> Pinellas &amp; Hillsborough</div>
-          <div class="card-actions">
-            <a href="https://www.metromin.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('813-209-1000')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized family senior">
-          <span class="card-badge badge-open">Listings Available</span>
-          <h3>Pinellas County Housing Authority</h3>
-          <p>Affordable housing programs including Public Housing and Section 8 vouchers for Pinellas County residents.</p>
-          <div class="card-detail"><span>📍 Address:</span> 11479 Ulmerton Rd, Largo, FL 33778</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 443-7684</div>
-          <div class="card-actions">
-            <a href="https://www.pinellashousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized family">
-          <span class="card-badge badge-open">Applications Open</span>
-          <h3>Housing Authority of St. Petersburg</h3>
-          <p>Public housing and rental assistance for low-income residents of St. Petersburg.</p>
-          <div class="card-detail"><span>📍 Address:</span> 2001 Gandy Blvd N, St. Petersburg, FL 33702</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 323-3171</div>
-          <div class="card-actions">
-            <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="subsidized senior">
-          <span class="card-badge badge-waitlist">Waitlist Open</span>
-          <h3>Clearwater Housing Authority</h3>
-          <p>Affordable housing options and Section 8 vouchers for Clearwater residents, including senior units.</p>
-          <div class="card-detail"><span>📍 Address:</span> 908 Cleveland St, Clearwater, FL 33755</div>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 441-2227</div>
-          <div class="card-actions">
-            <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
-          </div>
-        </div>
-
-        <div class="card" data-type="emergency transitional">
-          <span class="card-badge badge-open">Accepting</span>
-          <h3>Suncoast Partnership to End Homelessness</h3>
-          <p>Connects individuals and families experiencing homelessness to housing and support services throughout Pinellas County.</p>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 442-9041</div>
-          <div class="card-detail"><span>🌐 Web:</span> speh.org</div>
-          <div class="card-actions">
-            <a href="https://www.speh.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-442-9041')">📞 Call</button>
-          </div>
-        </div>
+<!-- Housing Search -->
+<div class="housing-sub active" id="housing-search">
+  <div class="alert alert-info">💡 <span>Browse below or use the filters to find affordable and subsidized housing in Pinellas County (South).</span></div>
+  <div class="sub-tabs" style="margin-bottom:16px">
+    <div class="sub-tab active" onclick="filterHousing('all')">All</div>
+    <div class="sub-tab" onclick="filterHousing('subsidized')">Subsidized</div>
+    <div class="sub-tab" onclick="filterHousing('emergency')">Emergency</div>
+    <div class="sub-tab" onclick="filterHousing('transitional')">Transitional</div>
+    <div class="sub-tab" onclick="filterHousing('senior')">Senior</div>
+    <div class="sub-tab" onclick="filterHousing('family')">Family</div>
+  </div>
+  <div class="cards-grid" id="housing-cards">
+    <div class="card" data-type="emergency transitional">
+      <span class="card-badge badge-open">Accepting</span>
+      <h3>Pinellas Hope</h3>
+      <p>Emergency shelter and transitional housing for homeless adults.</p>
+      <div class="card-detail"><span>📍 Address:</span> 5009 59th St N, St. Petersburg, FL 33709</div>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 893-3700</div>
+      <div class="card-detail"><span>🕐 Hours:</span> 24/7 Intake</div>
+      <div class="card-actions">
+        <a href="https://www.catholiccharitiesDOC.net/pinellas-hope" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-893-3700')">📞 Call</button>
       </div>
     </div>
 
-    <!-- Section 8 Waitlists -->
-    <div class="housing-sub" id="housing-section8">
-      <div class="alert alert-warn">⚠️ <span>Section 8 (Housing Choice Voucher) waitlists open and close frequently. Status below is updated regularly — always confirm directly with the housing authority.</span></div>
-      <div class="cards-grid">
-        <div class="card">
-          <span class="card-badge badge-open">Waitlist Open</span>
-          <h3>Pinellas County Housing Authority – HCV</h3>
-          <p>Housing Choice Voucher (Section 8) program for Pinellas County.</p>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 443-7684</div>
-          <div class="card-detail"><span>🔗 Apply:</span> Online portal available</div>
-          <div class="card-actions">
-            <a href="https://www.pinellashousing.org/housing-choice-voucher" target="_blank" class="btn btn-primary">Apply Online</a>
-            <a href="#" class="btn btn-outline" onclick="downloadApp('pinellas-hcv-app.pdf')">📄 PDF Application</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="card-badge badge-waitlist">Waitlist – Check Status</span>
-          <h3>Housing Authority of St. Petersburg – HCV</h3>
-          <p>Section 8 Housing Choice Voucher program for city of St. Petersburg residents.</p>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 323-3171</div>
-          <div class="card-actions">
-            <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Check Status</a>
-            <a href="#" class="btn btn-outline">📄 PDF Application</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="card-badge badge-open">Waitlist Open</span>
-          <h3>Clearwater Housing Authority – HCV</h3>
-          <p>Section 8 vouchers for Clearwater area residents.</p>
-          <div class="card-detail"><span>📞 Phone:</span> (727) 441-2227</div>
-          <div class="card-actions">
-            <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Apply Online</a>
-            <a href="#" class="btn btn-outline">📄 PDF Application</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <span class="card-badge badge-waitlist">Currently Closed</span>
-          <h3>HUD Public Housing – Largo</h3>
-          <p>Public housing units managed through HUD in Largo, FL.</p>
-          <div class="card-detail"><span>📞 Phone:</span> 1-800-955-2232</div>
-          <div class="card-actions">
-            <a href="https://www.hud.gov/topics/rental_assistance" target="_blank" class="btn btn-primary">HUD Info</a>
-          </div>
-        </div>
+    <div class="card" data-type="transitional family">
+      <span class="card-badge badge-open">Accepting</span>
+      <h3>Metropolitan Ministries</h3>
+      <p>Transitional housing and family support services in the Tampa Bay area.</p>
+      <div class="card-detail"><span>📍 Address:</span> 2002 N Florida Ave, Tampa, FL 33602</div>
+      <div class="card-detail"><span>📞 Phone:</span> (813) 209-1000</div>
+      <div class="card-detail"><span>🌐 Serves:</span> Pinellas &amp; Hillsborough</div>
+      <div class="card-actions">
+        <a href="https://www.metromin.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('813-209-1000')">📞 Call</button>
       </div>
     </div>
 
-    <!-- Housing Authorities -->
-    <div class="housing-sub" id="housing-authorities">
-      <p class="section-intro">Below are the primary housing authorities serving Pinellas County South. Click to visit their websites, download applications, or get contact information.</p>
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Pinellas County Housing Authority</h3>
-          <div class="card-detail"><span>📍</span> 11479 Ulmerton Rd, Largo, FL 33778</div>
-          <div class="card-detail"><span>📞</span> (727) 443-7684</div>
-          <div class="card-detail"><span>📧</span> info@pinellashousing.org</div>
-          <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
-          <div class="card-actions">
-            <a href="https://www.pinellashousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Housing Authority of St. Petersburg</h3>
-          <div class="card-detail"><span>📍</span> 2001 Gandy Blvd N, St. Petersburg, FL 33702</div>
-          <div class="card-detail"><span>📞</span> (727) 323-3171</div>
-          <div class="card-detail"><span>🕐</span> Mon–Fri 8am–4:30pm</div>
-          <div class="card-actions">
-            <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Clearwater Housing Authority</h3>
-          <div class="card-detail"><span>📍</span> 908 Cleveland St, Clearwater, FL 33755</div>
-          <div class="card-detail"><span>📞</span> (727) 441-2227</div>
-          <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
-          <div class="card-actions">
-            <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Website</a>
-            <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>HUD – Florida Field Office</h3>
-          <div class="card-detail"><span>📍</span> 909 SE 1st Ave, Miami, FL 33131</div>
-          <div class="card-detail"><span>📞</span> 1-800-955-2232</div>
-          <div class="card-detail"><span>🌐</span> hud.gov</div>
-          <div class="card-actions">
-            <a href="https://www.hud.gov/states/florida/renting" target="_blank" class="btn btn-primary">HUD Florida</a>
-          </div>
-        </div>
+    <div class="card" data-type="subsidized family senior">
+      <span class="card-badge badge-open">Listings Available</span>
+      <h3>Pinellas County Housing Authority</h3>
+      <p>Affordable housing programs including Public Housing and Section 8 vouchers for Pinellas County residents.</p>
+      <div class="card-detail"><span>📍 Address:</span> 11479 Ulmerton Rd, Largo, FL 33778</div>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 443-7684</div>
+      <div class="card-actions">
+        <a href="https://www.pinellashousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
       </div>
     </div>
 
-    <!-- Private Listings -->
-    <div class="housing-sub" id="housing-private">
-      <div class="alert alert-info">🏡 <span>Know of a private landlord or property owner who wants to be listed? <a href="#" onclick="openModal('modal-add-listing')">Submit their info here</a> and we'll reach out to get them added.</span></div>
-      <p class="section-intro">Private rentals and affordable units from individual landlords and smaller property owners in Pinellas County South. Listings are reviewed and verified.</p>
-      <div class="cards-grid" id="private-listings">
-        <div class="card">
-          <span class="card-badge badge-open">Available</span>
-          <h3>Private Owner – St. Petersburg (2BR)</h3>
-          <p>2-bedroom unit in South St. Pete. Section 8 vouchers accepted.</p>
-          <div class="card-detail"><span>💰 Rent:</span> $1,100/mo</div>
-          <div class="card-detail"><span>🏠 Type:</span> Apartment</div>
-          <div class="card-detail"><span>✅ Accepts:</span> Section 8 / HCV</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="openModal('modal-contact-landlord')">📬 Contact Owner</button>
-          </div>
-        </div>
-        <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
-          <div>
-            <div style="font-size:2rem; margin-bottom:8px;">➕</div>
-            <p style="color:var(--muted); font-size:0.88rem;">Are you a landlord or property owner?<br>Get listed here for free.</p>
-            <button class="btn btn-outline" style="margin-top:12px" onclick="openModal('modal-add-listing')">Add Your Listing</button>
-          </div>
-        </div>
+    <div class="card" data-type="subsidized family">
+      <span class="card-badge badge-open">Applications Open</span>
+      <h3>Housing Authority of St. Petersburg</h3>
+      <p>Public housing and rental assistance for low-income residents of St. Petersburg.</p>
+      <div class="card-detail"><span>📍 Address:</span> 2001 Gandy Blvd N, St. Petersburg, FL 33702</div>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 323-3171</div>
+      <div class="card-actions">
+        <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
       </div>
     </div>
 
-    <!-- Housing Navigator -->
-    <div class="housing-sub" id="housing-navigator">
-      <div class="chat-cta">
-        <div>
-          <h3>💬 Chat with a Housing Navigator</h3>
-          <p>Available now — connect with a volunteer navigator via live chat for personalized housing guidance.</p>
-        </div>
-        <button class="chat-btn" onclick="openModal('modal-chat')">Start Chat</button>
-      </div>
-      <div class="help-panel">
-        <h3>📋 Request a Housing Navigator Appointment</h3>
-        <p>A navigator will contact you within 1–2 business days to help you find and apply for housing resources.</p>
-        <div class="form-row">
-          <div class="form-group"><label>First Name *</label><input type="text" placeholder="First name" /></div>
-          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Last name" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(727) 000-0000" /></div>
-          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Current Situation</label>
-            <select>
-              <option>-- Select --</option>
-              <option>Homeless / No shelter</option>
-              <option>Staying with family/friends (couch surfing)</option>
-              <option>At risk of eviction</option>
-              <option>Looking for more affordable housing</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Household Size</label>
-            <select>
-              <option>1 person</option><option>2 people</option><option>3 people</option>
-              <option>4 people</option><option>5+ people</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group" style="flex:100%">
-            <label>Additional Notes</label>
-            <textarea rows="3" placeholder="Any other details that would help us assist you..."></textarea>
-          </div>
-        </div>
-        <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('navigator-request')">✅ Submit Request</button>
+    <div class="card" data-type="subsidized senior">
+      <span class="card-badge badge-waitlist">Waitlist Open</span>
+      <h3>Clearwater Housing Authority</h3>
+      <p>Affordable housing options and Section 8 vouchers for Clearwater residents, including senior units.</p>
+      <div class="card-detail"><span>📍 Address:</span> 908 Cleveland St, Clearwater, FL 33755</div>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 441-2227</div>
+      <div class="card-actions">
+        <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="openModal('modal-apply-housing')">📄 Apply</button>
       </div>
     </div>
+
+    <div class="card" data-type="emergency transitional">
+      <span class="card-badge badge-open">Accepting</span>
+      <h3>Suncoast Partnership to End Homelessness</h3>
+      <p>Connects individuals and families experiencing homelessness to housing and support services throughout Pinellas County.</p>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 442-9041</div>
+      <div class="card-detail"><span>🌐 Web:</span> speh.org</div>
+      <div class="card-actions">
+        <a href="https://www.speh.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-442-9041')">📞 Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 8 Waitlists -->
+<div class="housing-sub" id="housing-section8">
+  <div class="alert alert-warn">⚠️ <span>Section 8 (Housing Choice Voucher) waitlists open and close frequently. Status below is updated regularly — always confirm directly with the housing authority.</span></div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-badge badge-open">Waitlist Open</span>
+      <h3>Pinellas County Housing Authority – HCV</h3>
+      <p>Housing Choice Voucher (Section 8) program for Pinellas County.</p>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 443-7684</div>
+      <div class="card-detail"><span>🔗 Apply:</span> Online portal available</div>
+      <div class="card-actions">
+        <a href="https://www.pinellashousing.org/housing-choice-voucher" target="_blank" class="btn btn-primary">Apply Online</a>
+        <a href="#" class="btn btn-outline" onclick="downloadApp('pinellas-hcv-app.pdf')">📄 PDF Application</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-waitlist">Waitlist – Check Status</span>
+      <h3>Housing Authority of St. Petersburg – HCV</h3>
+      <p>Section 8 Housing Choice Voucher program for city of St. Petersburg residents.</p>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 323-3171</div>
+      <div class="card-actions">
+        <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Check Status</a>
+        <a href="#" class="btn btn-outline">📄 PDF Application</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-open">Waitlist Open</span>
+      <h3>Clearwater Housing Authority – HCV</h3>
+      <p>Section 8 vouchers for Clearwater area residents.</p>
+      <div class="card-detail"><span>📞 Phone:</span> (727) 441-2227</div>
+      <div class="card-actions">
+        <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Apply Online</a>
+        <a href="#" class="btn btn-outline">📄 PDF Application</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="card-badge badge-waitlist">Currently Closed</span>
+      <h3>HUD Public Housing – Largo</h3>
+      <p>Public housing units managed through HUD in Largo, FL.</p>
+      <div class="card-detail"><span>📞 Phone:</span> 1-800-955-2232</div>
+      <div class="card-actions">
+        <a href="https://www.hud.gov/topics/rental_assistance" target="_blank" class="btn btn-primary">HUD Info</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Housing Authorities -->
+<div class="housing-sub" id="housing-authorities">
+  <p class="section-intro">Below are the primary housing authorities serving Pinellas County South. Click to visit their websites, download applications, or get contact information.</p>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Pinellas County Housing Authority</h3>
+      <div class="card-detail"><span>📍</span> 11479 Ulmerton Rd, Largo, FL 33778</div>
+      <div class="card-detail"><span>📞</span> (727) 443-7684</div>
+      <div class="card-detail"><span>📧</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1f767179705f6f76717a73737e6c77706a6c76717831706d78">[email&#160;protected]</a></div>
+      <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
+      <div class="card-actions">
+        <a href="https://www.pinellashousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Housing Authority of St. Petersburg</h3>
+      <div class="card-detail"><span>📍</span> 2001 Gandy Blvd N, St. Petersburg, FL 33702</div>
+      <div class="card-detail"><span>📞</span> (727) 323-3171</div>
+      <div class="card-detail"><span>🕐</span> Mon–Fri 8am–4:30pm</div>
+      <div class="card-actions">
+        <a href="https://www.stpetehousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Clearwater Housing Authority</h3>
+      <div class="card-detail"><span>📍</span> 908 Cleveland St, Clearwater, FL 33755</div>
+      <div class="card-detail"><span>📞</span> (727) 441-2227</div>
+      <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
+      <div class="card-actions">
+        <a href="https://www.clearwaterhousing.org" target="_blank" class="btn btn-primary">Website</a>
+        <a href="#" class="btn btn-outline">📄 Application (PDF)</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>HUD – Florida Field Office</h3>
+      <div class="card-detail"><span>📍</span> 909 SE 1st Ave, Miami, FL 33131</div>
+      <div class="card-detail"><span>📞</span> 1-800-955-2232</div>
+      <div class="card-detail"><span>🌐</span> hud.gov</div>
+      <div class="card-actions">
+        <a href="https://www.hud.gov/states/florida/renting" target="_blank" class="btn btn-primary">HUD Florida</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Private Listings -->
+<div class="housing-sub" id="housing-private">
+  <div class="alert alert-info">🏡 <span>Know of a private landlord or property owner who wants to be listed? <a href="#" onclick="openModal('modal-add-listing')">Submit their info here</a> and we'll reach out to get them added.</span></div>
+  <p class="section-intro">Private rentals and affordable units from individual landlords and smaller property owners in Pinellas County South. Listings are reviewed and verified.</p>
+  <div class="cards-grid" id="private-listings">
+    <div class="card">
+      <span class="card-badge badge-open">Available</span>
+      <h3>Private Owner – St. Petersburg (2BR)</h3>
+      <p>2-bedroom unit in South St. Pete. Section 8 vouchers accepted.</p>
+      <div class="card-detail"><span>💰 Rent:</span> $1,100/mo</div>
+      <div class="card-detail"><span>🏠 Type:</span> Apartment</div>
+      <div class="card-detail"><span>✅ Accepts:</span> Section 8 / HCV</div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="openModal('modal-contact-landlord')">📬 Contact Owner</button>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
+      <div>
+        <div style="font-size:2rem; margin-bottom:8px;">➕</div>
+        <p style="color:var(--muted); font-size:0.88rem;">Are you a landlord or property owner?<br>Get listed here for free.</p>
+        <button class="btn btn-outline" style="margin-top:12px" onclick="openModal('modal-add-listing')">Add Your Listing</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Housing Navigator -->
+<div class="housing-sub" id="housing-navigator">
+  <div class="chat-cta">
+    <div>
+      <h3>💬 Chat with a Housing Navigator</h3>
+      <p>Available now — connect with a volunteer navigator via live chat for personalized housing guidance.</p>
+    </div>
+    <button class="chat-btn" onclick="openModal('modal-chat')">Start Chat</button>
+  </div>
+  <div class="help-panel">
+    <h3>📋 Request a Housing Navigator Appointment</h3>
+    <p>A navigator will contact you within 1–2 business days to help you find and apply for housing resources.</p>
+    <div class="form-row">
+      <div class="form-group"><label>First Name *</label><input type="text" placeholder="First name" /></div>
+      <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Last name" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(727) 000-0000" /></div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Current Situation</label>
+        <select>
+          <option>-- Select --</option>
+          <option>Homeless / No shelter</option>
+          <option>Staying with family/friends (couch surfing)</option>
+          <option>At risk of eviction</option>
+          <option>Looking for more affordable housing</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Household Size</label>
+        <select>
+          <option>1 person</option><option>2 people</option><option>3 people</option>
+          <option>4 people</option><option>5+ people</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="flex:100%">
+        <label>Additional Notes</label>
+        <textarea rows="3" placeholder="Any other details that would help us assist you..."></textarea>
+      </div>
+    </div>
+    <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('navigator-request')">✅ Submit Request</button>
+  </div>
+</div>
+```
+
   </section>
 
   <!-- ══════════════ HEALTHCARE ══════════════ -->
+
   <section class="section" id="section-healthcare">
     <div class="section-header">
       <div class="s-icon" style="background:#d5f5e3">🏥</div>
       <div><h2>Healthcare</h2><p>Free and low-cost clinics, mental health, vision, disability support, and wellness.</p></div>
     </div>
 
-    <div class="sub-tabs">
-      <div class="sub-tab active" onclick="showSubSection('healthcare', 'clinics')">🏥 Free Clinics</div>
-      <div class="sub-tab" onclick="showSubSection('healthcare', 'vision')">👁 Vision</div>
-      <div class="sub-tab" onclick="showSubSection('healthcare', 'disability')">♿ Disability</div>
-      <div class="sub-tab" onclick="showSubSection('healthcare', 'mental')">🧠 Mental Health</div>
-      <div class="sub-tab" onclick="showSubSection('healthcare', 'ssi')">💼 SSI Support</div>
-      <div class="sub-tab" onclick="showSubSection('healthcare', 'wellness')">🌿 Wellness</div>
-    </div>
+```
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="showSubSection('healthcare', 'clinics')">🏥 Free Clinics</div>
+  <div class="sub-tab" onclick="showSubSection('healthcare', 'vision')">👁 Vision</div>
+  <div class="sub-tab" onclick="showSubSection('healthcare', 'disability')">♿ Disability</div>
+  <div class="sub-tab" onclick="showSubSection('healthcare', 'mental')">🧠 Mental Health</div>
+  <div class="sub-tab" onclick="showSubSection('healthcare', 'ssi')">💼 SSI Support</div>
+  <div class="sub-tab" onclick="showSubSection('healthcare', 'wellness')">🌿 Wellness</div>
+</div>
 
-    <div class="healthcare-sub active" id="healthcare-clinics">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Pinellas County Health Department</h3>
-          <p>Public health services including primary care, immunizations, STD testing, and referrals.</p>
-          <div class="card-detail"><span>📍</span> 310 N Myrtle Ave, Clearwater, FL 33755</div>
-          <div class="card-detail"><span>📞</span> (727) 469-5800</div>
-          <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
-          <div class="card-detail"><span>💳 Cost:</span> Sliding scale / Free</div>
-          <div class="card-actions">
-            <a href="https://www.pinellascounty.org/health" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-469-5800')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>HCH Program – Health Care for the Homeless</h3>
-          <p>Comprehensive health services for individuals experiencing homelessness in Pinellas County. Medical, dental, behavioral health.</p>
-          <div class="card-detail"><span>📞</span> (727) 821-8900</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free / No ID required</div>
-          <div class="card-detail"><span>🏥 Services:</span> Medical, Dental, Behavioral</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="callNumber('727-821-8900')">📞 Call for Appointment</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>St. Pete Free Clinic (SPFC)</h3>
-          <p>Free medical, dental, mental health, and prescription services for uninsured low-income Pinellas County residents.</p>
-          <div class="card-detail"><span>📍</span> 863 3rd Ave N, St. Petersburg, FL 33701</div>
-          <div class="card-detail"><span>📞</span> (727) 821-8900</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free</div>
-          <div class="card-detail"><span>🕐</span> Mon–Fri; call for hours</div>
-          <div class="card-actions">
-            <a href="https://www.stpetefreeclinic.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-821-8900')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Boley Centers</h3>
-          <p>Primary healthcare and behavioral health services for low-income and homeless individuals in Pinellas County.</p>
-          <div class="card-detail"><span>📍</span> 445 31st St N, St. Petersburg, FL 33713</div>
-          <div class="card-detail"><span>📞</span> (727) 821-4819</div>
-          <div class="card-detail"><span>💳 Cost:</span> Sliding scale</div>
-          <div class="card-actions">
-            <a href="https://www.boleycenters.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-821-4819')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>DACCO / BayCare Behavioral Health</h3>
-          <p>Substance abuse and behavioral health treatment. Outpatient, residential, and detox programs.</p>
-          <div class="card-detail"><span>📞</span> (813) 384-1100</div>
-          <div class="card-detail"><span>💳 Cost:</span> Sliding scale / Medicaid accepted</div>
-          <div class="card-actions">
-            <a href="https://www.dacco.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('813-384-1100')">📞 Call</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Catholic Charities of the Diocese of St. Pete</h3>
-          <p>Medical case management, health navigation, and social services for residents regardless of faith.</p>
-          <div class="card-detail"><span>📞</span> (727) 893-3700</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free / Donation-based</div>
-          <div class="card-actions">
-            <a href="https://www.ccdosp.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+<div class="healthcare-sub active" id="healthcare-clinics">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Pinellas County Health Department</h3>
+      <p>Public health services including primary care, immunizations, STD testing, and referrals.</p>
+      <div class="card-detail"><span>📍</span> 310 N Myrtle Ave, Clearwater, FL 33755</div>
+      <div class="card-detail"><span>📞</span> (727) 469-5800</div>
+      <div class="card-detail"><span>🕐</span> Mon–Fri 8am–5pm</div>
+      <div class="card-detail"><span>💳 Cost:</span> Sliding scale / Free</div>
+      <div class="card-actions">
+        <a href="https://www.pinellascounty.org/health" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-469-5800')">📞 Call</button>
       </div>
     </div>
 
-    <div class="healthcare-sub" id="healthcare-vision">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Lighthouse for the Blind – Pinellas</h3>
-          <p>Rehabilitation, employment, and living skills for individuals who are blind or visually impaired.</p>
-          <div class="card-detail"><span>📍</span> 8610 Baypine Rd, Jacksonville (statewide referrals)</div>
-          <div class="card-detail"><span>📞</span> (727) 321-0600</div>
-          <div class="card-actions">
-            <a href="https://www.lighthousepin.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-outline" onclick="callNumber('727-321-0600')">📞 Call</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Pinellas County Health Dept. – Eye Care</h3>
-          <p>Low-cost eye exams and referrals for eyeglasses through the county health department system.</p>
-          <div class="card-detail"><span>📞</span> (727) 469-5800</div>
-          <div class="card-detail"><span>💳 Cost:</span> Sliding scale</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="callNumber('727-469-5800')">📞 Call for Referral</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Lions Club – Eyeglass Recycling</h3>
-          <p>Free used eyeglasses distributed to those in need through Lions Club chapters across Pinellas.</p>
-          <div class="card-detail"><span>🌐</span> lionsclubs.org</div>
-          <div class="card-actions">
-            <a href="https://www.lionsclubs.org" target="_blank" class="btn btn-primary">Find Local Chapter</a>
-          </div>
-        </div>
+    <div class="card">
+      <h3>HCH Program – Health Care for the Homeless</h3>
+      <p>Comprehensive health services for individuals experiencing homelessness in Pinellas County. Medical, dental, behavioral health.</p>
+      <div class="card-detail"><span>📞</span> (727) 821-8900</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free / No ID required</div>
+      <div class="card-detail"><span>🏥 Services:</span> Medical, Dental, Behavioral</div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="callNumber('727-821-8900')">📞 Call for Appointment</button>
       </div>
     </div>
 
-    <div class="healthcare-sub" id="healthcare-disability">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Pinellas County Human Services – Disability</h3>
-          <p>Case management, transportation, and support services for individuals with physical and developmental disabilities.</p>
-          <div class="card-detail"><span>📞</span> (727) 464-4800</div>
-          <div class="card-actions">
-            <a href="https://www.pinellascounty.org/humanservices" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>PARC (Pinellas ARC)</h3>
-          <p>Employment, housing, and daily living services for adults with intellectual and developmental disabilities.</p>
-          <div class="card-detail"><span>📍</span> 8340 Ulmerton Rd, Largo, FL 33771</div>
-          <div class="card-detail"><span>📞</span> (727) 541-4688</div>
-          <div class="card-actions">
-            <a href="https://www.parcfl.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Center for Independent Living of North Florida</h3>
-          <p>Resources and advocacy for people with disabilities to live independently.</p>
-          <div class="card-detail"><span>📞</span> (727) 577-0065</div>
-          <div class="card-actions">
-            <a href="https://www.cilnf.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+    <div class="card">
+      <h3>St. Pete Free Clinic (SPFC)</h3>
+      <p>Free medical, dental, mental health, and prescription services for uninsured low-income Pinellas County residents.</p>
+      <div class="card-detail"><span>📍</span> 863 3rd Ave N, St. Petersburg, FL 33701</div>
+      <div class="card-detail"><span>📞</span> (727) 821-8900</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free</div>
+      <div class="card-detail"><span>🕐</span> Mon–Fri; call for hours</div>
+      <div class="card-actions">
+        <a href="https://www.stpetefreeclinic.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-821-8900')">📞 Call</button>
       </div>
     </div>
 
-    <div class="healthcare-sub" id="healthcare-mental">
-      <div class="alert alert-warn">🆘 <span>If you are in crisis, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) or text HOME to <strong>741741</strong> (Crisis Text Line).</span></div>
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Directions for Living</h3>
-          <p>Mental health and substance abuse services including outpatient therapy, crisis stabilization, and residential care.</p>
-          <div class="card-detail"><span>📍</span> 3000 54th St N, St. Petersburg, FL 33710</div>
-          <div class="card-detail"><span>📞</span> (727) 524-4464</div>
-          <div class="card-detail"><span>🚨 Crisis:</span> (727) 791-3434</div>
-          <div class="card-actions">
-            <a href="https://www.directionsforliving.org" target="_blank" class="btn btn-primary">Website</a>
-            <button class="btn btn-accent" onclick="callNumber('727-791-3434')">🚨 Crisis Line</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Suncoast Center</h3>
-          <p>Behavioral health services including therapy, psychiatric care, and addiction recovery programs.</p>
-          <div class="card-detail"><span>📍</span> 4024 Central Ave, St. Petersburg, FL 33711</div>
-          <div class="card-detail"><span>📞</span> (727) 327-7656</div>
-          <div class="card-actions">
-            <a href="https://www.suncoastcenter.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>NAMI Pinellas</h3>
-          <p>Education, support groups, and advocacy for individuals and families affected by mental illness.</p>
-          <div class="card-detail"><span>📞</span> (727) 791-3428</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free support groups</div>
-          <div class="card-actions">
-            <a href="https://namistpete.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+    <div class="card">
+      <h3>Boley Centers</h3>
+      <p>Primary healthcare and behavioral health services for low-income and homeless individuals in Pinellas County.</p>
+      <div class="card-detail"><span>📍</span> 445 31st St N, St. Petersburg, FL 33713</div>
+      <div class="card-detail"><span>📞</span> (727) 821-4819</div>
+      <div class="card-detail"><span>💳 Cost:</span> Sliding scale</div>
+      <div class="card-actions">
+        <a href="https://www.boleycenters.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-821-4819')">📞 Call</button>
       </div>
     </div>
 
-    <div class="healthcare-sub" id="healthcare-ssi">
-      <div class="alert alert-info">ℹ️ <span>SSI (Supplemental Security Income) helps people with disabilities and limited income. A benefits advocate can help you apply or appeal at no cost to you.</span></div>
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Social Security Administration – St. Pete Office</h3>
-          <p>Apply for SSI, SSDI, and other Social Security benefits. Schedule an appointment online or by phone.</p>
-          <div class="card-detail"><span>📍</span> 9450 Koger Blvd N, St. Petersburg, FL 33702</div>
-          <div class="card-detail"><span>📞</span> 1-800-772-1213</div>
-          <div class="card-actions">
-            <a href="https://www.ssa.gov/benefits/ssi" target="_blank" class="btn btn-primary">Apply for SSI</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Request an SSI Benefits Advocate</h3>
-          <p>A trained volunteer advocate can guide you through the SSI application and appeals process at no cost.</p>
-          <div class="card-detail"><span>💳 Cost:</span> Free</div>
-          <div class="card-detail"><span>⏱ Response:</span> 1–3 business days</div>
-          <div class="card-actions">
-            <button class="btn btn-success" onclick="openModal('modal-ssi-advocate')">Request Advocate</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Florida Disability Rights</h3>
-          <p>Free legal assistance for people with disabilities facing discrimination or benefits issues.</p>
-          <div class="card-detail"><span>📞</span> 1-800-342-0823</div>
-          <div class="card-actions">
-            <a href="https://www.disabilityrightsflorida.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+    <div class="card">
+      <h3>DACCO / BayCare Behavioral Health</h3>
+      <p>Substance abuse and behavioral health treatment. Outpatient, residential, and detox programs.</p>
+      <div class="card-detail"><span>📞</span> (813) 384-1100</div>
+      <div class="card-detail"><span>💳 Cost:</span> Sliding scale / Medicaid accepted</div>
+      <div class="card-actions">
+        <a href="https://www.dacco.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('813-384-1100')">📞 Call</button>
       </div>
     </div>
 
-    <div class="healthcare-sub" id="healthcare-wellness">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Pinellas County Parks – Wellness Programs</h3>
-          <p>Free and low-cost fitness, yoga, senior wellness, and recreation programs at county parks.</p>
-          <div class="card-detail"><span>📞</span> (727) 582-2100</div>
-          <div class="card-actions">
-            <a href="https://www.pinellascounty.org/park" target="_blank" class="btn btn-primary">View Programs</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>United Way Suncoast – 211</h3>
-          <p>Dial 2-1-1 for 24/7 free referrals to health and wellness resources across the Tampa Bay area.</p>
-          <div class="card-detail"><span>📞</span> 211 or (813) 233-4567</div>
-          <div class="card-actions">
-            <a href="https://www.211tampabay.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+    <div class="card">
+      <h3>Catholic Charities of the Diocese of St. Pete</h3>
+      <p>Medical case management, health navigation, and social services for residents regardless of faith.</p>
+      <div class="card-detail"><span>📞</span> (727) 893-3700</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free / Donation-based</div>
+      <div class="card-actions">
+        <a href="https://www.ccdosp.org" target="_blank" class="btn btn-primary">Website</a>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="healthcare-sub" id="healthcare-vision">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Lighthouse for the Blind – Pinellas</h3>
+      <p>Rehabilitation, employment, and living skills for individuals who are blind or visually impaired.</p>
+      <div class="card-detail"><span>📍</span> 8610 Baypine Rd, Jacksonville (statewide referrals)</div>
+      <div class="card-detail"><span>📞</span> (727) 321-0600</div>
+      <div class="card-actions">
+        <a href="https://www.lighthousepin.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-outline" onclick="callNumber('727-321-0600')">📞 Call</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Pinellas County Health Dept. – Eye Care</h3>
+      <p>Low-cost eye exams and referrals for eyeglasses through the county health department system.</p>
+      <div class="card-detail"><span>📞</span> (727) 469-5800</div>
+      <div class="card-detail"><span>💳 Cost:</span> Sliding scale</div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="callNumber('727-469-5800')">📞 Call for Referral</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Lions Club – Eyeglass Recycling</h3>
+      <p>Free used eyeglasses distributed to those in need through Lions Club chapters across Pinellas.</p>
+      <div class="card-detail"><span>🌐</span> lionsclubs.org</div>
+      <div class="card-actions">
+        <a href="https://www.lionsclubs.org" target="_blank" class="btn btn-primary">Find Local Chapter</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="healthcare-sub" id="healthcare-disability">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Pinellas County Human Services – Disability</h3>
+      <p>Case management, transportation, and support services for individuals with physical and developmental disabilities.</p>
+      <div class="card-detail"><span>📞</span> (727) 464-4800</div>
+      <div class="card-actions">
+        <a href="https://www.pinellascounty.org/humanservices" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>PARC (Pinellas ARC)</h3>
+      <p>Employment, housing, and daily living services for adults with intellectual and developmental disabilities.</p>
+      <div class="card-detail"><span>📍</span> 8340 Ulmerton Rd, Largo, FL 33771</div>
+      <div class="card-detail"><span>📞</span> (727) 541-4688</div>
+      <div class="card-actions">
+        <a href="https://www.parcfl.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Center for Independent Living of North Florida</h3>
+      <p>Resources and advocacy for people with disabilities to live independently.</p>
+      <div class="card-detail"><span>📞</span> (727) 577-0065</div>
+      <div class="card-actions">
+        <a href="https://www.cilnf.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="healthcare-sub" id="healthcare-mental">
+  <div class="alert alert-warn">🆘 <span>If you are in crisis, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) or text HOME to <strong>741741</strong> (Crisis Text Line).</span></div>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Directions for Living</h3>
+      <p>Mental health and substance abuse services including outpatient therapy, crisis stabilization, and residential care.</p>
+      <div class="card-detail"><span>📍</span> 3000 54th St N, St. Petersburg, FL 33710</div>
+      <div class="card-detail"><span>📞</span> (727) 524-4464</div>
+      <div class="card-detail"><span>🚨 Crisis:</span> (727) 791-3434</div>
+      <div class="card-actions">
+        <a href="https://www.directionsforliving.org" target="_blank" class="btn btn-primary">Website</a>
+        <button class="btn btn-accent" onclick="callNumber('727-791-3434')">🚨 Crisis Line</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Suncoast Center</h3>
+      <p>Behavioral health services including therapy, psychiatric care, and addiction recovery programs.</p>
+      <div class="card-detail"><span>📍</span> 4024 Central Ave, St. Petersburg, FL 33711</div>
+      <div class="card-detail"><span>📞</span> (727) 327-7656</div>
+      <div class="card-actions">
+        <a href="https://www.suncoastcenter.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>NAMI Pinellas</h3>
+      <p>Education, support groups, and advocacy for individuals and families affected by mental illness.</p>
+      <div class="card-detail"><span>📞</span> (727) 791-3428</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free support groups</div>
+      <div class="card-actions">
+        <a href="https://namistpete.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="healthcare-sub" id="healthcare-ssi">
+  <div class="alert alert-info">ℹ️ <span>SSI (Supplemental Security Income) helps people with disabilities and limited income. A benefits advocate can help you apply or appeal at no cost to you.</span></div>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Social Security Administration – St. Pete Office</h3>
+      <p>Apply for SSI, SSDI, and other Social Security benefits. Schedule an appointment online or by phone.</p>
+      <div class="card-detail"><span>📍</span> 9450 Koger Blvd N, St. Petersburg, FL 33702</div>
+      <div class="card-detail"><span>📞</span> 1-800-772-1213</div>
+      <div class="card-actions">
+        <a href="https://www.ssa.gov/benefits/ssi" target="_blank" class="btn btn-primary">Apply for SSI</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Request an SSI Benefits Advocate</h3>
+      <p>A trained volunteer advocate can guide you through the SSI application and appeals process at no cost.</p>
+      <div class="card-detail"><span>💳 Cost:</span> Free</div>
+      <div class="card-detail"><span>⏱ Response:</span> 1–3 business days</div>
+      <div class="card-actions">
+        <button class="btn btn-success" onclick="openModal('modal-ssi-advocate')">Request Advocate</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Florida Disability Rights</h3>
+      <p>Free legal assistance for people with disabilities facing discrimination or benefits issues.</p>
+      <div class="card-detail"><span>📞</span> 1-800-342-0823</div>
+      <div class="card-actions">
+        <a href="https://www.disabilityrightsflorida.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="healthcare-sub" id="healthcare-wellness">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Pinellas County Parks – Wellness Programs</h3>
+      <p>Free and low-cost fitness, yoga, senior wellness, and recreation programs at county parks.</p>
+      <div class="card-detail"><span>📞</span> (727) 582-2100</div>
+      <div class="card-actions">
+        <a href="https://www.pinellascounty.org/park" target="_blank" class="btn btn-primary">View Programs</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>United Way Suncoast – 211</h3>
+      <p>Dial 2-1-1 for 24/7 free referrals to health and wellness resources across the Tampa Bay area.</p>
+      <div class="card-detail"><span>📞</span> 211 or (813) 233-4567</div>
+      <div class="card-actions">
+        <a href="https://www.211tampabay.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
   <!-- ══════════════ RESOURCES ══════════════ -->
+
   <section class="section" id="section-resources">
     <div class="section-header">
       <div class="s-icon" style="background:#fef9e7">📦</div>
       <div><h2>Community Resources</h2><p>Food, clothing, programs, and family support in Pinellas County.</p></div>
     </div>
 
-    <div class="sub-tabs">
-      <div class="sub-tab active" onclick="showSubSection('resources', 'food')">🍽 Food Pantries</div>
-      <div class="sub-tab" onclick="showSubSection('resources', 'clothing')">👕 Clothing</div>
-      <div class="sub-tab" onclick="showSubSection('resources', 'community')">🏘 Community Programs</div>
-      <div class="sub-tab" onclick="showSubSection('resources', 'children')">👨‍👩‍👧 Children &amp; Family</div>
-    </div>
+```
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="showSubSection('resources', 'food')">🍽 Food Pantries</div>
+  <div class="sub-tab" onclick="showSubSection('resources', 'clothing')">👕 Clothing</div>
+  <div class="sub-tab" onclick="showSubSection('resources', 'community')">🏘 Community Programs</div>
+  <div class="sub-tab" onclick="showSubSection('resources', 'children')">👨‍👩‍👧 Children &amp; Family</div>
+</div>
 
-    <!-- Food -->
-    <div class="resources-sub active" id="resources-food">
-      <div class="open-today-header">
-        📅 Open <span id="today-name" style="text-transform:capitalize"></span> — Showing pantries open today first
-      </div>
-      <div class="cards-grid" id="food-cards">
-        <!-- Populated by JS based on day of week -->
-      </div>
-    </div>
+<!-- Food -->
+<div class="resources-sub active" id="resources-food">
+  <div class="open-today-header">
+    📅 Open <span id="today-name" style="text-transform:capitalize"></span> — Showing pantries open today first
+  </div>
+  <div class="cards-grid" id="food-cards">
+    <!-- Populated by JS based on day of week -->
+  </div>
+</div>
 
-    <!-- Clothing -->
-    <div class="resources-sub" id="resources-clothing">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Salvation Army – St. Petersburg</h3>
-          <p>Clothing vouchers and thrift store with deeply discounted items. Emergency assistance also available.</p>
-          <div class="card-detail"><span>📍</span> 3590 5th Ave N, St. Petersburg, FL 33713</div>
-          <div class="card-detail"><span>📞</span> (727) 822-4954</div>
-          <div class="card-detail"><span>🕐</span> Mon–Sat 9am–5pm</div>
-          <div class="card-actions">
-            <a href="https://www.salvationarmytampabay.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Goodwill Industries – Suncoast</h3>
-          <p>Affordable clothing and household items. Vouchers available for qualifying individuals through partner agencies.</p>
-          <div class="card-detail"><span>📍</span> Multiple locations in Pinellas County</div>
-          <div class="card-detail"><span>📞</span> (727) 523-1512</div>
-          <div class="card-actions">
-            <a href="https://www.goodwillsuncoast.org" target="_blank" class="btn btn-primary">Find a Store</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>St. Vincent de Paul – Clothing Closet</h3>
-          <p>Free clothing provided by donation. Serves families, individuals, and children in need.</p>
-          <div class="card-detail"><span>📍</span> 2819 4th St N, St. Petersburg, FL 33704</div>
-          <div class="card-detail"><span>📞</span> (727) 822-4254</div>
-          <div class="card-detail"><span>🕐</span> Tue &amp; Thu 9am–12pm</div>
-          <div class="card-actions">
-            <button class="btn btn-outline" onclick="callNumber('727-822-4254')">📞 Call Ahead</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Metropolitan Ministries – Clothing</h3>
-          <p>Clothing distributions for families transitioning out of homelessness.</p>
-          <div class="card-detail"><span>📞</span> (813) 209-1000</div>
-          <div class="card-actions">
-            <a href="https://www.metromin.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+<!-- Clothing -->
+<div class="resources-sub" id="resources-clothing">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Salvation Army – St. Petersburg</h3>
+      <p>Clothing vouchers and thrift store with deeply discounted items. Emergency assistance also available.</p>
+      <div class="card-detail"><span>📍</span> 3590 5th Ave N, St. Petersburg, FL 33713</div>
+      <div class="card-detail"><span>📞</span> (727) 822-4954</div>
+      <div class="card-detail"><span>🕐</span> Mon–Sat 9am–5pm</div>
+      <div class="card-actions">
+        <a href="https://www.salvationarmytampabay.org" target="_blank" class="btn btn-primary">Website</a>
       </div>
     </div>
+    <div class="card">
+      <h3>Goodwill Industries – Suncoast</h3>
+      <p>Affordable clothing and household items. Vouchers available for qualifying individuals through partner agencies.</p>
+      <div class="card-detail"><span>📍</span> Multiple locations in Pinellas County</div>
+      <div class="card-detail"><span>📞</span> (727) 523-1512</div>
+      <div class="card-actions">
+        <a href="https://www.goodwillsuncoast.org" target="_blank" class="btn btn-primary">Find a Store</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>St. Vincent de Paul – Clothing Closet</h3>
+      <p>Free clothing provided by donation. Serves families, individuals, and children in need.</p>
+      <div class="card-detail"><span>📍</span> 2819 4th St N, St. Petersburg, FL 33704</div>
+      <div class="card-detail"><span>📞</span> (727) 822-4254</div>
+      <div class="card-detail"><span>🕐</span> Tue &amp; Thu 9am–12pm</div>
+      <div class="card-actions">
+        <button class="btn btn-outline" onclick="callNumber('727-822-4254')">📞 Call Ahead</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Metropolitan Ministries – Clothing</h3>
+      <p>Clothing distributions for families transitioning out of homelessness.</p>
+      <div class="card-detail"><span>📞</span> (813) 209-1000</div>
+      <div class="card-actions">
+        <a href="https://www.metromin.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Community -->
-    <div class="resources-sub" id="resources-community">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>211 Tampa Bay Cares</h3>
-          <p>Free information and referral service connecting people to community resources 24/7. Dial 211.</p>
-          <div class="card-detail"><span>📞</span> 211</div>
-          <div class="card-detail"><span>🕐</span> 24/7</div>
-          <div class="card-actions">
-            <a href="https://www.211tampabay.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>United Way Suncoast – Community Events</h3>
-          <p>Community engagement events, volunteer opportunities, and programs across Pinellas County.</p>
-          <div class="card-detail"><span>📞</span> (813) 274-0900</div>
-          <div class="card-actions">
-            <a href="https://www.unitedwaysuncoast.org" target="_blank" class="btn btn-primary">Events Calendar</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Pinellas County Community Development</h3>
-          <p>Neighborhood programs, housing improvement, and community development grants and initiatives.</p>
-          <div class="card-detail"><span>📞</span> (727) 464-8210</div>
-          <div class="card-actions">
-            <a href="https://www.pinellascounty.org/community" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+<!-- Community -->
+<div class="resources-sub" id="resources-community">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>211 Tampa Bay Cares</h3>
+      <p>Free information and referral service connecting people to community resources 24/7. Dial 211.</p>
+      <div class="card-detail"><span>📞</span> 211</div>
+      <div class="card-detail"><span>🕐</span> 24/7</div>
+      <div class="card-actions">
+        <a href="https://www.211tampabay.org" target="_blank" class="btn btn-primary">Website</a>
       </div>
     </div>
+    <div class="card">
+      <h3>United Way Suncoast – Community Events</h3>
+      <p>Community engagement events, volunteer opportunities, and programs across Pinellas County.</p>
+      <div class="card-detail"><span>📞</span> (813) 274-0900</div>
+      <div class="card-actions">
+        <a href="https://www.unitedwaysuncoast.org" target="_blank" class="btn btn-primary">Events Calendar</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Pinellas County Community Development</h3>
+      <p>Neighborhood programs, housing improvement, and community development grants and initiatives.</p>
+      <div class="card-detail"><span>📞</span> (727) 464-8210</div>
+      <div class="card-actions">
+        <a href="https://www.pinellascounty.org/community" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Children & Family -->
-    <div class="resources-sub" id="resources-children">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>Juvenile Welfare Board of Pinellas County</h3>
-          <p>Funds and supports programs for children, youth, and families in Pinellas County.</p>
-          <div class="card-detail"><span>📞</span> (727) 547-5600</div>
-          <div class="card-actions">
-            <a href="https://www.jwbpinellas.org" target="_blank" class="btn btn-primary">Find Programs</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Eckerd Connects</h3>
-          <p>Child welfare, foster care, and family support services across Pinellas County.</p>
-          <div class="card-detail"><span>📞</span> (727) 456-0600</div>
-          <div class="card-actions">
-            <a href="https://www.eckerd.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Early Learning Coalition of Pinellas County</h3>
-          <p>Childcare assistance, Head Start referrals, and early childhood programs.</p>
-          <div class="card-detail"><span>📞</span> (727) 400-4050</div>
-          <div class="card-actions">
-            <a href="https://www.elcpinellas.net" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Gulf Coast JFCS – Family Services</h3>
-          <p>Counseling, domestic violence services, senior care, and immigrant &amp; refugee assistance.</p>
-          <div class="card-detail"><span>📞</span> (727) 479-1800</div>
-          <div class="card-actions">
-            <a href="https://www.gulfcoastjewishfamilyandcommunityservices.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Homeless Empowerment Program (HEP)</h3>
-          <p>Services for homeless families with children, including shelter, case management, and rapid rehousing.</p>
-          <div class="card-detail"><span>📞</span> (727) 442-9041</div>
-          <div class="card-actions">
-            <a href="https://www.hepinc.org" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
+<!-- Children & Family -->
+<div class="resources-sub" id="resources-children">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Juvenile Welfare Board of Pinellas County</h3>
+      <p>Funds and supports programs for children, youth, and families in Pinellas County.</p>
+      <div class="card-detail"><span>📞</span> (727) 547-5600</div>
+      <div class="card-actions">
+        <a href="https://www.jwbpinellas.org" target="_blank" class="btn btn-primary">Find Programs</a>
       </div>
     </div>
+    <div class="card">
+      <h3>Eckerd Connects</h3>
+      <p>Child welfare, foster care, and family support services across Pinellas County.</p>
+      <div class="card-detail"><span>📞</span> (727) 456-0600</div>
+      <div class="card-actions">
+        <a href="https://www.eckerd.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Early Learning Coalition of Pinellas County</h3>
+      <p>Childcare assistance, Head Start referrals, and early childhood programs.</p>
+      <div class="card-detail"><span>📞</span> (727) 400-4050</div>
+      <div class="card-actions">
+        <a href="https://www.elcpinellas.net" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Gulf Coast JFCS – Family Services</h3>
+      <p>Counseling, domestic violence services, senior care, and immigrant &amp; refugee assistance.</p>
+      <div class="card-detail"><span>📞</span> (727) 479-1800</div>
+      <div class="card-actions">
+        <a href="https://www.gulfcoastjewishfamilyandcommunityservices.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Homeless Empowerment Program (HEP)</h3>
+      <p>Services for homeless families with children, including shelter, case management, and rapid rehousing.</p>
+      <div class="card-detail"><span>📞</span> (727) 442-9041</div>
+      <div class="card-actions">
+        <a href="https://www.hepinc.org" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
   <!-- ══════════════ JOBS ══════════════ -->
+
   <section class="section" id="section-jobs">
     <div class="section-header">
       <div class="s-icon" style="background:#d6eaf8">💼</div>
       <div><h2>Jobs &amp; Career Support</h2><p>Local job listings, career help, job fairs, and entrepreneurship mentors.</p></div>
     </div>
 
-    <div class="sub-tabs">
-      <div class="sub-tab active" onclick="showSubSection('jobs', 'listings')">🔍 Job Listings</div>
-      <div class="sub-tab" onclick="showSubSection('jobs', 'fairs')">📅 Job Fairs</div>
-      <div class="sub-tab" onclick="showSubSection('jobs', 'career')">🎓 Career Support</div>
-      <div class="sub-tab" onclick="showSubSection('jobs', 'mentor')">🤝 Find a Mentor</div>
+```
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="showSubSection('jobs', 'listings')">🔍 Job Listings</div>
+  <div class="sub-tab" onclick="showSubSection('jobs', 'fairs')">📅 Job Fairs</div>
+  <div class="sub-tab" onclick="showSubSection('jobs', 'career')">🎓 Career Support</div>
+  <div class="sub-tab" onclick="showSubSection('jobs', 'mentor')">🤝 Find a Mentor</div>
+</div>
+
+<div class="jobs-sub active" id="jobs-listings">
+  <div class="alert alert-info">💡 <span>Employers: <a href="#" onclick="openModal('modal-post-job')">Post a job opening for free</a> and reach job seekers in Pinellas County.</span></div>
+
+  <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+    <input type="text" id="job-search-input" placeholder="Search job title or keyword..." style="flex:1;min-width:200px;padding:9px 14px;border:1.5px solid var(--border);border-radius:7px;font-size:0.9rem" oninput="filterJobs()" />
+    <select id="job-type-filter" onchange="filterJobs()" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;font-size:0.88rem">
+      <option value="all">All Types</option>
+      <option value="full">Full-Time</option>
+      <option value="part">Part-Time</option>
+      <option value="temp">Temp</option>
+    </select>
+  </div>
+
+  <div id="job-listings-container">
+    <div class="job-card" data-type="full" data-title="warehouse associate logistics">
+      <div class="job-info">
+        <h3>Warehouse Associate</h3>
+        <div class="job-meta">
+          <span>🏢 Logistics Co. of Tampa Bay</span>
+          <span>📍 St. Petersburg, FL</span>
+          <span>💰 $17–$19/hr</span>
+        </div>
+        <div style="margin-top:8px"><span class="tag">No experience required</span><span class="tag">Benefits</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type full-time">Full-Time</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
     </div>
 
-    <div class="jobs-sub active" id="jobs-listings">
-      <div class="alert alert-info">💡 <span>Employers: <a href="#" onclick="openModal('modal-post-job')">Post a job opening for free</a> and reach job seekers in Pinellas County.</span></div>
+    <div class="job-card" data-type="part" data-title="cashier retail customer service">
+      <div class="job-info">
+        <h3>Cashier / Customer Service</h3>
+        <div class="job-meta">
+          <span>🏢 Local Grocery – Pinellas Park</span>
+          <span>📍 Pinellas Park, FL</span>
+          <span>💰 $15/hr</span>
+        </div>
+        <div style="margin-top:8px"><span class="tag">Flexible hours</span><span class="tag">Entry level</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type part-time">Part-Time</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
+    </div>
 
-      <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
-        <input type="text" id="job-search-input" placeholder="Search job title or keyword..." style="flex:1;min-width:200px;padding:9px 14px;border:1.5px solid var(--border);border-radius:7px;font-size:0.9rem" oninput="filterJobs()" />
-        <select id="job-type-filter" onchange="filterJobs()" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;font-size:0.88rem">
-          <option value="all">All Types</option>
-          <option value="full">Full-Time</option>
-          <option value="part">Part-Time</option>
-          <option value="temp">Temp</option>
+    <div class="job-card" data-type="full" data-title="caregiver home health aide">
+      <div class="job-info">
+        <h3>Home Health Aide / Caregiver</h3>
+        <div class="job-meta">
+          <span>🏢 BayCare Home Health</span>
+          <span>📍 Clearwater, FL</span>
+          <span>💰 $16–$21/hr</span>
+        </div>
+        <div style="margin-top:8px"><span class="tag">Training provided</span><span class="tag">Healthcare</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type full-time">Full-Time</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
+    </div>
+
+    <div class="job-card" data-type="temp" data-title="general labor construction">
+      <div class="job-info">
+        <h3>General Laborer</h3>
+        <div class="job-meta">
+          <span>🏢 Pinellas Construction Partners</span>
+          <span>📍 St. Petersburg, FL</span>
+          <span>💰 $15–$18/hr</span>
+        </div>
+        <div style="margin-top:8px"><span class="tag">Immediate start</span><span class="tag">Outdoor work</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type">Temp / Contract</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
+    </div>
+
+    <div class="job-card" data-type="full" data-title="food service cook kitchen">
+      <div class="job-info">
+        <h3>Line Cook / Kitchen Staff</h3>
+        <div class="job-meta">
+          <span>🏢 Various Restaurants – St. Pete Beach</span>
+          <span>📍 St. Pete Beach, FL</span>
+          <span>💰 $16–$22/hr + tips</span>
+        </div>
+        <div style="margin-top:8px"><span class="tag">Hospitality</span><span class="tag">Multiple openings</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <span class="job-type full-time">Full-Time</span>
+        <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jobs-sub" id="jobs-fairs">
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-badge badge-open-soon">Upcoming</span>
+      <h3>Pinellas County Spring Job Fair 2026</h3>
+      <p>Meet 40+ local employers hiring now. Bring copies of your resume. Business casual attire encouraged.</p>
+      <div class="card-detail"><span>📅 Date:</span> April 22, 2026</div>
+      <div class="card-detail"><span>📍 Location:</span> Largo Cultural Center, Largo, FL</div>
+      <div class="card-detail"><span>🕐 Time:</span> 10:00 AM – 3:00 PM</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free to attend</div>
+      <div class="card-actions">
+        <button class="btn btn-primary" onclick="openModal('modal-register-fair')">Register (Free)</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>CareerSource Pinellas – Ongoing Hiring Events</h3>
+      <p>Regular employer recruitment events, workshops, and job seeker days at CareerSource Pinellas.</p>
+      <div class="card-detail"><span>📍</span> 3425 Dr. MLK Jr St N, St. Petersburg, FL</div>
+      <div class="card-detail"><span>📞</span> (727) 507-4300</div>
+      <div class="card-actions">
+        <a href="https://www.careersourcepinellas.com/events" target="_blank" class="btn btn-primary">View Calendar</a>
+      </div>
+    </div>
+    <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
+      <div>
+        <div style="font-size:2rem;margin-bottom:8px">➕</div>
+        <p style="color:var(--muted);font-size:0.88rem">Hosting a job fair?<br>Get it listed here for free.</p>
+        <button class="btn btn-outline" style="margin-top:12px" onclick="openModal('modal-submit-fair')">Submit a Fair</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jobs-sub" id="jobs-career">
+  <div class="cards-grid">
+    <div class="card">
+      <h3>CareerSource Pinellas</h3>
+      <p>Free resume help, job search assistance, skills training, and interview preparation for job seekers.</p>
+      <div class="card-detail"><span>📍</span> 3425 Dr. MLK Jr St N, St. Petersburg, FL</div>
+      <div class="card-detail"><span>📞</span> (727) 507-4300</div>
+      <div class="card-detail"><span>💳 Cost:</span> Free</div>
+      <div class="card-actions">
+        <a href="https://www.careersourcepinellas.com" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Goodwill Suncoast – Career Services</h3>
+      <p>Employment training, job placement, and career counseling including GED support.</p>
+      <div class="card-detail"><span>📞</span> (727) 523-1512</div>
+      <div class="card-actions">
+        <a href="https://www.goodwillsuncoast.org/job-training" target="_blank" class="btn btn-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jobs-sub" id="jobs-mentor">
+  <div class="alert alert-info">🌱 <span>Our entrepreneurship mentor program matches aspiring business owners with experienced mentors — like Big Brother/Big Sister, but for your business journey.</span></div>
+  <div class="help-panel">
+    <h3>🤝 Request a Business/Entrepreneurship Mentor</h3>
+    <p>Tell us about your business idea or goal and we'll match you with a mentor who has relevant experience.</p>
+    <div class="form-row">
+      <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Full name" /></div>
+      <div class="form-group"><label>Contact (Phone or Email) *</label><input type="text" placeholder="Phone or email" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Business Idea or Industry</label><input type="text" placeholder="e.g. Food truck, cleaning service, online retail..." /></div>
+      <div class="form-group"><label>Stage</label>
+        <select>
+          <option>Just an idea</option>
+          <option>Planning / pre-launch</option>
+          <option>Already operating</option>
         </select>
       </div>
-
-      <div id="job-listings-container">
-        <div class="job-card" data-type="full" data-title="warehouse associate logistics">
-          <div class="job-info">
-            <h3>Warehouse Associate</h3>
-            <div class="job-meta">
-              <span>🏢 Logistics Co. of Tampa Bay</span>
-              <span>📍 St. Petersburg, FL</span>
-              <span>💰 $17–$19/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">No experience required</span><span class="tag">Benefits</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="part" data-title="cashier retail customer service">
-          <div class="job-info">
-            <h3>Cashier / Customer Service</h3>
-            <div class="job-meta">
-              <span>🏢 Local Grocery – Pinellas Park</span>
-              <span>📍 Pinellas Park, FL</span>
-              <span>💰 $15/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Flexible hours</span><span class="tag">Entry level</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type part-time">Part-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="full" data-title="caregiver home health aide">
-          <div class="job-info">
-            <h3>Home Health Aide / Caregiver</h3>
-            <div class="job-meta">
-              <span>🏢 BayCare Home Health</span>
-              <span>📍 Clearwater, FL</span>
-              <span>💰 $16–$21/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Training provided</span><span class="tag">Healthcare</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="temp" data-title="general labor construction">
-          <div class="job-info">
-            <h3>General Laborer</h3>
-            <div class="job-meta">
-              <span>🏢 Pinellas Construction Partners</span>
-              <span>📍 St. Petersburg, FL</span>
-              <span>💰 $15–$18/hr</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Immediate start</span><span class="tag">Outdoor work</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type">Temp / Contract</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
-
-        <div class="job-card" data-type="full" data-title="food service cook kitchen">
-          <div class="job-info">
-            <h3>Line Cook / Kitchen Staff</h3>
-            <div class="job-meta">
-              <span>🏢 Various Restaurants – St. Pete Beach</span>
-              <span>📍 St. Pete Beach, FL</span>
-              <span>💰 $16–$22/hr + tips</span>
-            </div>
-            <div style="margin-top:8px"><span class="tag">Hospitality</span><span class="tag">Multiple openings</span></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-            <span class="job-type full-time">Full-Time</span>
-            <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
-          </div>
-        </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="flex:100%">
+        <label>What kind of help do you need?</label>
+        <textarea rows="3" placeholder="e.g. Business plan, marketing, financing, legal structure..."></textarea>
       </div>
     </div>
+    <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('mentor-request')">✅ Submit Request</button>
+  </div>
+  <hr class="divider" />
+  <h3 style="color:var(--primary);margin-bottom:14px">🌟 Become a Mentor</h3>
+  <p class="section-intro">Have business experience? Give back by mentoring an aspiring entrepreneur in your community. Flexible time commitment — you set your own schedule.</p>
+  <button class="btn btn-accent" onclick="openModal('modal-become-mentor')">Apply to Be a Mentor</button>
+</div>
+```
 
-    <div class="jobs-sub" id="jobs-fairs">
-      <div class="cards-grid">
-        <div class="card">
-          <span class="card-badge badge-open-soon">Upcoming</span>
-          <h3>Pinellas County Spring Job Fair 2026</h3>
-          <p>Meet 40+ local employers hiring now. Bring copies of your resume. Business casual attire encouraged.</p>
-          <div class="card-detail"><span>📅 Date:</span> April 22, 2026</div>
-          <div class="card-detail"><span>📍 Location:</span> Largo Cultural Center, Largo, FL</div>
-          <div class="card-detail"><span>🕐 Time:</span> 10:00 AM – 3:00 PM</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free to attend</div>
-          <div class="card-actions">
-            <button class="btn btn-primary" onclick="openModal('modal-register-fair')">Register (Free)</button>
-          </div>
-        </div>
-        <div class="card">
-          <h3>CareerSource Pinellas – Ongoing Hiring Events</h3>
-          <p>Regular employer recruitment events, workshops, and job seeker days at CareerSource Pinellas.</p>
-          <div class="card-detail"><span>📍</span> 3425 Dr. MLK Jr St N, St. Petersburg, FL</div>
-          <div class="card-detail"><span>📞</span> (727) 507-4300</div>
-          <div class="card-actions">
-            <a href="https://www.careersourcepinellas.com/events" target="_blank" class="btn btn-primary">View Calendar</a>
-          </div>
-        </div>
-        <div class="card" style="border-style:dashed; background:#fafafa; display:flex; align-items:center; justify-content:center; text-align:center; min-height:160px;">
-          <div>
-            <div style="font-size:2rem;margin-bottom:8px">➕</div>
-            <p style="color:var(--muted);font-size:0.88rem">Hosting a job fair?<br>Get it listed here for free.</p>
-            <button class="btn btn-outline" style="margin-top:12px" onclick="openModal('modal-submit-fair')">Submit a Fair</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="jobs-sub" id="jobs-career">
-      <div class="cards-grid">
-        <div class="card">
-          <h3>CareerSource Pinellas</h3>
-          <p>Free resume help, job search assistance, skills training, and interview preparation for job seekers.</p>
-          <div class="card-detail"><span>📍</span> 3425 Dr. MLK Jr St N, St. Petersburg, FL</div>
-          <div class="card-detail"><span>📞</span> (727) 507-4300</div>
-          <div class="card-detail"><span>💳 Cost:</span> Free</div>
-          <div class="card-actions">
-            <a href="https://www.careersourcepinellas.com" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Goodwill Suncoast – Career Services</h3>
-          <p>Employment training, job placement, and career counseling including GED support.</p>
-          <div class="card-detail"><span>📞</span> (727) 523-1512</div>
-          <div class="card-actions">
-            <a href="https://www.goodwillsuncoast.org/job-training" target="_blank" class="btn btn-primary">Website</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="jobs-sub" id="jobs-mentor">
-      <div class="alert alert-info">🌱 <span>Our entrepreneurship mentor program matches aspiring business owners with experienced mentors — like Big Brother/Big Sister, but for your business journey.</span></div>
-      <div class="help-panel">
-        <h3>🤝 Request a Business/Entrepreneurship Mentor</h3>
-        <p>Tell us about your business idea or goal and we'll match you with a mentor who has relevant experience.</p>
-        <div class="form-row">
-          <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Full name" /></div>
-          <div class="form-group"><label>Contact (Phone or Email) *</label><input type="text" placeholder="Phone or email" /></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Business Idea or Industry</label><input type="text" placeholder="e.g. Food truck, cleaning service, online retail..." /></div>
-          <div class="form-group"><label>Stage</label>
-            <select>
-              <option>Just an idea</option>
-              <option>Planning / pre-launch</option>
-              <option>Already operating</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group" style="flex:100%">
-            <label>What kind of help do you need?</label>
-            <textarea rows="3" placeholder="e.g. Business plan, marketing, financing, legal structure..."></textarea>
-          </div>
-        </div>
-        <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('mentor-request')">✅ Submit Request</button>
-      </div>
-      <hr class="divider" />
-      <h3 style="color:var(--primary);margin-bottom:14px">🌟 Become a Mentor</h3>
-      <p class="section-intro">Have business experience? Give back by mentoring an aspiring entrepreneur in your community. Flexible time commitment — you set your own schedule.</p>
-      <button class="btn btn-accent" onclick="openModal('modal-become-mentor')">Apply to Be a Mentor</button>
-    </div>
   </section>
 
   <!-- ══════════════ VOLUNTEERS ══════════════ -->
+
   <section class="section" id="section-volunteers">
     <div class="section-header">
       <div class="s-icon" style="background:#fdebd0">🤝</div>
       <div><h2>Volunteer Opportunities</h2><p>Make a difference in Pinellas County. Find a role that fits your skills and schedule.</p></div>
     </div>
 
-    <div class="cards-grid">
-      <div class="job-card">
-        <div class="job-info">
-          <h3>Housing Navigator (Volunteer)</h3>
-          <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Help community members find and apply for housing resources. Remote-friendly. Training provided.</p>
-          <div class="job-meta" style="margin-top:8px">
-            <span>⏱ 4–8 hrs/week</span><span>💻 Remote OK</span>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-          <span class="job-type volunteer-type">Volunteer</span>
-          <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-info">
-          <h3>Live Chat Support Agent (Volunteer)</h3>
-          <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Respond to live chat requests from individuals seeking resources. Can be done from anywhere — offshore or local.</p>
-          <div class="job-meta" style="margin-top:8px">
-            <span>⏱ Flexible shifts</span><span>💻 Fully remote</span>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-          <span class="job-type volunteer-type">Volunteer</span>
-          <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-info">
-          <h3>SSI Benefits Advocate (Volunteer)</h3>
-          <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Assist individuals in applying for SSI/SSDI. Training and certification support provided.</p>
-          <div class="job-meta" style="margin-top:8px">
-            <span>⏱ 3–5 hrs/week</span><span>📍 In-person or remote</span>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-          <span class="job-type volunteer-type">Volunteer</span>
-          <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-info">
-          <h3>Entrepreneurship Mentor (Volunteer)</h3>
-          <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Mentor aspiring business owners. Share your expertise in any industry. Set your own schedule.</p>
-          <div class="job-meta" style="margin-top:8px">
-            <span>⏱ 2–4 hrs/month</span><span>📍 In-person or virtual</span>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-          <span class="job-type volunteer-type">Volunteer</span>
-          <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-info">
-          <h3>Food Pantry Sorter / Distribution Helper</h3>
-          <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Help sort and distribute food at local partner pantries. Great for groups, families, or individuals.</p>
-          <div class="job-meta" style="margin-top:8px">
-            <span>⏱ Weekend shifts available</span><span>📍 Pinellas County</span>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-          <span class="job-type volunteer-type">Volunteer</span>
-          <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
-        </div>
+```
+<div class="cards-grid">
+  <div class="job-card">
+    <div class="job-info">
+      <h3>Housing Navigator (Volunteer)</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Help community members find and apply for housing resources. Remote-friendly. Training provided.</p>
+      <div class="job-meta" style="margin-top:8px">
+        <span>⏱ 4–8 hrs/week</span><span>💻 Remote OK</span>
       </div>
     </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span class="job-type volunteer-type">Volunteer</span>
+      <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
+    </div>
+  </div>
+  <div class="job-card">
+    <div class="job-info">
+      <h3>Live Chat Support Agent (Volunteer)</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Respond to live chat requests from individuals seeking resources. Can be done from anywhere — offshore or local.</p>
+      <div class="job-meta" style="margin-top:8px">
+        <span>⏱ Flexible shifts</span><span>💻 Fully remote</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span class="job-type volunteer-type">Volunteer</span>
+      <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
+    </div>
+  </div>
+  <div class="job-card">
+    <div class="job-info">
+      <h3>SSI Benefits Advocate (Volunteer)</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Assist individuals in applying for SSI/SSDI. Training and certification support provided.</p>
+      <div class="job-meta" style="margin-top:8px">
+        <span>⏱ 3–5 hrs/week</span><span>📍 In-person or remote</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span class="job-type volunteer-type">Volunteer</span>
+      <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
+    </div>
+  </div>
+  <div class="job-card">
+    <div class="job-info">
+      <h3>Entrepreneurship Mentor (Volunteer)</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Mentor aspiring business owners. Share your expertise in any industry. Set your own schedule.</p>
+      <div class="job-meta" style="margin-top:8px">
+        <span>⏱ 2–4 hrs/month</span><span>📍 In-person or virtual</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span class="job-type volunteer-type">Volunteer</span>
+      <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
+    </div>
+  </div>
+  <div class="job-card">
+    <div class="job-info">
+      <h3>Food Pantry Sorter / Distribution Helper</h3>
+      <p style="font-size:0.84rem;color:var(--muted);margin-top:4px">Help sort and distribute food at local partner pantries. Great for groups, families, or individuals.</p>
+      <div class="job-meta" style="margin-top:8px">
+        <span>⏱ Weekend shifts available</span><span>📍 Pinellas County</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <span class="job-type volunteer-type">Volunteer</span>
+      <button class="btn btn-accent" onclick="openModal('modal-volunteer-apply')">Apply</button>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
   <!-- ══════════════ HELP / DONATE ══════════════ -->
+
   <section class="section" id="section-donate">
     <div class="section-header">
       <div class="s-icon" style="background:#fadbd8">❤️</div>
       <div><h2>Help &amp; Donate</h2><p>Support Mind the Gap Together and help us expand our services.</p></div>
     </div>
 
-    <div class="donate-hero">
-      <h2>Every Dollar Connects Someone to Help</h2>
-      <p>Your donation funds housing navigators, resource verification, and free services for Pinellas County residents who need it most.</p>
-      <div class="donate-amounts">
-        <div class="donate-amt selected" onclick="selectDonation(this, 25)">$25</div>
-        <div class="donate-amt" onclick="selectDonation(this, 50)">$50</div>
-        <div class="donate-amt" onclick="selectDonation(this, 100)">$100</div>
-        <div class="donate-amt" onclick="selectDonation(this, 250)">$250</div>
-      </div>
-      <button class="chat-btn" style="background:white;color:#c0392b;font-size:1rem;padding:14px 36px" onclick="openModal('modal-donate')">❤️ Donate Now</button>
-    </div>
+```
+<div class="donate-hero">
+  <h2>Every Dollar Connects Someone to Help</h2>
+  <p>Your donation funds housing navigators, resource verification, and free services for Pinellas County residents who need it most.</p>
+  <div class="donate-amounts">
+    <div class="donate-amt selected" onclick="selectDonation(this, 25)">$25</div>
+    <div class="donate-amt" onclick="selectDonation(this, 50)">$50</div>
+    <div class="donate-amt" onclick="selectDonation(this, 100)">$100</div>
+    <div class="donate-amt" onclick="selectDonation(this, 250)">$250</div>
+  </div>
+  <button class="chat-btn" style="background:white;color:#c0392b;font-size:1rem;padding:14px 36px" onclick="openModal('modal-donate')">❤️ Donate Now</button>
+</div>
 
-    <div class="cards-grid">
-      <div class="card" style="border-left-color:var(--accent)">
-        <h3>💳 One-Time Donation</h3>
-        <p>Make a secure one-time gift to support community resources and navigator services.</p>
-        <div class="card-actions">
-          <button class="btn btn-accent" onclick="openModal('modal-donate')">Donate Now</button>
-        </div>
-      </div>
-      <div class="card" style="border-left-color:var(--success)">
-        <h3>🔁 Monthly Giving</h3>
-        <p>Become a sustaining donor and provide reliable funding for ongoing programs.</p>
-        <div class="card-actions">
-          <button class="btn btn-success" onclick="openModal('modal-donate')">Give Monthly</button>
-        </div>
-      </div>
-      <div class="card" style="border-left-color:var(--secondary)">
-        <h3>🏢 Corporate Sponsorship</h3>
-        <p>Partner with us to sponsor specific programs or county expansions. Co-branding opportunities available.</p>
-        <div class="card-actions">
-          <button class="btn btn-primary" onclick="openModal('modal-sponsor')">Contact Us</button>
-        </div>
-      </div>
-      <div class="card" style="border-left-color:var(--primary)">
-        <h3>👕 Donate Goods</h3>
-        <p>We collect clothing, household items, and non-perishable food for distribution to partner organizations.</p>
-        <div class="card-actions">
-          <button class="btn btn-outline" onclick="openModal('modal-donate-goods')">Learn How</button>
-        </div>
-      </div>
+<div class="cards-grid">
+  <div class="card" style="border-left-color:var(--accent)">
+    <h3>💳 One-Time Donation</h3>
+    <p>Make a secure one-time gift to support community resources and navigator services.</p>
+    <div class="card-actions">
+      <button class="btn btn-accent" onclick="openModal('modal-donate')">Donate Now</button>
     </div>
+  </div>
+  <div class="card" style="border-left-color:var(--success)">
+    <h3>🔁 Monthly Giving</h3>
+    <p>Become a sustaining donor and provide reliable funding for ongoing programs.</p>
+    <div class="card-actions">
+      <button class="btn btn-success" onclick="openModal('modal-donate')">Give Monthly</button>
+    </div>
+  </div>
+  <div class="card" style="border-left-color:var(--secondary)">
+    <h3>🏢 Corporate Sponsorship</h3>
+    <p>Partner with us to sponsor specific programs or county expansions. Co-branding opportunities available.</p>
+    <div class="card-actions">
+      <button class="btn btn-primary" onclick="openModal('modal-sponsor')">Contact Us</button>
+    </div>
+  </div>
+  <div class="card" style="border-left-color:var(--primary)">
+    <h3>👕 Donate Goods</h3>
+    <p>We collect clothing, household items, and non-perishable food for distribution to partner organizations.</p>
+    <div class="card-actions">
+      <button class="btn btn-outline" onclick="openModal('modal-donate-goods')">Learn How</button>
+    </div>
+  </div>
+</div>
 
-    <hr class="divider" />
-    <div class="help-panel">
-      <h3>📍 Navigator / Part-Time Position Openings</h3>
-      <p>We are actively recruiting paid and volunteer navigators to expand our services across Pinellas County. Apply below or share with someone who'd be a great fit.</p>
-      <div class="cards-grid" style="margin-top:16px">
-        <div class="job-card" style="box-shadow:none;border:1.5px solid var(--border);">
-          <div class="job-info">
-            <h3>Housing Navigator (Part-Time, Paid)</h3>
-            <div class="job-meta"><span>💰 $18–$22/hr</span><span>⏱ 20 hrs/week</span><span>📍 Pinellas County</span></div>
-          </div>
-          <button class="btn btn-primary" onclick="openModal('modal-apply-position')">Apply</button>
-        </div>
-        <div class="job-card" style="box-shadow:none;border:1.5px solid var(--border);">
-          <div class="job-info">
-            <h3>Resource Coordinator (Part-Time, Paid)</h3>
-            <div class="job-meta"><span>💰 $17–$20/hr</span><span>⏱ 15–25 hrs/week</span><span>📍 Hybrid</span></div>
-          </div>
-          <button class="btn btn-primary" onclick="openModal('modal-apply-position')">Apply</button>
-        </div>
+<hr class="divider" />
+<div class="help-panel">
+  <h3>📍 Navigator / Part-Time Position Openings</h3>
+  <p>We are actively recruiting paid and volunteer navigators to expand our services across Pinellas County. Apply below or share with someone who'd be a great fit.</p>
+  <div class="cards-grid" style="margin-top:16px">
+    <div class="job-card" style="box-shadow:none;border:1.5px solid var(--border);">
+      <div class="job-info">
+        <h3>Housing Navigator (Part-Time, Paid)</h3>
+        <div class="job-meta"><span>💰 $18–$22/hr</span><span>⏱ 20 hrs/week</span><span>📍 Pinellas County</span></div>
       </div>
+      <button class="btn btn-primary" onclick="openModal('modal-apply-position')">Apply</button>
     </div>
+    <div class="job-card" style="box-shadow:none;border:1.5px solid var(--border);">
+      <div class="job-info">
+        <h3>Resource Coordinator (Part-Time, Paid)</h3>
+        <div class="job-meta"><span>💰 $17–$20/hr</span><span>⏱ 15–25 hrs/week</span><span>📍 Hybrid</span></div>
+      </div>
+      <button class="btn btn-primary" onclick="openModal('modal-apply-position')">Apply</button>
+    </div>
+  </div>
+</div>
+```
+
   </section>
 
 </div><!-- /main -->
 
 <!-- ══════════════ FOOTER ══════════════ -->
+
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
@@ -1445,11 +1468,12 @@
 </footer>
 
 <!-- ══════════════ MODALS ══════════════ -->
+
 <div class="modal-overlay" id="modal-donate" onclick="closeModalOutside(event,'modal-donate')">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-donate')">✕</button>
     <h3>❤️ Make a Donation</h3>
-    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Your donation is processed securely. A donation portal will be integrated here. To set up online giving, contact us at <a href="mailto:donate@mindthegaptogether.org">donate@mindthegaptogether.org</a>.</p>
+    <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Your donation is processed securely. A donation portal will be integrated here. To set up online giving, contact us at <a href="/cdn-cgi/l/email-protection#9ffbf0f1feebfadff2f6f1fbebf7faf8feefebf0f8faebf7faedb1f0edf8"><span class="__cf_email__" data-cfemail="60040f0e011405200d090e04140805070110140f0705140805124e0f1207">[email&#160;protected]</span></a>.</p>
     <div class="form-row">
       <div class="form-group"><label>Amount</label><input type="number" placeholder="$25" /></div>
       <div class="form-group"><label>Frequency</label><select><option>One-Time</option><option>Monthly</option><option>Annually</option></select></div>
@@ -1576,190 +1600,183 @@
 </div>
 
 <!-- Confirmation toast -->
+
 <div id="toast" style="position:fixed;bottom:24px;right:24px;background:#27ae60;color:white;padding:14px 22px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:none;z-index:2000;font-weight:600;font-size:0.9rem;">
   ✅ Submitted successfully! We'll be in touch soon.
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
 // ── FOOD PANTRY DATA with days open ──
 const foodPantries = [
-  { name: "St. Pete Free Clinic – Food Pantry", days: [1,2,3,4,5], hours: "Mon–Fri 9am–12pm", address: "863 3rd Ave N, St. Petersburg, FL 33701", phone: "727-821-8900", desc: "Free groceries for low-income individuals and families. No ID required.", accepts: ["No ID required", "Walk-in"] },
-  { name: "Salvation Army – Food Pantry", days: [1,2,3,4,5], hours: "Mon–Fri 9am–12pm", address: "3590 5th Ave N, St. Petersburg, FL 33713", phone: "727-822-4954", desc: "Food boxes and emergency food assistance.", accepts: ["ID required", "Walk-in"] },
-  { name: "Metropolitan Ministries – Food Pantry", days: [1,2,3,4,5,6], hours: "Mon–Sat 8am–2pm", address: "2002 N Florida Ave, Tampa, FL 33602", phone: "813-209-1000", desc: "Fresh produce, canned goods, and hot meals available.", accepts: ["No ID required"] },
-  { name: "St. Vincent de Paul – Food Pantry", days: [2,4], hours: "Tue &amp; Thu 9am–12pm", address: "2819 4th St N, St. Petersburg, FL 33704", phone: "727-822-4254", desc: "Weekly food distribution. Families and individuals welcome.", accepts: ["ID preferred"] },
-  { name: "Pinellas Hope – Community Kitchen", days: [0,1,2,3,4,5,6], hours: "Daily 7am–7pm", address: "5009 59th St N, St. Petersburg, FL 33709", phone: "727-893-3700", desc: "Hot meals daily for anyone in need. No questions asked.", accepts: ["No requirements", "Walk-in"] },
-  { name: "Cross and Anchor United Methodist – Pantry", days: [6], hours: "Sat 9am–11am", address: "3510 56th St N, St. Petersburg, FL 33710", phone: "727-521-0498", desc: "Saturday distribution. Community groceries and household items.", accepts: ["Walk-in"] },
-  { name: "United Church of Christ – Food Closet", days: [3], hours: "Wed 10am–1pm", address: "2550 Drew St, Clearwater, FL 33765", phone: "727-799-6547", desc: "Weekly food closet open to Pinellas County residents.", accepts: ["ID required"] },
-  { name: "Daystar Life Center", days: [1,3,5], hours: "Mon, Wed, Fri 9am–1pm", address: "1055 Dr. MLK Jr St N, St. Petersburg, FL 33705", phone: "727-867-8660", desc: "Food pantry plus clothing and utility assistance.", accepts: ["Photo ID"] },
-  { name: "Pinellas Opportunity Council", days: [1,2,3,4,5], hours: "Mon–Fri 8:30am–4:30pm", address: "5765 113th St N, Seminole, FL 33772", phone: "727-581-0710", desc: "USDA food distribution and emergency food assistance.", accepts: ["Income verification"] },
-  { name: "First Assembly of God – Community Pantry", days: [0], hours: "Sun 11am–1pm", address: "4444 66th St N, Kenneth City, FL 33709", phone: "727-546-8800", desc: "Sunday pantry following morning service. Open to all.", accepts: ["Walk-in"] }
+{ name: “St. Pete Free Clinic – Food Pantry”, days: [1,2,3,4,5], hours: “Mon–Fri 9am–12pm”, address: “863 3rd Ave N, St. Petersburg, FL 33701”, phone: “727-821-8900”, desc: “Free groceries for low-income individuals and families. No ID required.”, accepts: [“No ID required”, “Walk-in”] },
+{ name: “Salvation Army – Food Pantry”, days: [1,2,3,4,5], hours: “Mon–Fri 9am–12pm”, address: “3590 5th Ave N, St. Petersburg, FL 33713”, phone: “727-822-4954”, desc: “Food boxes and emergency food assistance.”, accepts: [“ID required”, “Walk-in”] },
+{ name: “Metropolitan Ministries – Food Pantry”, days: [1,2,3,4,5,6], hours: “Mon–Sat 8am–2pm”, address: “2002 N Florida Ave, Tampa, FL 33602”, phone: “813-209-1000”, desc: “Fresh produce, canned goods, and hot meals available.”, accepts: [“No ID required”] },
+{ name: “St. Vincent de Paul – Food Pantry”, days: [2,4], hours: “Tue & Thu 9am–12pm”, address: “2819 4th St N, St. Petersburg, FL 33704”, phone: “727-822-4254”, desc: “Weekly food distribution. Families and individuals welcome.”, accepts: [“ID preferred”] },
+{ name: “Pinellas Hope – Community Kitchen”, days: [0,1,2,3,4,5,6], hours: “Daily 7am–7pm”, address: “5009 59th St N, St. Petersburg, FL 33709”, phone: “727-893-3700”, desc: “Hot meals daily for anyone in need. No questions asked.”, accepts: [“No requirements”, “Walk-in”] },
+{ name: “Cross and Anchor United Methodist – Pantry”, days: [6], hours: “Sat 9am–11am”, address: “3510 56th St N, St. Petersburg, FL 33710”, phone: “727-521-0498”, desc: “Saturday distribution. Community groceries and household items.”, accepts: [“Walk-in”] },
+{ name: “United Church of Christ – Food Closet”, days: [3], hours: “Wed 10am–1pm”, address: “2550 Drew St, Clearwater, FL 33765”, phone: “727-799-6547”, desc: “Weekly food closet open to Pinellas County residents.”, accepts: [“ID required”] },
+{ name: “Daystar Life Center”, days: [1,3,5], hours: “Mon, Wed, Fri 9am–1pm”, address: “1055 Dr. MLK Jr St N, St. Petersburg, FL 33705”, phone: “727-867-8660”, desc: “Food pantry plus clothing and utility assistance.”, accepts: [“Photo ID”] },
+{ name: “Pinellas Opportunity Council”, days: [1,2,3,4,5], hours: “Mon–Fri 8:30am–4:30pm”, address: “5765 113th St N, Seminole, FL 33772”, phone: “727-581-0710”, desc: “USDA food distribution and emergency food assistance.”, accepts: [“Income verification”] },
+{ name: “First Assembly of God – Community Pantry”, days: [0], hours: “Sun 11am–1pm”, address: “4444 66th St N, Kenneth City, FL 33709”, phone: “727-546-8800”, desc: “Sunday pantry following morning service. Open to all.”, accepts: [“Walk-in”] }
 ];
 
-const dayNames = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+const dayNames = [“sunday”,“monday”,“tuesday”,“wednesday”,“thursday”,“friday”,“saturday”];
 
 function buildFoodCards() {
-  const today = new Date().getDay();
-  document.getElementById('today-name').textContent = dayNames[today];
-  const container = document.getElementById('food-cards');
-  const open = foodPantries.filter(p => p.days.includes(today));
-  const closed = foodPantries.filter(p => !p.days.includes(today));
-  const allPantries = [...open, ...closed];
-  container.innerHTML = allPantries.map(p => {
-    const isOpen = p.days.includes(today);
-    return `
-      <div class="card ${isOpen ? 'open-today' : 'closed-today'}">
-        <span class="card-badge ${isOpen ? 'badge-open' : 'badge-closed'}">${isOpen ? '✅ Open Today' : '❌ Closed Today'}</span>
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
-        <div class="card-detail"><span>📍</span> ${p.address}</div>
-        <div class="card-detail"><span>🕐</span> ${p.hours}</div>
-        <div class="card-detail"><span>📞</span> ${p.phone}</div>
-        <div style="margin-top:6px">${p.accepts.map(a => `<span class="tag">${a}</span>`).join('')}</div>
-        <div class="card-actions">
-          <button class="btn btn-outline" onclick="callNumber('${p.phone}')">📞 Call</button>
-        </div>
-      </div>`;
-  }).join('');
+const today = new Date().getDay();
+document.getElementById(‘today-name’).textContent = dayNames[today];
+const container = document.getElementById(‘food-cards’);
+const open = foodPantries.filter(p => p.days.includes(today));
+const closed = foodPantries.filter(p => !p.days.includes(today));
+const allPantries = […open, …closed];
+container.innerHTML = allPantries.map(p => {
+const isOpen = p.days.includes(today);
+return `<div class="card ${isOpen ? 'open-today' : 'closed-today'}"> <span class="card-badge ${isOpen ? 'badge-open' : 'badge-closed'}">${isOpen ? '✅ Open Today' : '❌ Closed Today'}</span> <h3>${p.name}</h3> <p>${p.desc}</p> <div class="card-detail"><span>📍</span> ${p.address}</div> <div class="card-detail"><span>🕐</span> ${p.hours}</div> <div class="card-detail"><span>📞</span> ${p.phone}</div> <div style="margin-top:6px">${p.accepts.map(a =>`<span class="tag">${a}</span>`).join('')}</div> <div class="card-actions"> <button class="btn btn-outline" onclick="callNumber('${p.phone}')">📞 Call</button> </div> </div>`;
+}).join(’’);
 }
 buildFoodCards();
 
 // ── SEARCH ──
 const searchData = [
-  { title: "St. Pete Free Clinic", category: "Healthcare", desc: "Free medical, dental, and mental health services for uninsured residents.", tags: ["healthcare","medical","dental","free","clinic"], section: "healthcare", sub: "clinics" },
-  { title: "Pinellas Hope", category: "Housing", desc: "Emergency shelter and transitional housing for homeless adults.", tags: ["housing","emergency","homeless","shelter"], section: "housing", sub: "search" },
-  { title: "HCH – Health Care for the Homeless", category: "Healthcare", desc: "Free medical, dental and behavioral health for homeless individuals.", tags: ["healthcare","homeless","free","medical"], section: "healthcare", sub: "clinics" },
-  { title: "Section 8 / HCV Waitlists", category: "Housing", desc: "Housing Choice Voucher waitlists for Pinellas, St. Pete, and Clearwater.", tags: ["housing","section 8","voucher","waitlist","rental assistance"], section: "housing", sub: "section8" },
-  { title: "Food Pantries Open Today", category: "Resources", desc: "See which food pantries are open right now in Pinellas County.", tags: ["food","pantry","grocery","free food","meals","hungry"], section: "resources", sub: "food" },
-  { title: "Salvation Army – Clothing", category: "Resources", desc: "Clothing vouchers and thrift store for people in need.", tags: ["clothing","clothes","voucher","thrift"], section: "resources", sub: "clothing" },
-  { title: "CareerSource Pinellas", category: "Jobs", desc: "Free resume help, job search assistance, and training.", tags: ["jobs","career","resume","employment"], section: "jobs", sub: "career" },
-  { title: "Directions for Living", category: "Healthcare", desc: "Mental health and substance abuse services with crisis line.", tags: ["mental health","therapy","counseling","crisis","substance abuse"], section: "healthcare", sub: "mental" },
-  { title: "NAMI Pinellas", category: "Healthcare", desc: "Support groups and education for mental illness.", tags: ["mental health","support group","family"], section: "healthcare", sub: "mental" },
-  { title: "SSI Benefits Advocate", category: "Healthcare", desc: "Free advocate to help you apply for SSI or appeal a denial.", tags: ["ssi","disability","ssdi","benefits","social security"], section: "healthcare", sub: "ssi" },
-  { title: "PARC – Pinellas ARC", category: "Healthcare", desc: "Services for adults with intellectual and developmental disabilities.", tags: ["disability","arc","developmental","intellectual"], section: "healthcare", sub: "disability" },
-  { title: "Lighthouse for the Blind", category: "Healthcare", desc: "Rehab and employment for individuals who are blind or visually impaired.", tags: ["vision","blind","visually impaired","eye"], section: "healthcare", sub: "vision" },
-  { title: "Job Listings", category: "Jobs", desc: "Local job openings for Pinellas County residents.", tags: ["jobs","work","employment","hiring","career"], section: "jobs", sub: "listings" },
-  { title: "Entrepreneurship Mentor Match", category: "Jobs", desc: "Get matched with a business mentor for free.", tags: ["mentor","entrepreneur","business","startup"], section: "jobs", sub: "mentor" },
-  { title: "Volunteer Opportunities", category: "Volunteers", desc: "Find volunteer roles as a navigator, chat agent, or food distributor.", tags: ["volunteer","help","give back","navigator"], section: "volunteers", sub: null },
-  { title: "Housing Navigator", category: "Housing", desc: "Request a free housing navigator to help you find a place to live.", tags: ["housing","navigator","help","homeless","rental"], section: "housing", sub: "navigator" },
-  { title: "Children & Family Resources", category: "Resources", desc: "Juvenile Welfare Board, Eckerd Connects, Early Learning, and more.", tags: ["children","family","kids","childcare","foster"], section: "resources", sub: "children" },
-  { title: "Donate to Mind the Gap Together", category: "Donate", desc: "Support the non-profit with a one-time or recurring donation.", tags: ["donate","give","money","support","nonprofit"], section: "donate", sub: null },
-  { title: "Job Fair Calendar", category: "Jobs", desc: "Upcoming job fairs and hiring events in Pinellas County.", tags: ["job fair","hiring event","employment","career"], section: "jobs", sub: "fairs" },
-  { title: "St. Vincent de Paul – Food & Clothing", category: "Resources", desc: "Weekly food and clothing distribution.", tags: ["food","clothing","voucher","free"], section: "resources", sub: "food" },
-  { title: "Pinellas County Health Department", category: "Healthcare", desc: "Public health services, immunizations, and referrals.", tags: ["healthcare","health department","immunization","public health"], section: "healthcare", sub: "clinics" },
+{ title: “St. Pete Free Clinic”, category: “Healthcare”, desc: “Free medical, dental, and mental health services for uninsured residents.”, tags: [“healthcare”,“medical”,“dental”,“free”,“clinic”], section: “healthcare”, sub: “clinics” },
+{ title: “Pinellas Hope”, category: “Housing”, desc: “Emergency shelter and transitional housing for homeless adults.”, tags: [“housing”,“emergency”,“homeless”,“shelter”], section: “housing”, sub: “search” },
+{ title: “HCH – Health Care for the Homeless”, category: “Healthcare”, desc: “Free medical, dental and behavioral health for homeless individuals.”, tags: [“healthcare”,“homeless”,“free”,“medical”], section: “healthcare”, sub: “clinics” },
+{ title: “Section 8 / HCV Waitlists”, category: “Housing”, desc: “Housing Choice Voucher waitlists for Pinellas, St. Pete, and Clearwater.”, tags: [“housing”,“section 8”,“voucher”,“waitlist”,“rental assistance”], section: “housing”, sub: “section8” },
+{ title: “Food Pantries Open Today”, category: “Resources”, desc: “See which food pantries are open right now in Pinellas County.”, tags: [“food”,“pantry”,“grocery”,“free food”,“meals”,“hungry”], section: “resources”, sub: “food” },
+{ title: “Salvation Army – Clothing”, category: “Resources”, desc: “Clothing vouchers and thrift store for people in need.”, tags: [“clothing”,“clothes”,“voucher”,“thrift”], section: “resources”, sub: “clothing” },
+{ title: “CareerSource Pinellas”, category: “Jobs”, desc: “Free resume help, job search assistance, and training.”, tags: [“jobs”,“career”,“resume”,“employment”], section: “jobs”, sub: “career” },
+{ title: “Directions for Living”, category: “Healthcare”, desc: “Mental health and substance abuse services with crisis line.”, tags: [“mental health”,“therapy”,“counseling”,“crisis”,“substance abuse”], section: “healthcare”, sub: “mental” },
+{ title: “NAMI Pinellas”, category: “Healthcare”, desc: “Support groups and education for mental illness.”, tags: [“mental health”,“support group”,“family”], section: “healthcare”, sub: “mental” },
+{ title: “SSI Benefits Advocate”, category: “Healthcare”, desc: “Free advocate to help you apply for SSI or appeal a denial.”, tags: [“ssi”,“disability”,“ssdi”,“benefits”,“social security”], section: “healthcare”, sub: “ssi” },
+{ title: “PARC – Pinellas ARC”, category: “Healthcare”, desc: “Services for adults with intellectual and developmental disabilities.”, tags: [“disability”,“arc”,“developmental”,“intellectual”], section: “healthcare”, sub: “disability” },
+{ title: “Lighthouse for the Blind”, category: “Healthcare”, desc: “Rehab and employment for individuals who are blind or visually impaired.”, tags: [“vision”,“blind”,“visually impaired”,“eye”], section: “healthcare”, sub: “vision” },
+{ title: “Job Listings”, category: “Jobs”, desc: “Local job openings for Pinellas County residents.”, tags: [“jobs”,“work”,“employment”,“hiring”,“career”], section: “jobs”, sub: “listings” },
+{ title: “Entrepreneurship Mentor Match”, category: “Jobs”, desc: “Get matched with a business mentor for free.”, tags: [“mentor”,“entrepreneur”,“business”,“startup”], section: “jobs”, sub: “mentor” },
+{ title: “Volunteer Opportunities”, category: “Volunteers”, desc: “Find volunteer roles as a navigator, chat agent, or food distributor.”, tags: [“volunteer”,“help”,“give back”,“navigator”], section: “volunteers”, sub: null },
+{ title: “Housing Navigator”, category: “Housing”, desc: “Request a free housing navigator to help you find a place to live.”, tags: [“housing”,“navigator”,“help”,“homeless”,“rental”], section: “housing”, sub: “navigator” },
+{ title: “Children & Family Resources”, category: “Resources”, desc: “Juvenile Welfare Board, Eckerd Connects, Early Learning, and more.”, tags: [“children”,“family”,“kids”,“childcare”,“foster”], section: “resources”, sub: “children” },
+{ title: “Donate to Mind the Gap Together”, category: “Donate”, desc: “Support the non-profit with a one-time or recurring donation.”, tags: [“donate”,“give”,“money”,“support”,“nonprofit”], section: “donate”, sub: null },
+{ title: “Job Fair Calendar”, category: “Jobs”, desc: “Upcoming job fairs and hiring events in Pinellas County.”, tags: [“job fair”,“hiring event”,“employment”,“career”], section: “jobs”, sub: “fairs” },
+{ title: “St. Vincent de Paul – Food & Clothing”, category: “Resources”, desc: “Weekly food and clothing distribution.”, tags: [“food”,“clothing”,“voucher”,“free”], section: “resources”, sub: “food” },
+{ title: “Pinellas County Health Department”, category: “Healthcare”, desc: “Public health services, immunizations, and referrals.”, tags: [“healthcare”,“health department”,“immunization”,“public health”], section: “healthcare”, sub: “clinics” },
 ];
 
-function handleSearch(e) { if (e.key === 'Enter') runSearch(); }
+function handleSearch(e) { if (e.key === ‘Enter’) runSearch(); }
 function quickSearch(q) {
-  document.getElementById('main-search').value = q;
-  runSearch();
+document.getElementById(‘main-search’).value = q;
+runSearch();
 }
 function runSearch() {
-  const query = document.getElementById('main-search').value.trim().toLowerCase();
-  if (!query) { hideSearchResults(); return; }
-  const results = searchData.filter(r =>
-    r.title.toLowerCase().includes(query) ||
-    r.desc.toLowerCase().includes(query) ||
-    r.tags.some(t => t.includes(query) || query.includes(t))
-  );
-  showSearchResults(query, results);
+const query = document.getElementById(‘main-search’).value.trim().toLowerCase();
+if (!query) { hideSearchResults(); return; }
+const results = searchData.filter(r =>
+r.title.toLowerCase().includes(query) ||
+r.desc.toLowerCase().includes(query) ||
+r.tags.some(t => t.includes(query) || query.includes(t))
+);
+showSearchResults(query, results);
 }
 function showSearchResults(query, results) {
-  const sr = document.getElementById('search-results');
-  document.getElementById('search-header').textContent = results.length
-    ? `${results.length} result${results.length > 1 ? 's' : ''} for "${query}"`
-    : `No results for "${query}"`;
-  const container = document.getElementById('results-container');
-  if (!results.length) {
-    container.innerHTML = `<p class="no-results">No resources found. Try a different keyword or browse the tabs above. You can also <a href="#" onclick="openModal('modal-chat')">chat with a navigator</a> for personalized help.</p>`;
-  } else {
-    container.innerHTML = results.map(r => `
-      <div class="card" onclick="showSection('${r.section}')${r.sub ? `;showSubSection('${r.section}','${r.sub}')` : ''}" style="cursor:pointer">
-        <span class="card-badge" style="background:#eaf2ff;color:var(--primary)">${r.category}</span>
-        <h3>${r.title}</h3>
-        <p>${r.desc}</p>
-        <div class="card-actions">
-          <button class="btn btn-primary" onclick="event.stopPropagation();showSection('${r.section}')${r.sub ? `;showSubSection('${r.section}','${r.sub}')` : ''}">View Resources →</button>
-        </div>
-      </div>`).join('');
-  }
-  sr.classList.add('visible');
-  sr.scrollIntoView({ behavior: 'smooth', block: 'start' });
+const sr = document.getElementById(‘search-results’);
+document.getElementById(‘search-header’).textContent = results.length
+? `${results.length} result${results.length > 1 ? 's' : ''} for "${query}"`
+: `No results for "${query}"`;
+const container = document.getElementById(‘results-container’);
+if (!results.length) {
+container.innerHTML = `<p class="no-results">No resources found. Try a different keyword or browse the tabs above. You can also <a href="#" onclick="openModal('modal-chat')">chat with a navigator</a> for personalized help.</p>`;
+} else {
+container.innerHTML = results.map(r => `<div class="card" onclick="showSection('${r.section}')${r.sub ?`;showSubSection(’${r.section}’,’${r.sub}’)`: ''}" style="cursor:pointer"> <span class="card-badge" style="background:#eaf2ff;color:var(--primary)">${r.category}</span> <h3>${r.title}</h3> <p>${r.desc}</p> <div class="card-actions"> <button class="btn btn-primary" onclick="event.stopPropagation();showSection('${r.section}')${r.sub ?`;showSubSection(’${r.section}’,’${r.sub}’)` : ''}">View Resources →</button> </div> </div>`).join(’’);
+}
+sr.classList.add(‘visible’);
+sr.scrollIntoView({ behavior: ‘smooth’, block: ‘start’ });
 }
 function hideSearchResults() {
-  document.getElementById('search-results').classList.remove('visible');
+document.getElementById(‘search-results’).classList.remove(‘visible’);
 }
 
 // ── TABS / SECTIONS ──
 function showSection(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('section-' + name)?.classList.add('active');
-  document.querySelector(`.nav-tab[data-section="${name}"]`)?.classList.add('active');
-  hideSearchResults();
-  document.getElementById('nav-tabs').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+document.querySelectorAll(’.section’).forEach(s => s.classList.remove(‘active’));
+document.querySelectorAll(’.nav-tab’).forEach(t => t.classList.remove(‘active’));
+document.getElementById(‘section-’ + name)?.classList.add(‘active’);
+document.querySelector(`.nav-tab[data-section="${name}"]`)?.classList.add(‘active’);
+hideSearchResults();
+document.getElementById(‘nav-tabs’).scrollIntoView({ behavior: ‘smooth’, block: ‘nearest’ });
 }
 
 function showSubSection(section, sub) {
-  const prefix = section + '-sub';
-  document.querySelectorAll('.' + prefix).forEach(el => el.classList.remove('active'));
-  document.getElementById(section + '-' + sub)?.classList.add('active');
-  // update sub-tab buttons
-  const sectionEl = document.getElementById('section-' + section);
-  if (sectionEl) {
-    sectionEl.querySelectorAll('.sub-tab').forEach(t => {
-      t.classList.toggle('active', t.getAttribute('onclick')?.includes(`'${sub}'`));
-    });
-  }
+const prefix = section + ‘-sub’;
+document.querySelectorAll(’.’ + prefix).forEach(el => el.classList.remove(‘active’));
+document.getElementById(section + ‘-’ + sub)?.classList.add(‘active’);
+// update sub-tab buttons
+const sectionEl = document.getElementById(‘section-’ + section);
+if (sectionEl) {
+sectionEl.querySelectorAll(’.sub-tab’).forEach(t => {
+t.classList.toggle(‘active’, t.getAttribute(‘onclick’)?.includes(`'${sub}'`));
+});
+}
 }
 
 // ── HOUSING FILTER ──
 function filterHousing(type) {
-  document.querySelectorAll('#housing-cards .card').forEach(card => {
-    card.style.display = (type === 'all' || card.dataset.type?.includes(type)) ? '' : 'none';
-  });
+document.querySelectorAll(’#housing-cards .card’).forEach(card => {
+card.style.display = (type === ‘all’ || card.dataset.type?.includes(type)) ? ‘’ : ‘none’;
+});
 }
 
 // ── JOB FILTER ──
 function filterJobs() {
-  const q = document.getElementById('job-search-input')?.value.toLowerCase() || '';
-  const type = document.getElementById('job-type-filter')?.value || 'all';
-  document.querySelectorAll('#job-listings-container .job-card').forEach(card => {
-    const matchesQ = !q || card.dataset.title?.includes(q);
-    const matchesT = type === 'all' || card.dataset.type?.includes(type.slice(0,4));
-    card.style.display = (matchesQ && matchesT) ? '' : 'none';
-  });
+const q = document.getElementById(‘job-search-input’)?.value.toLowerCase() || ‘’;
+const type = document.getElementById(‘job-type-filter’)?.value || ‘all’;
+document.querySelectorAll(’#job-listings-container .job-card’).forEach(card => {
+const matchesQ = !q || card.dataset.title?.includes(q);
+const matchesT = type === ‘all’ || card.dataset.type?.includes(type.slice(0,4));
+card.style.display = (matchesQ && matchesT) ? ‘’ : ‘none’;
+});
 }
 
 // ── MODALS ──
-function openModal(id) { document.getElementById(id)?.classList.add('open'); }
-function closeModal(id) { document.getElementById(id)?.classList.remove('open'); }
+function openModal(id) { document.getElementById(id)?.classList.add(‘open’); }
+function closeModal(id) { document.getElementById(id)?.classList.remove(‘open’); }
 function closeModalOutside(e, id) { if (e.target.id === id) closeModal(id); }
 
 // ── FORM SUBMIT ──
 function submitForm(type) {
-  // Close any open modal
-  document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
-  const toast = document.getElementById('toast');
-  toast.style.display = 'block';
-  setTimeout(() => { toast.style.display = 'none'; }, 3500);
+// Close any open modal
+document.querySelectorAll(’.modal-overlay.open’).forEach(m => m.classList.remove(‘open’));
+const toast = document.getElementById(‘toast’);
+toast.style.display = ‘block’;
+setTimeout(() => { toast.style.display = ‘none’; }, 3500);
 }
 
 // ── COUNTY SELECTOR ──
 function updateCounty(val) {
-  if (val !== 'pinellas-south') {
-    alert('Additional counties are coming soon! Currently serving Pinellas County (South).');
-    document.querySelector('.county-selector select').value = 'pinellas-south';
-  }
+if (val !== ‘pinellas-south’) {
+alert(‘Additional counties are coming soon! Currently serving Pinellas County (South).’);
+lector(‘select.county-selector select’).value = ‘pinellas-south’;
+}
 }
 
-// ── DONATE AMOUNT ──
-function selectDonation(el, amt) {
-  document.querySelectorAll('.donate-amt').forEach(d => d.classList.remove('selected'));
-  el.classList.add('selected');
-}
-
-// ── PHONE ──
-function callNumber(n) { window.location.href = 'tel:' + n.replace(/[^0-9]/g,''); }
+// ── INIT ──
+showSection(‘housing’);
 </script>
+
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
+
+
+
+
