@@ -619,16 +619,17 @@
         </div>
         <button class="chat-btn" onclick="openModal('modal-chat')">Start Chat</button>
       </div>
-      <div class="help-panel">
+      <form class="help-panel" name="navigator-request" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="navigator-request" />
         <h3>📋 Request a Housing Navigator Appointment</h3>
         <p>A navigator will contact you within 1–2 business days to help you find and apply for housing resources.</p>
         <div class="form-row">
-          <div class="form-group"><label>First Name *</label><input type="text" placeholder="First name" /></div>
-          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Last name" /></div>
+          <div class="form-group"><label>First Name *</label><input type="text" name="first-name" placeholder="First name" /></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" name="last-name" placeholder="Last name" /></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(727) 000-0000" /></div>
-          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com" /></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(727) 000-0000" /></div>
+          <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="you@email.com" /></div>
         </div>
         <div class="form-row">
           <div class="form-group"><label>Current Situation</label>
@@ -654,8 +655,8 @@
             <textarea rows="3" placeholder="Any other details that would help us assist you..."></textarea>
           </div>
         </div>
-        <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('navigator-request')">✅ Submit Request</button>
-      </div>
+        <button type="submit" class="btn btn-success" style="margin-top:6px">✅ Submit Request</button>
+      </form>
     </div>
   </section>
 
@@ -1213,15 +1214,16 @@
 
     <div class="jobs-sub" id="jobs-mentor">
       <div class="alert alert-info">🌱 <span>Our entrepreneurship mentor program matches aspiring business owners with experienced mentors — like Big Brother/Big Sister, but for your business journey.</span></div>
-      <div class="help-panel">
+      <form class="help-panel" name="mentor-request" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="mentor-request" />
         <h3>🤝 Request a Business/Entrepreneurship Mentor</h3>
         <p>Tell us about your business idea or goal and we'll match you with a mentor who has relevant experience.</p>
         <div class="form-row">
-          <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Full name" /></div>
-          <div class="form-group"><label>Contact (Phone or Email) *</label><input type="text" placeholder="Phone or email" /></div>
+          <div class="form-group"><label>Your Name *</label><input type="text" name="name" placeholder="Full name" /></div>
+          <div class="form-group"><label>Contact (Phone or Email) *</label><input type="text" name="contact" placeholder="Phone or email" /></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label>Business Idea or Industry</label><input type="text" placeholder="e.g. Food truck, cleaning service, online retail..." /></div>
+          <div class="form-group"><label>Business Idea or Industry</label><input type="text" name="business-idea" placeholder="e.g. Food truck, cleaning service, online retail..." /></div>
           <div class="form-group"><label>Stage</label>
             <select>
               <option>Just an idea</option>
@@ -1236,8 +1238,8 @@
             <textarea rows="3" placeholder="e.g. Business plan, marketing, financing, legal structure..."></textarea>
           </div>
         </div>
-        <button class="btn btn-success" style="margin-top:6px" onclick="submitForm('mentor-request')">✅ Submit Request</button>
-      </div>
+        <button type="submit" class="btn btn-success" style="margin-top:6px">✅ Submit Request</button>
+      </form>
       <hr class="divider" />
       <h3 style="color:var(--primary);margin-bottom:14px">🌟 Become a Mentor</h3>
       <p class="section-intro">Have business experience? Give back by mentoring an aspiring entrepreneur in your community. Flexible time commitment — you set your own schedule.</p>
@@ -1435,7 +1437,8 @@
 
 <!-- ══════════════ MODALS ══════════════ -->
 <div class="modal-overlay" id="modal-donate" onclick="closeModalOutside(event,'modal-donate')">
-  <div class="modal">
+  <form class="modal" name="donation" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="donation" />
     <button class="modal-close" onclick="closeModal('modal-donate')">✕</button>
     <h3>❤️ Make a Donation</h3>
     <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Your donation is processed securely. A donation portal will be integrated here. To set up online giving, contact us at <a href="mailto:donate@mindthegaptogether.org">donate@mindthegaptogether.org</a>.</p>
@@ -1447,8 +1450,8 @@
       <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" /></div>
       <div class="form-group"><label>Email</label><input type="email" placeholder="Email for receipt" /></div>
     </div>
-    <button class="btn btn-accent" style="width:100%;padding:12px;font-size:1rem;margin-top:8px" onclick="submitForm('donation')">❤️ Donate Securely</button>
-  </div>
+    <button type="submit" class="btn btn-accent" style="width:100%;padding:12px;font-size:1rem;margin-top:8px">❤️ Donate Securely</button>
+  </form>
 </div>
 
 <div class="modal-overlay" id="modal-chat" onclick="closeModalOutside(event,'modal-chat')">
@@ -1465,69 +1468,73 @@
 </div>
 
 <div class="modal-overlay" id="modal-apply-job" onclick="closeModalOutside(event,'modal-apply-job')">
-  <div class="modal">
+  <form class="modal" name="job-application" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="job-application" />
     <button class="modal-close" onclick="closeModal('modal-apply-job')">✕</button>
     <h3>📄 Apply for this Position</h3>
     <div class="form-row">
-      <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your name" /></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" placeholder="(727) 000-0000" /></div>
+      <div class="form-group"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" /></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="(727) 000-0000" /></div>
     </div>
     <div class="form-row">
-      <div class="form-group" style="flex:100%"><label>Email *</label><input type="email" placeholder="your@email.com" /></div>
+      <div class="form-group" style="flex:100%"><label>Email *</label><input type="email" name="email" placeholder="your@email.com" /></div>
     </div>
     <div class="form-row">
       <div class="form-group" style="flex:100%"><label>Brief intro / Why you're a good fit</label><textarea rows="3" placeholder="Tell us a bit about yourself..."></textarea></div>
     </div>
-    <button class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px" onclick="submitForm('job-apply')">Submit Application</button>
-  </div>
+    <button type="submit" class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px">Submit Application</button>
+  </form>
 </div>
 
 <div class="modal-overlay" id="modal-volunteer-apply" onclick="closeModalOutside(event,'modal-volunteer-apply')">
-  <div class="modal">
+  <form class="modal" name="volunteer-application" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="volunteer-application" />
     <button class="modal-close" onclick="closeModal('modal-volunteer-apply')">✕</button>
     <h3>🤝 Volunteer Application</h3>
     <div class="form-row">
-      <div class="form-group"><label>Full Name *</label><input type="text" /></div>
-      <div class="form-group"><label>Email *</label><input type="email" /></div>
+      <div class="form-group"><label>Full Name *</label><input type="text" name="name" /></div>
+      <div class="form-group"><label>Email *</label><input type="email" name="email" /></div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>Phone</label><input type="tel" /></div>
+      <div class="form-group"><label>Phone</label><input type="tel" name="phone" /></div>
       <div class="form-group"><label>Availability</label><select><option>Weekdays</option><option>Weekends</option><option>Evenings</option><option>Flexible</option></select></div>
     </div>
     <div class="form-row">
       <div class="form-group" style="flex:100%"><label>Why do you want to volunteer?</label><textarea rows="3"></textarea></div>
     </div>
-    <button class="btn btn-accent" style="width:100%;padding:12px;margin-top:8px" onclick="submitForm('volunteer-apply')">Submit Application</button>
-  </div>
+    <button type="submit" class="btn btn-accent" style="width:100%;padding:12px;margin-top:8px">Submit Application</button>
+  </form>
 </div>
 
 <div class="modal-overlay" id="modal-ssi-advocate" onclick="closeModalOutside(event,'modal-ssi-advocate')">
-  <div class="modal">
+  <form class="modal" name="ssi-advocate" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="ssi-advocate" />
     <button class="modal-close" onclick="closeModal('modal-ssi-advocate')">✕</button>
     <h3>💼 Request an SSI Benefits Advocate</h3>
     <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">A free volunteer advocate will contact you within 1–3 business days.</p>
     <div class="form-row">
-      <div class="form-group"><label>Name *</label><input type="text" /></div>
-      <div class="form-group"><label>Phone or Email *</label><input type="text" /></div>
+      <div class="form-group"><label>Name *</label><input type="text" name="name" /></div>
+      <div class="form-group"><label>Phone or Email *</label><input type="text" name="contact" /></div>
     </div>
     <div class="form-row">
       <div class="form-group" style="flex:100%"><label>Describe your situation</label><textarea rows="3" placeholder="Are you applying for the first time, appealing a denial, etc.?"></textarea></div>
     </div>
-    <button class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px" onclick="submitForm('ssi-advocate')">Submit Request</button>
-  </div>
+    <button type="submit" class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px">Submit Request</button>
+  </form>
 </div>
 
 <div class="modal-overlay" id="modal-add-listing" onclick="closeModalOutside(event,'modal-add-listing')">
-  <div class="modal">
+  <form class="modal" name="rental-listing" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="rental-listing" />
     <button class="modal-close" onclick="closeModal('modal-add-listing')">✕</button>
     <h3>🏡 Add a Private Rental Listing</h3>
     <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">We'll review your info and contact you to get your listing added. Listing is free.</p>
     <div class="form-row">
-      <div class="form-group"><label>Owner/Contact Name *</label><input type="text" /></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" /></div>
+      <div class="form-group"><label>Owner/Contact Name *</label><input type="text" name="owner-name" /></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" /></div>
     </div>
     <div class="form-row">
-      <div class="form-group" style="flex:100%"><label>Property Address *</label><input type="text" /></div>
+      <div class="form-group" style="flex:100%"><label>Property Address *</label><input type="text" name="address" /></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Bedrooms</label><select><option>Studio</option><option>1BR</option><option>2BR</option><option>3BR</option><option>4BR+</option></select></div>
@@ -1536,22 +1543,23 @@
     <div class="form-row">
       <div class="form-group"><label>Section 8 Accepted?</label><select><option>Yes</option><option>No</option><option>Willing to consider</option></select></div>
     </div>
-    <button class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px" onclick="submitForm('add-listing')">Submit Listing</button>
-  </div>
+    <button type="submit" class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px">Submit Listing</button>
+  </form>
 </div>
 
 <div class="modal-overlay" id="modal-post-job" onclick="closeModalOutside(event,'modal-post-job')">
-  <div class="modal">
+  <form class="modal" name="job-posting" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="job-posting" />
     <button class="modal-close" onclick="closeModal('modal-post-job')">✕</button>
     <h3>💼 Post a Job Opening</h3>
     <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Free for employers hiring in Pinellas County. Listings are reviewed and posted within 1 business day.</p>
     <div class="form-row">
-      <div class="form-group"><label>Company Name *</label><input type="text" /></div>
-      <div class="form-group"><label>Contact Email *</label><input type="email" /></div>
+      <div class="form-group"><label>Company Name *</label><input type="text" name="company" /></div>
+      <div class="form-group"><label>Contact Email *</label><input type="email" name="email" /></div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>Job Title *</label><input type="text" /></div>
-      <div class="form-group"><label>Pay Rate</label><input type="text" placeholder="$15–$18/hr" /></div>
+      <div class="form-group"><label>Job Title *</label><input type="text" name="job-title" /></div>
+      <div class="form-group"><label>Pay Rate</label><input type="text" name="pay-rate" placeholder="$15–$18/hr" /></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Job Type</label><select><option>Full-Time</option><option>Part-Time</option><option>Temp/Contract</option></select></div>
@@ -1560,8 +1568,8 @@
     <div class="form-row">
       <div class="form-group" style="flex:100%"><label>Job Description *</label><textarea rows="4"></textarea></div>
     </div>
-    <button class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px" onclick="submitForm('post-job')">Submit Job Posting</button>
-  </div>
+    <button type="submit" class="btn btn-primary" style="width:100%;padding:12px;margin-top:8px">Submit Job Posting</button>
+  </form>
 </div>
 
 <!-- Confirmation toast -->
