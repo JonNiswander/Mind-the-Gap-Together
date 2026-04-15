@@ -342,7 +342,7 @@
   <div class="nav-tab" onclick="showSection('resources')" data-section="resources"><span class="tab-icon">📦</span>Resources</div>
   <div class="nav-tab" onclick="showSection('jobs')" data-section="jobs"><span class="tab-icon">💼</span>Jobs</div>
   <div class="nav-tab" onclick="showSection('volunteers')" data-section="volunteers"><span class="tab-icon">🤝</span>Volunteers</div>
-  <div class="nav-tab" onclick="showSection('donate')" data-section="donate"><span class="tab-icon">❤️</span>Help / Donate</div>
+  <a class="nav-tab" href="https://www.mindthegaptogether.org/contact" target="_blank" style="text-decoration:none;"><span class="tab-icon">❤️</span>Donate ↗</a>
 </nav>
 
 <!-- MAIN -->
@@ -949,6 +949,26 @@
         </div>
       </div>
     </div>
+
+    <!-- Donate Goods + Link to main site -->
+    <div style="margin-top:28px;border-top:2px solid var(--border);padding-top:24px;">
+      <div class="cards-grid">
+        <div class="card" style="border-left-color:var(--primary-light)">
+          <h3>👕 Donate Goods</h3>
+          <p>We collect clothing, household items, and non-perishable food for distribution to partner organizations in Pinellas County.</p>
+          <div class="card-actions">
+            <a href="https://www.mindthegaptogether.org/contact" target="_blank" class="btn btn-primary">Learn How ↗</a>
+          </div>
+        </div>
+        <div class="card" style="border-left-color:#e74c3c;background:linear-gradient(135deg,#fff5f5,#ffffff)">
+          <h3>❤️ Support Mind the Gap Together</h3>
+          <p>Your donation funds housing navigators, resource verification, and free services for Pinellas County residents who need it most.</p>
+          <div class="card-actions">
+            <a href="https://www.mindthegaptogether.org/contact" target="_blank" class="btn btn-accent">Donate Now ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════ JOBS ══════════════ -->
@@ -1153,7 +1173,7 @@
         <div class="donate-amt" onclick="selectDonation(this, 100)">$100</div>
         <div class="donate-amt" onclick="selectDonation(this, 250)">$250</div>
       </div>
-      <button class="chat-btn" style="background:white;color:#c0392b;font-size:1rem;padding:14px 36px" onclick="openModal('modal-donate')">❤️ Donate Now</button>
+      <a style="display:inline-block;text-decoration:none;" href="https://www.mindthegaptogether.org/contact" target="_blank" class="chat-btn" style="background:white;color:#c0392b;font-size:1rem;padding:14px 36px">❤️ Donate Now ↗</a>
     </div>
 
     <div class="cards-grid">
@@ -1161,14 +1181,14 @@
         <h3>💳 One-Time Donation</h3>
         <p>Make a secure one-time gift to support community resources and navigator services.</p>
         <div class="card-actions">
-          <button class="btn btn-accent" onclick="openModal('modal-donate')">Donate Now</button>
+          <a href="https://www.mindthegaptogether.org/contact" target="_blank" class="btn btn-accent">Donate Now ↗</a>
         </div>
       </div>
       <div class="card" style="border-left-color:var(--success)">
         <h3>🔁 Monthly Giving</h3>
         <p>Become a sustaining donor and provide reliable funding for ongoing programs.</p>
         <div class="card-actions">
-          <button class="btn btn-success" onclick="openModal('modal-donate')">Give Monthly</button>
+          <a href="https://www.mindthegaptogether.org/contact" target="_blank" class="btn btn-success">Give Monthly ↗</a>
         </div>
       </div>
       <div class="card" style="border-left-color:var(--secondary)">
@@ -1178,13 +1198,7 @@
           <button class="btn btn-primary" onclick="openModal('modal-sponsor')">Contact Us</button>
         </div>
       </div>
-      <div class="card" style="border-left-color:var(--primary)">
-        <h3>👕 Donate Goods</h3>
-        <p>We collect clothing, household items, and non-perishable food for distribution to partner organizations.</p>
-        <div class="card-actions">
-          <button class="btn btn-outline" onclick="openModal('modal-donate-goods')">Learn How</button>
-        </div>
-      </div>
+
     </div>
 
     <hr class="divider" />
