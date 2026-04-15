@@ -369,7 +369,17 @@
     }
     .empty-state .e-icon { font-size: 3rem; margin-bottom: 12px; }
 
-    /* Netlify link card */
+    /* Submission sub-tabs */
+    .sub-tab-btn {
+      padding: 8px 18px; border-radius: 50px;
+      border: 1px solid var(--border); cursor: pointer;
+      font-size: 0.82rem; font-weight: 600; color: var(--text-muted);
+      background: var(--surface2); transition: all 0.15s; font-family: var(--font);
+    }
+    .sub-tab-btn:hover { background: var(--surface3); color: var(--text); }
+    .sub-tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .sub-tab-content { display: none; }
+    .sub-tab-content.active { display: block; }
     .netlify-card {
       background: linear-gradient(135deg, rgba(0,173,181,0.12), rgba(26,82,118,0.15));
       border: 1px solid rgba(0,173,181,0.3); border-radius: var(--radius);
@@ -583,16 +593,40 @@
       <div class="admin-section" id="section-submissions">
         <div class="section-toolbar">
           <h2>📥 Form Submissions</h2>
+          <button class="add-btn" style="background:var(--surface2);color:var(--text-muted);border:1px solid var(--border);" onclick="loadSubmissions()">🔄 Refresh</button>
         </div>
-        <div class="netlify-card">
-          <div class="n-logo">📬</div>
-          <div class="n-text">
-            <strong>Netlify Forms Dashboard</strong>
-            <p>Real form submissions are captured in your Netlify dashboard. Enable Netlify Forms by adding <code style="font-family:var(--mono);font-size:0.78rem;background:var(--bg);padding:1px 5px;border-radius:3px;">data-netlify="true"</code> to your forms in index.html.</p>
-          </div>
-          <a href="https://app.netlify.com" target="_blank">Open Dashboard ↗</a>
+
+        <!-- Sub tabs -->
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+          <button class="sub-tab-btn active" onclick="showSubTab('publish-queue')" id="btn-publish-queue">💼 Publish Queue</button>
+          <button class="sub-tab-btn" onclick="showSubTab('to-review')" id="btn-to-review">📋 To Review</button>
+          <button class="sub-tab-btn" onclick="showSubTab('donations')" id="btn-donations">❤️ Donations</button>
+          <button class="sub-tab-btn" onclick="showSubTab('done')" id="btn-done">✅ Done</button>
         </div>
-        <div class="submissions-grid" id="submissions-list"></div>
+
+        <!-- Publish Queue: job-posting, rental-listing -->
+        <div class="sub-tab-content active" id="sub-publish-queue">
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">Job postings and rental listings submitted by visitors. Review and approve to publish directly to the live site.</p>
+          <div class="submissions-grid" id="list-publish-queue"></div>
+        </div>
+
+        <!-- To Review: navigator, volunteer, ssi, mentor -->
+        <div class="sub-tab-content" id="sub-to-review">
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">People requesting help or volunteering. Follow up by phone or email.</p>
+          <div class="submissions-grid" id="list-to-review"></div>
+        </div>
+
+        <!-- Donations -->
+        <div class="sub-tab-content" id="sub-donations">
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">Donation form submissions. A payment portal integration is planned for a future update.</p>
+          <div class="submissions-grid" id="list-donations"></div>
+        </div>
+
+        <!-- Done -->
+        <div class="sub-tab-content" id="sub-done">
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px;">Submissions you have dismissed or approved.</p>
+          <div class="submissions-grid" id="list-done"></div>
+        </div>
       </div>
 
       <!-- EXPORT -->
@@ -638,7 +672,7 @@
 <script>
 // ── CONFIG ──
 const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'Katie26';
+const ADMIN_PASS = 'mtgt2026';
 // API calls handled securely via Netlify Functions (netlify/functions/publish.js and submissions.js)
 
 function doLogin() {
@@ -861,82 +895,165 @@ function renderResources() {
 }
 
 // ── FORM NAME → type/label/publish mapping ──
+// Note: Netlify converts form field names to title case with spaces e.g. "job-title" → "Job Title"
 const FORM_MAP = {
-  'job-posting':           { type:'job',       cls:'type-job',       label:'💼 Job Posting',        publishTo:'jobs',    buildItem: f => ({ id: Date.now(), title: f['job-title']||'', company: f['company']||'', location: f['location']||'', pay: f['pay-rate']||'', type: 'full', tags:[] }) },
+  'job-posting':           { type:'job',       cls:'type-job',       label:'💼 Job Posting',        publishTo:'jobs',
+    buildItem: f => ({
+      id: Date.now(),
+      title:    f['Job Title']    || f['job-title']    || f['title']    || '',
+      company:  f['Company']      || f['company']                       || '',
+      location: f['Location']     || f['location']                      || '',
+      pay:      f['Pay Rate']     || f['pay-rate']     || f['pay']      || '',
+      type:     f['Job Type']     || f['job-type']     || 'full',
+      tags:     []
+    })
+  },
   'navigator-request':     { type:'navigator', cls:'type-navigator', label:'🧭 Navigator Request',   publishTo:null },
   'volunteer-application': { type:'volunteer', cls:'type-volunteer', label:'🤝 Volunteer',           publishTo:null },
   'ssi-advocate':          { type:'advocate',  cls:'type-advocate',  label:'💼 SSI Advocate',        publishTo:null },
-  'rental-listing':        { type:'rental',    cls:'type-rental',    label:'🏡 Rental Listing',      publishTo:'housing', buildItem: f => ({ id: Date.now(), name: (f['owner-name']||'Private Owner') + ' – ' + (f['address']||''), type:'private', status:'open', address: f['address']||'', phone: f['phone']||'', url:'' }) },
+  'rental-listing':        { type:'rental',    cls:'type-rental',    label:'🏡 Rental Listing',      publishTo:'housing',
+    buildItem: f => ({
+      id:      Date.now(),
+      name:    (f['Owner/Contact Name'] || f['owner-name'] || 'Private Owner') + ' – ' + (f['Property Address'] || f['address'] || ''),
+      type:    'private',
+      status:  'open',
+      address: f['Property Address'] || f['address'] || '',
+      phone:   f['Phone']            || f['phone']   || '',
+      url:     ''
+    })
+  },
   'donation':              { type:'donation',  cls:'type-navigator', label:'❤️ Donation',            publishTo:null },
 };
 
+// ── SUBMISSION TABS ──
+function showSubTab(name) {
+  document.querySelectorAll('.sub-tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.sub-tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('sub-' + name)?.classList.add('active');
+  document.getElementById('btn-' + name)?.classList.add('active');
+}
+
+const FORM_TAB = {
+  'job-posting':           'publish-queue',
+  'rental-listing':        'publish-queue',
+  'navigator-request':     'to-review',
+  'volunteer-application': 'to-review',
+  'ssi-advocate':          'to-review',
+  'mentor-request':        'to-review',
+  'donation':              'donations',
+};
+
+const FORM_FIELDS = {
+  'job-posting':           ['Company','Email','Job Title','Pay Rate','Job Type','Location','Job Description'],
+  'rental-listing':        ['Owner/Contact Name','Phone','Property Address','Bedrooms','Monthly Rent','Section 8 Accepted?'],
+  'navigator-request':     ['First Name','Last Name','Phone','Email','Current Situation','Household Size','Additional Notes'],
+  'volunteer-application': ['Name','Email','Phone','Availability','Why do you want to volunteer?'],
+  'ssi-advocate':          ['Name','Phone or Email','Describe your situation'],
+  'mentor-request':        ['Name','Contact','Business Idea or Industry','Stage','What kind of help do you need?'],
+  'donation':              ['Name','Email','Amount','Frequency'],
+};
+
 async function loadSubmissions() {
-  const el = document.getElementById('submissions-list');
-  el.innerHTML = '<div class="empty-state"><div class="e-icon">⏳</div><p>Loading submissions from Netlify...</p></div>';
+  ['publish-queue','to-review','donations','done'].forEach(tab => {
+    const el = document.getElementById('list-' + tab);
+    if (el) el.innerHTML = '<div class="empty-state"><div class="e-icon">⏳</div><p>Loading...</p></div>';
+  });
   try {
-    // Call secure Netlify function — token lives server-side
     const res = await fetch('/.netlify/functions/submissions');
     if (!res.ok) throw new Error('Function error: ' + res.status);
     const submissions = await res.json();
-    if (!submissions.length) {
-      el.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div><p>No submissions yet. They will appear here when visitors submit forms on the live site.</p></div>';
-      document.getElementById('sub-badge').style.display = 'none';
-      return;
-    }
+    const tabs = { 'publish-queue': [], 'to-review': [], 'donations': [], 'done': [] };
+    submissions.forEach(s => {
+      const tab = FORM_TAB[s.form_name] || 'to-review';
+      tabs[tab].push(s);
+    });
     document.getElementById('sub-badge').textContent = submissions.length;
-    el.innerHTML = submissions.map(s => {
-      const formName = s.form_name || '';
-      const map = FORM_MAP[formName] || { cls:'type-navigator', label: formName || 'Unknown Form', publishTo: null };
-      const data = s.data || {};
-      const fields = Object.entries(data)
-        .filter(([k]) => k !== 'ip' && k !== 'user_agent' && k !== 'form-name')
-        .map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
-      const time = new Date(s.created_at).toLocaleString();
-      const publishBtn = map.publishTo && map.buildItem
-        ? `<button class="sub-btn primary" onclick="approveSubmission('${s.id}', '${formName}', ${JSON.stringify(data).replace(/'/g,"&#39;")})">✅ Approve & Publish</button>`
-        : '';
-      return `<div class="submission-card" id="sub-${s.id}">
-        <div class="submission-header">
-          <span class="submission-type ${map.cls}">${map.label}</span>
-          <span class="submission-time">${time}</span>
-        </div>
-        <div class="submission-body">${fields}</div>
-        <div class="sub-actions">
-          ${publishBtn}
-          <button class="sub-btn" onclick="dismissSubmission('${s.id}')">🗑 Dismiss</button>
-        </div>
-      </div>`;
-    }).join('');
+    if (!submissions.length) document.getElementById('sub-badge').style.display = 'none';
+    Object.entries(tabs).forEach(([tab, subs]) => {
+      const el = document.getElementById('list-' + tab);
+      if (!el) return;
+      if (!subs.length) {
+        el.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div><p>No submissions here yet.</p></div>';
+        return;
+      }
+      el.innerHTML = subs.map(s => renderSubmissionCard(s)).join('');
+    });
   } catch(e) {
-    el.innerHTML = `<div class="empty-state"><div class="e-icon">⚠️</div><p>Could not load submissions: ${e.message}</p></div>`;
+    ['publish-queue','to-review','donations','done'].forEach(tab => {
+      const el = document.getElementById('list-' + tab);
+      if (el) el.innerHTML = `<div class="empty-state"><div class="e-icon">⚠️</div><p>Could not load: ${e.message}</p></div>`;
+    });
   }
 }
 
-async function approveSubmission(subId, formName, data) {
+function renderSubmissionCard(s) {
+  const formName = s.form_name || '';
+  const map = FORM_MAP[formName] || { cls:'type-navigator', label: formName || 'Unknown Form', publishTo: null };
+  const data = s.data || {};
+  const time = new Date(s.created_at).toLocaleString();
+  const fieldKeys = FORM_FIELDS[formName] || Object.keys(data);
+  const fields = fieldKeys
+    .filter(k => data[k] && k !== 'ip' && k !== 'user_agent' && k !== 'form-name')
+    .map(k => `<div class="submission-field"><strong>${k}:</strong> ${data[k]}</div>`)
+    .join('');
+  const extraFields = Object.entries(data)
+    .filter(([k,v]) => v && !fieldKeys.includes(k) && k !== 'ip' && k !== 'user_agent' && k !== 'form-name')
+    .map(([k,v]) => `<div class="submission-field" style="color:var(--text-dim)"><strong>${k}:</strong> ${v}</div>`)
+    .join('');
+  const dataStr = JSON.stringify(data).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  const publishBtn = map.publishTo && map.buildItem
+    ? `<button class="sub-btn primary" onclick="approveSubmission('${s.id}', '${formName}', this)">✅ Approve & Publish</button>`
+    : '';
+  return `<div class="submission-card" id="sub-${s.id}" data-form-data='${JSON.stringify(data).replace(/'/g,"&apos;")}'>
+    <div class="submission-header">
+      <span class="submission-type ${map.cls}">${map.label}</span>
+      <span class="submission-time">${time}</span>
+    </div>
+    <div class="submission-body">${fields}${extraFields}</div>
+    <div class="sub-actions">
+      ${publishBtn}
+      <button class="sub-btn" onclick="markDone('${s.id}')">✅ Mark Done</button>
+      <button class="sub-btn" onclick="dismissSubmission('${s.id}')">🗑 Dismiss</button>
+    </div>
+  </div>`;
+}
+
+async function approveSubmission(subId, formName, btn) {
   const map = FORM_MAP[formName];
   if (!map || !map.buildItem) return;
   try {
-    const newItem = map.buildItem(typeof data === 'string' ? JSON.parse(data) : data);
-    const listKey = map.publishTo;
-    DATA[listKey].push(newItem);
+    const card = document.getElementById('sub-' + subId);
+    const data = JSON.parse(card.dataset.formData || '{}');
+    const newItem = map.buildItem(data);
+    DATA[map.publishTo].push(newItem);
     renderAll();
     await publishToGitHub();
-    // Dismiss from Netlify after publishing
     await fetch('/.netlify/functions/submissions', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ submissionId: subId })
     });
-    dismissSubmission(subId);
+    markDone(subId);
     showToast('✅ Approved & published to live site!');
   } catch(e) {
     showToast('❌ Error: ' + e.message);
   }
 }
 
+function markDone(subId) {
+  const card = document.getElementById('sub-' + subId);
+  if (!card) return;
+  const doneList = document.getElementById('list-done');
+  const empty = doneList.querySelector('.empty-state');
+  if (empty) empty.remove();
+  card.style.opacity = '0.6';
+  doneList.prepend(card);
+  showToast('✅ Marked as done');
+}
+
 function dismissSubmission(subId) {
   const el = document.getElementById('sub-' + subId);
-  if (el) { el.style.opacity = '0.35'; el.style.pointerEvents = 'none'; }
+  if (el) { el.style.opacity = '0.25'; el.style.pointerEvents = 'none'; }
 }
 
 function renderSubmissions() { loadSubmissions(); }
