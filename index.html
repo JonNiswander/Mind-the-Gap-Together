@@ -322,14 +322,23 @@
       <span class="tagline">Resource Portal</span>
     </div>
   </a>
-  <div class="county-selector">
-    <span>📍</span>
-    <select onchange="updateCounty(this.value)">
-      <option value="pinellas-south" selected>Pinellas County (South)</option>
-      <option value="pinellas-north">Pinellas County (North) ▸ Coming Soon</option>
-      <option value="hillsborough">Hillsborough County ▸ Coming Soon</option>
-      <option value="pasco">Pasco County ▸ Coming Soon</option>
-    </select>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="county-selector">
+      <span>📍</span>
+      <select onchange="updateCounty(this.value)">
+        <option value="pinellas-south" selected>Pinellas County (South)</option>
+        <option value="pinellas-north">Pinellas County (North) ▸ Coming Soon</option>
+        <option value="hillsborough">Hillsborough County ▸ Coming Soon</option>
+        <option value="pasco">Pasco County ▸ Coming Soon</option>
+      </select>
+    </div>
+    <a href="/admin.html" style="
+      font-size:0.72rem; font-weight:700; letter-spacing:0.06em;
+      text-transform:uppercase; color:var(--text-muted);
+      padding:5px 10px; border-radius:6px;
+      border:1px solid var(--border); text-decoration:none;
+      opacity:0.5; transition:opacity 0.2s;
+    " onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">⚙ Admin</a>
   </div>
 </header>
 
