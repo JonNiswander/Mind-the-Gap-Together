@@ -638,8 +638,12 @@
 <script>
 // ── CONFIG ──
 const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'katie26';
-const NETLIFY_SITE_ID = 'unique-toffee-1b6e64';
+const ADMIN_PASS = 'mtgt2026';
+const NETLIFY_TOKEN = 'nfp_1FUrtbxaR2jtDPGNcZjp9QxEuRneXUAT939a';
+const NETLIFY_SITE_ID = 'unique-toffee-1b6e64'; // kept for reference
+const GITHUB_TOKEN = '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';
+const GITHUB_REPO = 'JonNiswander/Mind-the-Gap-Together';
+const GITHUB_FILE = 'data.json';
 
 function doLogin() {
   const u = document.getElementById('login-user').value;
@@ -874,10 +878,9 @@ async function loadSubmissions() {
   const el = document.getElementById('submissions-list');
   el.innerHTML = '<div class="empty-state"><div class="e-icon">⏳</div><p>Loading submissions from Netlify...</p></div>';
   try {
-    const res = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/submissions?per_page=50`, {
-      headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
-    });
-    if (!res.ok) throw new Error('Netlify API error: ' + res.status);
+    // Call secure Netlify function — token lives server-side
+    const res = await fetch('/.netlify/functions/submissions');
+    if (!res.ok) throw new Error('Function error: ' + res.status);
     const submissions = await res.json();
     if (!submissions.length) {
       el.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div><p>No submissions yet. They will appear here when visitors submit forms on the live site.</p></div>';
@@ -887,12 +890,14 @@ async function loadSubmissions() {
     document.getElementById('sub-badge').textContent = submissions.length;
     el.innerHTML = submissions.map(s => {
       const formName = s.form_name || '';
-      const map = FORM_MAP[formName] || { cls:'type-navigator', label: formName, publishTo: null };
+      const map = FORM_MAP[formName] || { cls:'type-navigator', label: formName || 'Unknown Form', publishTo: null };
       const data = s.data || {};
-      const fields = Object.entries(data).filter(([k])=>k!=='ip'&&k!=='user_agent').map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
+      const fields = Object.entries(data)
+        .filter(([k]) => k !== 'ip' && k !== 'user_agent' && k !== 'form-name')
+        .map(([k,v]) => `<div class="submission-field"><strong>${k}:</strong> ${v}</div>`).join('');
       const time = new Date(s.created_at).toLocaleString();
       const publishBtn = map.publishTo && map.buildItem
-        ? `<button class="sub-btn primary" onclick="approveSubmission('${s.id}', '${formName}')">✅ Approve & Publish</button>`
+        ? `<button class="sub-btn primary" onclick="approveSubmission('${s.id}', '${formName}', ${JSON.stringify(data).replace(/'/g,"&#39;")})">✅ Approve & Publish</button>`
         : '';
       return `<div class="submission-card" id="sub-${s.id}">
         <div class="submission-header">
@@ -911,20 +916,21 @@ async function loadSubmissions() {
   }
 }
 
-async function approveSubmission(subId, formName) {
+async function approveSubmission(subId, formName, data) {
   const map = FORM_MAP[formName];
   if (!map || !map.buildItem) return;
-  // Get submission data
   try {
-    const res = await fetch(`https://api.netlify.com/api/v1/submissions/${subId}`, {
-      headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
-    });
-    const sub = await res.json();
-    const newItem = map.buildItem(sub.data || {});
+    const newItem = map.buildItem(typeof data === 'string' ? JSON.parse(data) : data);
     const listKey = map.publishTo;
     DATA[listKey].push(newItem);
     renderAll();
     await publishToGitHub();
+    // Dismiss from Netlify after publishing
+    await fetch('/.netlify/functions/submissions', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ submissionId: subId })
+    });
     dismissSubmission(subId);
     showToast('✅ Approved & published to live site!');
   } catch(e) {
