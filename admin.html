@@ -672,7 +672,7 @@
 <script>
 // ── CONFIG ──
 const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'Katie26';
+const ADMIN_PASS = 'mtgt2026';
 // API calls handled securely via Netlify Functions (netlify/functions/publish.js and submissions.js)
 
 function doLogin() {
@@ -1193,7 +1193,8 @@ function saveDrawer() {
 
   refreshStats();
   closeDrawer();
-  showToast('✅ Saved successfully!');
+  publishToGitHub();
+  showToast('✅ Saved & publishing to live site...');
 }
 
 function deleteItem(type, id) {
@@ -1201,7 +1202,8 @@ function deleteItem(type, id) {
   const listKey = type === 'job' ? 'jobs' : type === 'fair' ? 'fairs' : type === 'resource' ? 'resources' : type;
   DATA[listKey] = DATA[listKey].filter(i => i.id !== id);
   renderAll();
-  showToast('🗑 Entry deleted');
+  publishToGitHub();
+  showToast('🗑 Deleted & publishing to live site...');
 }
 
 // ── EXPORT & GITHUB PUBLISH ──
