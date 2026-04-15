@@ -11,21 +11,30 @@ exports.handler = async function(event, context) {
   }
 
   const NETLIFY_TOKEN = process.env.NETLIFY_TOKEN;
-  const SITE_ID = 'unique-toffee-1b6e64';
+  const SITE_ID = 'ecb41d3a-bc77-43e9-b3fe-6b39ec92683f';
+
+  // Debug: log what we have (without exposing token value)
+  console.log('NETLIFY_TOKEN present:', !!NETLIFY_TOKEN);
+  console.log('NETLIFY_TOKEN length:', NETLIFY_TOKEN ? NETLIFY_TOKEN.length : 0);
+  console.log('Method:', event.httpMethod);
 
   if (!NETLIFY_TOKEN) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: 'NETLIFY_TOKEN not set' }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: 'NETLIFY_TOKEN environment variable not set' }) };
   }
 
   try {
     // GET — fetch all submissions
     if (event.httpMethod === 'GET') {
-      const res = await fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}/submissions?per_page=50`, {
+      const url = `https://api.netlify.com/api/v1/sites/${SITE_ID}/submissions?per_page=50`;
+      console.log('Fetching:', url);
+      const res = await fetch(url, {
         headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
       });
-      if (!res.ok) throw new Error('Netlify API error: ' + res.status);
-      const submissions = await res.json();
-      return { statusCode: 200, headers, body: JSON.stringify(submissions) };
+      console.log('Netlify API status:', res.status);
+      const body = await res.text();
+      console.log('Netlify API response preview:', body.substring(0, 200));
+      if (!res.ok) throw new Error(`Netlify API error: ${res.status} — ${body.substring(0, 100)}`);
+      return { statusCode: 200, headers, body };
     }
 
     // DELETE — dismiss a submission
@@ -36,12 +45,14 @@ exports.handler = async function(event, context) {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
       });
+      console.log('Delete status:', res.status);
       return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
     }
 
     return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
 
   } catch(e) {
+    console.log('Error:', e.message);
     return { statusCode: 500, headers, body: JSON.stringify({ error: e.message }) };
   }
 };
