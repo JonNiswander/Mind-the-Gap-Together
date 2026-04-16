@@ -147,11 +147,68 @@
     .card {
       background: var(--card-bg); border-radius: var(--radius);
       box-shadow: var(--shadow); padding: 20px;
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s, background 0.2s;
       border-left: 4px solid var(--primary-light);
       position: relative;
     }
     .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+    .card.saved { border-left-color: var(--success); background: #f0fdf4; }
+    .save-btn {
+      position: absolute; top: 12px; right: 52px;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.1rem; opacity: 0.35; transition: opacity 0.2s, transform 0.15s;
+      padding: 2px; line-height: 1;
+    }
+    .save-btn:hover { opacity: 0.8; transform: scale(1.2); }
+    .save-btn.saved { opacity: 1; }
+    .saves-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 1000;
+      align-items: flex-start; justify-content: center;
+      padding-top: 60px;
+    }
+    .saves-modal-overlay.open { display: flex; }
+    .saves-modal {
+      background: white; border-radius: var(--radius);
+      width: 95%; max-width: 700px; max-height: 80vh;
+      overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .saves-modal-header {
+      padding: 20px 24px; border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; background: white; z-index: 1;
+    }
+    .saves-modal-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+    .saves-modal-body { padding: 20px 24px; }
+    .saves-empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 0.9rem; }
+    .saves-empty .e-icon { font-size: 3rem; margin-bottom: 12px; }
+    .saves-section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
+      margin: 16px 0 10px; padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .saves-card {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px; border-radius: 8px; border: 1px solid var(--border);
+      margin-bottom: 8px; background: #f9fafb;
+    }
+    .saves-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .saves-card-body { flex: 1; min-width: 0; }
+    .saves-card-name { font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 3px; }
+    .saves-card-meta { font-size: 0.78rem; color: var(--muted); }
+    .saves-card-remove {
+      background: none; border: none; cursor: pointer;
+      color: var(--muted); font-size: 1rem; padding: 4px;
+      transition: color 0.15s;
+    }
+    .saves-card-remove:hover { color: var(--danger); }
+    .saves-badge {
+      background: var(--success); color: white;
+      font-size: 0.65rem; font-weight: 700;
+      padding: 1px 5px; border-radius: 50px;
+      margin-left: 4px; display: none;
+    }
     .card.open-today { border-left-color: var(--success); }
     .card.closed-today { border-left-color: var(--muted); opacity: 0.75; }
     .card-badge {
@@ -332,6 +389,15 @@
         <option value="pasco">Pasco County ▸ Coming Soon</option>
       </select>
     </div>
+    <button onclick="openSavesModal()" style="
+      font-size:0.72rem; font-weight:700; letter-spacing:0.06em;
+      text-transform:uppercase; color:var(--success);
+      padding:5px 10px; border-radius:6px;
+      border:1px solid var(--success); background:none; cursor:pointer;
+      transition:all 0.2s; display:flex; align-items:center; gap:4px;
+    " onmouseover="this.style.background='var(--success)';this.style.color='white'" 
+       onmouseout="this.style.background='none';this.style.color='var(--success)'"
+       id="saves-btn">★ Saves <span class="saves-badge" id="saves-count-badge">0</span></button>
     <a href="/admin.html" style="
       font-size:0.72rem; font-weight:700; letter-spacing:0.06em;
       text-transform:uppercase; color:var(--text-muted);
@@ -1552,6 +1618,155 @@ function selectDonation(el, amt) {
   el.classList.add('selected');
 }
 
+
+// ── SAVES SYSTEM ──
+const SAVES_KEY = 'mtgt_saves';
+
+function getSaves() {
+  try { return JSON.parse(localStorage.getItem(SAVES_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+
+function isSaved(id) {
+  return !!getSaves()[id];
+}
+
+function toggleSave(id, name, icon, meta, category) {
+  const saves = getSaves();
+  if (saves[id]) {
+    delete saves[id];
+  } else {
+    saves[id] = { name, icon, meta, category, savedAt: Date.now() };
+  }
+  localStorage.setItem(SAVES_KEY, JSON.stringify(saves));
+  updateSaveBtn(id);
+  updateSavesBadge();
+  // Update card visual
+  const card = document.getElementById('card-' + id);
+  if (card) {
+    card.classList.toggle('saved', !!saves[id]);
+    if (card.classList.contains('job-card')) {
+      card.style.borderLeft = saves[id] ? '4px solid var(--success)' : '';
+      card.style.background = saves[id] ? '#f0fdf4' : '';
+    }
+  }
+}
+
+function updateSaveBtn(id) {
+  const saves = getSaves();
+  const saved = !!saves[id];
+  // Find all save buttons for this id
+  document.querySelectorAll(`[onclick*="toggleSave('${id}'"]`).forEach(btn => {
+    btn.textContent = saved ? '★' : '☆';
+    btn.classList.toggle('saved', saved);
+  });
+}
+
+function updateSavesBadge() {
+  const count = Object.keys(getSaves()).length;
+  const badge = document.getElementById('saves-count-badge');
+  const btn = document.getElementById('saves-btn');
+  if (badge) {
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'inline' : 'none';
+  }
+}
+
+function addSaveBtnsToStaticCards() {
+  // Add save buttons to all static .card elements that don't already have one
+  document.querySelectorAll('.card').forEach((card, i) => {
+    if (card.querySelector('.save-btn')) return; // already has one
+    const h3 = card.querySelector('h3');
+    if (!h3) return;
+    const name = h3.textContent.trim();
+    const id = 'static-' + name.toLowerCase().replace(/[^a-z0-9]/g,'-').substring(0,30);
+    card.id = card.id || 'card-' + id;
+    const address = card.querySelector('.card-detail')?.textContent?.trim() || '';
+    // Determine category from section
+    let category = 'resource';
+    const section = card.closest('.section');
+    if (section) category = section.id?.replace('section-','') || 'resource';
+    const icon = category === 'healthcare' ? '🏥' : category === 'resources' ? '📦' : '📌';
+    const btn = document.createElement('button');
+    btn.className = 'save-btn' + (isSaved(id) ? ' saved' : '');
+    btn.title = 'Save this resource';
+    btn.textContent = isSaved(id) ? '★' : '☆';
+    btn.setAttribute('onclick', `toggleSave('${id}','${name.replace(/'/g,"\'")}','${icon}','${address.replace(/'/g,"\'")}','${category}')`);
+    if (isSaved(id)) card.classList.add('saved');
+    card.appendChild(btn);
+  });
+}
+
+function openSavesModal() {
+  const saves = getSaves();
+  const body = document.getElementById('saves-modal-body');
+  const entries = Object.entries(saves);
+  if (!entries.length) {
+    body.innerHTML = '<div class="saves-empty"><div class="e-icon">★</div><p>No saved resources yet.<br>Tap the ★ on any card to save it here.</p></div>';
+  } else {
+    // Group by category
+    const groups = {};
+    entries.forEach(([id, item]) => {
+      const cat = item.category || 'other';
+      if (!groups[cat]) groups[cat] = [];
+      groups[cat].push({ id, ...item });
+    });
+    const catLabels = { housing:'🏠 Housing', healthcare:'🏥 Healthcare', resources:'📦 Resources', food:'🍽 Food Pantries', jobs:'💼 Jobs', other:'📌 Other' };
+    body.innerHTML = Object.entries(groups).map(([cat, items]) => `
+      <div class="saves-section-label">${catLabels[cat] || cat}</div>
+      ${items.sort((a,b) => b.savedAt - a.savedAt).map(item => `
+        <div class="saves-card">
+          <div class="saves-card-icon">${item.icon}</div>
+          <div class="saves-card-body">
+            <div class="saves-card-name">${item.name}</div>
+            <div class="saves-card-meta">${item.meta || ''}</div>
+          </div>
+          <button class="saves-card-remove" onclick="toggleSave('${item.id}','${item.name.replace(/'/g,"\'")}','${item.icon}','${(item.meta||'').replace(/'/g,"\'")}','${item.category}');renderSavesModal()" title="Remove">✕</button>
+        </div>`).join('')}
+    `).join('');
+  }
+  document.getElementById('saves-modal').classList.add('open');
+}
+
+function renderSavesModal() {
+  // Re-render without closing
+  const saves = getSaves();
+  if (!Object.keys(saves).length) {
+    document.getElementById('saves-modal-body').innerHTML = '<div class="saves-empty"><div class="e-icon">★</div><p>No saved resources yet.</p></div>';
+  } else {
+    openSavesModal();
+  }
+  updateSavesBadge();
+}
+
+function closeSavesModal() {
+  document.getElementById('saves-modal').classList.remove('open');
+}
+
+function clearAllSaves() {
+  if (!confirm('Clear all saved resources?')) return;
+  localStorage.removeItem(SAVES_KEY);
+  updateSavesBadge();
+  // Remove saved class from all cards
+  document.querySelectorAll('.card.saved').forEach(c => c.classList.remove('saved'));
+  document.querySelectorAll('.save-btn.saved').forEach(b => { b.classList.remove('saved'); b.textContent = '☆'; });
+  document.querySelectorAll('.job-card.saved').forEach(c => { c.style.borderLeft=''; c.style.background=''; c.classList.remove('saved'); });
+  closeSavesModal();
+}
+
+// Init saves on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateSavesBadge();
+});
+
+// Also run after dynamic cards load
+const _origLoadData = loadData;
+loadData = async function() {
+  await _origLoadData();
+  setTimeout(addSaveBtnsToStaticCards, 300);
+  updateSavesBadge();
+};
+
 // ── PHONE ──
 function callNumber(n) { window.location.href = 'tel:' + n.replace(/[^0-9]/g,''); }
 
@@ -1581,7 +1796,9 @@ function buildHousingCards(housing) {
   };
   container.innerHTML = housing.map(h => {
     const [badgeCls, badgeLabel] = statusMap[h.status] || ['badge-open', 'Accepting'];
-    return `<div class="card" data-type="${h.type.replace(/,/g,' ')}">
+    const hId = 'housing-' + h.id;
+    return `<div class="card ${isSaved(hId)?'saved':''}" data-type="${h.type.replace(/,/g,' ')}" id="card-${hId}">
+      <button class="save-btn ${isSaved(hId)?'saved':''}" onclick="toggleSave('${hId}','${h.name}','🏠','${h.address}','housing')" title="Save this resource">${isSaved(hId)?'★':'☆'}</button>
       <span class="card-badge ${badgeCls}">${badgeLabel}</span>
       <h3>${h.name}</h3>
       <div class="card-detail"><span>📍 Address:</span> ${h.address}</div>
@@ -1605,7 +1822,8 @@ function buildJobListings(jobs) {
   container.innerHTML = jobs.map(j => {
     const [typeCls, typeLabel] = typeMap[j.type] || ['', j.type];
     const titleSlug = (j.title + ' ' + j.company).toLowerCase().replace(/[^a-z0-9 ]/g,'');
-    return `<div class="job-card" data-type="${j.type}" data-title="${titleSlug}">
+    const jId = 'job-' + j.id;
+    return `<div class="job-card ${isSaved(jId)?'saved':''}" data-type="${j.type}" data-title="${titleSlug}" id="card-${jId}" style="${isSaved(jId)?'border-left:4px solid var(--success);background:#f0fdf4;':''}">
       <div class="job-info">
         <h3>${j.title}</h3>
         <div class="job-meta">
@@ -1616,6 +1834,7 @@ function buildJobListings(jobs) {
         <div style="margin-top:8px">${(j.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <button class="save-btn ${isSaved(jId)?'saved':''}" style="position:static;" onclick="toggleSave('${jId}','${j.title} – ${j.company}','💼','${j.location} · ${j.pay}','jobs')" title="Save this job">${isSaved(jId)?'★':'☆'}</button>
         <span class="job-type ${typeCls}">${typeLabel}</span>
         <button class="btn btn-primary" onclick="openModal('modal-apply-job')">Apply</button>
       </div>
@@ -1688,5 +1907,21 @@ loadData();
     });
   }
 </script>
+
+<!-- SAVES MODAL -->
+<div class="saves-modal-overlay" id="saves-modal" onclick="if(event.target===this)closeSavesModal()">
+  <div class="saves-modal">
+    <div class="saves-modal-header">
+      <h3>★ My Saved Resources</h3>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button onclick="clearAllSaves()" style="font-size:0.75rem;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;">Clear All</button>
+        <button onclick="closeSavesModal()" style="background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:1rem;">✕</button>
+      </div>
+    </div>
+    <div class="saves-modal-body" id="saves-modal-body">
+      <div class="saves-empty"><div class="e-icon">★</div><p>No saved resources yet.<br>Tap the ★ on any card to save it here.</p></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
