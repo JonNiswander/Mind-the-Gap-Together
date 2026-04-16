@@ -1,0 +1,190 @@
+{
+  "project": "Mind the Gap Together — Resource Portal",
+  "chat_date": "April 15, 2026",
+  "ai_model": "Claude Sonnet 4.6",
+  "developer": "Jon Niswander",
+  "live_url": "https://unique-toffee-1b6e64.netlify.app",
+  "repo": "https://github.com/JonNiswander/Mind-the-Gap-Together",
+
+  "chat_phases": [
+    {
+      "phase": 1,
+      "title": "Initial Site Review",
+      "summary": "Reviewed existing index.html for MtGT-C. Site was a single-page HTML app with hardcoded data. Tabs, housing cards, food pantries, healthcare, jobs all hardcoded. Identified need for admin portal, data layer, and dynamic content."
+    },
+    {
+      "phase": 2,
+      "title": "Admin Portal Build",
+      "summary": "Built admin.html from scratch — dark theme CMS with login gate (admin/mtgt2026), dashboard stats, CRUD for food pantries/housing/jobs/fairs/resources, drawer forms with day toggles and accepts pickers, export JSON button.",
+      "files_created": ["admin.html"]
+    },
+    {
+      "phase": 3,
+      "title": "GitHub & Netlify Setup",
+      "summary": "User pushed admin.html to GitHub repo. Netlify auto-deployed. Identified /admin folder contains legacy Netlify CMS — left alone. New admin.html lives in root.",
+      "key_decision": "admin.html in root, not in /admin folder"
+    },
+    {
+      "phase": 4,
+      "title": "Data Layer",
+      "summary": "Created data.json with all hardcoded content (10 food pantries, 6 housing, 5 jobs, 2 fairs, 26 resources). Updated index.html to fetch('data.json') instead of hardcoded arrays. Built buildHousingCards(), buildJobListings(), buildJobFairs(), buildFoodCards() functions.",
+      "files_created": ["data.json"],
+      "files_updated": ["index.html"]
+    },
+    {
+      "phase": 5,
+      "title": "Netlify Forms Integration",
+      "summary": "Added data-netlify=true to all 8 forms in index.html. Converted div-based forms to proper form tags with name attributes. Forms: navigator-request, volunteer-application, job-posting, job-application, rental-listing, ssi-advocate, mentor-request, donation.",
+      "files_updated": ["index.html"]
+    },
+    {
+      "phase": 6,
+      "title": "Bug Fix — Tabs Not Working",
+      "summary": "Discovered typo in updateCounty() function: lector('select...') instead of document.querySelector('select...'). This crashed the entire JS causing all tabs to fail. Fixed and redeployed.",
+      "bug": "lector() instead of document.querySelector() crashed all JS"
+    },
+    {
+      "phase": 7,
+      "title": "One-Click Publish",
+      "summary": "Added publishToGitHub() function to admin.html. Initially used direct GitHub API calls with tokens in frontend code — triggered GitHub secret scanner. Moved to Netlify Functions approach.",
+      "issue": "GitHub auto-revokes tokens detected in public repos"
+    },
+    {
+      "phase": 8,
+      "title": "Netlify Functions — Secure Token Proxy",
+      "summary": "Created publish.js and submissions.js in netlify/functions/. Tokens moved to Netlify environment variables (GITHUB_TOKEN, NETLIFY_TOKEN). Admin portal calls /.netlify/functions/publish and /.netlify/functions/submissions instead of APIs directly.",
+      "files_created": ["netlify/functions/publish.js", "netlify/functions/submissions.js"],
+      "key_fix": "Netlify Site UUID (ecb41d3a-bc77-43e9-b3fe-6b39ec92683f) needed for API, not site name"
+    },
+    {
+      "phase": 9,
+      "title": "Submissions Inbox Tabs",
+      "summary": "Built tabbed submissions system in admin: Publish Queue (job-posting, rental-listing with Approve & Publish), To Review (navigator, volunteer, ssi, mentor), Donations, Done. Field names fixed to match Netlify's title case format (Job Title not job-title). FORM_FIELDS mapping for display. markDone() moves cards to Done tab.",
+      "files_updated": ["admin.html"],
+      "key_fix": "Netlify converts field names to title case with spaces"
+    },
+    {
+      "phase": 10,
+      "title": "Auto-Publish on Save/Delete",
+      "summary": "Updated deleteItem() and saveDrawer() in admin to automatically call publishToGitHub() after every change. No more manual publish needed for routine edits.",
+      "files_updated": ["admin.html"]
+    },
+    {
+      "phase": 11,
+      "title": "Brand Refresh",
+      "summary": "Fetched mindthegaptogether.org to extract brand colors. Converted AVIF logo to PNG, extracted dominant colors: #1889c6 (primary blue), #0f78b4 (deep blue). Updated CSS variables throughout. Replaced hero/search section with clean banner. Added Montserrat font. Banner now 96px, white background, real logo image links to org site, MIND THE GAP TOGETHER + RESOURCE PORTAL text.",
+      "colors": {
+        "primary": "#0f78b4",
+        "primary_light": "#1889c6",
+        "logo_url": "https://static.wixstatic.com/media/c9e139_dc6768f9b06d4a5f9a5c5619f2f3bb6e~mv2.jpg"
+      },
+      "files_updated": ["index.html"]
+    },
+    {
+      "phase": 12,
+      "title": "Quick Filter Pills",
+      "summary": "Added quick-filter pill buttons to Housing, Healthcare, Resources, and Jobs tabs. Pills jump to sub-sections and trigger filters in one tap. Designed for mobile-first and iOS readiness.",
+      "files_updated": ["index.html"]
+    },
+    {
+      "phase": 13,
+      "title": "Navigation Cleanup",
+      "summary": "Moved Donate Goods card from Donate tab to bottom of Resources tab. Added Support card linking to MtGT.org. Changed Donate tab to direct external link to mindthegaptogether.org/contact. Added ⚙ Admin button to banner top right. Added ★ Saves button to banner.",
+      "files_updated": ["index.html"]
+    },
+    {
+      "phase": 14,
+      "title": "Saves System (Phase 1)",
+      "summary": "Built localStorage-based saves system. ☆/★ toggle button on every card. Saved cards get green border and background tint. ★ Saves button in banner shows badge count. Saves modal groups saved items by category with remove buttons and Clear All. Works on iOS Safari. Dynamic cards get save buttons from builders; static cards get them added by addSaveBtnsToStaticCards() on load.",
+      "files_updated": ["index.html"]
+    }
+  ],
+
+  "key_decisions": [
+    "Flat file architecture (data.json) instead of database — simple, free, Git-versioned",
+    "Netlify Functions as secure proxy — tokens never in frontend code",
+    "localStorage for saves — no login required for Phase 1",
+    "Supabase chosen for Phase 2 client accounts",
+    "PWA before native iOS app — faster, cheaper, reuses existing code",
+    "Quick filter pills instead of hero search bar — cleaner, mobile-first",
+    "Donate tab → external link to MtGT.org (short term)",
+    "Admin password in admin.html (search ADMIN_PASS to update)",
+    "diffchecker.com workflow before every GitHub commit"
+  ],
+
+  "environment_variables": {
+    "netlify": [
+      { "key": "GITHUB_TOKEN", "purpose": "GitHub PAT with repo scope — for publish.js to push data.json" },
+      { "key": "NETLIFY_TOKEN", "purpose": "Netlify API token — for submissions.js to fetch form submissions" }
+    ]
+  },
+
+  "important_gotchas": [
+    "GitHub classic token (not fine-grained) required with repo scope",
+    "GitHub auto-revokes tokens found in public repo code",
+    "Netlify secret scanner blocks commits with raw tokens",
+    "Netlify site name ≠ Site UUID — API needs UUID: ecb41d3a-bc77-43e9-b3fe-6b39ec92683f",
+    "Netlify converts form field names to Title Case With Spaces",
+    "Environment variable changes require manual Netlify redeploy",
+    "Admin password (ADMIN_PASS) gets overwritten when new admin.html generated — always update after upload",
+    "Always use diffchecker.com before committing new generated files",
+    "/admin folder is legacy Netlify CMS — do not modify or delete",
+    "Food pantry days stored as ['Mon','Tue'...] 3-letter abbreviations"
+  ],
+
+  "netlify_forms": [
+    { "name": "navigator-request", "fields": ["First Name", "Last Name", "Phone", "Email", "Current Situation", "Household Size", "Additional Notes"] },
+    { "name": "volunteer-application", "fields": ["Name", "Email", "Phone", "Availability", "Why do you want to volunteer?"] },
+    { "name": "job-posting", "fields": ["Company", "Email", "Job Title", "Pay Rate", "Job Type", "Location", "Job Description"] },
+    { "name": "job-application", "fields": ["name", "phone", "email", "intro"] },
+    { "name": "rental-listing", "fields": ["Owner/Contact Name", "Phone", "Property Address", "Bedrooms", "Monthly Rent", "Section 8 Accepted?"] },
+    { "name": "ssi-advocate", "fields": ["Name", "Phone or Email", "Describe your situation"] },
+    { "name": "mentor-request", "fields": ["Name", "Contact", "Business Idea or Industry", "Stage", "What kind of help do you need?"] },
+    { "name": "donation", "fields": ["Name", "Email", "Amount", "Frequency"] }
+  ],
+
+  "roadmap": {
+    "website_todo": [
+      "Verify all resource data accuracy",
+      "Email notifications for form submissions",
+      "Add more Pinellas County resources",
+      "Mobile responsiveness polish"
+    ],
+    "phase_2_client_accounts": {
+      "database": "Supabase (free tier, 50k rows)",
+      "auth": "Email + 4-digit PIN",
+      "intake_form_sections": [
+        "Identity & Contact (4-5 fields)",
+        "Current Situation (4-5 fields)",
+        "Income & Employment (3-4 fields)",
+        "Health & Support Needs (4-6 fields)",
+        "Housing Needs & Preferences (3-4 fields)"
+      ],
+      "features": [
+        "Register/Login modal",
+        "Universal intake form",
+        "Saves synced to account cross-device",
+        "Auto-fill forms using profile data"
+      ]
+    },
+    "phase_3_pwa": {
+      "files_needed": ["manifest.json", "service-worker.js"],
+      "changes": "Meta tags in index.html, app icon set",
+      "benefit": "Installable on iOS/Android home screen, works offline"
+    },
+    "phase_4_native_ios": {
+      "framework": "React Native / Expo",
+      "cost": "Apple Developer account $99/year",
+      "backend": "Reuses existing Netlify Functions + Supabase",
+      "timeline": "After client accounts stable"
+    },
+    "future": [
+      "Donation portal (Stripe/PayPal)",
+      "Donation flow: view → thank you email → payment portal",
+      "Multi-county expansion (Hillsborough, Pasco)",
+      "Multi-user admin logins",
+      "Push notifications",
+      "Resource verification automation"
+    ]
+  }
+}
